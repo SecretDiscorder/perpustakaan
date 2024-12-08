@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteBase /
+
+# Rewrite friendly URL to index.php?MyApp=data_buku&page=X
+RewriteRule ^index\.php\?MyApp/data_buku&page=(\d+)$ index.php?MyApp=data_buku&page=$1 [L]
