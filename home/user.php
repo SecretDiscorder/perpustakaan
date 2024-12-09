@@ -44,7 +44,7 @@ if ($kemData = $kemQuery->fetch_assoc()) {
                     <p>Buku</p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-stats-bars"></i>
+                    <i class="ion ion-books-add"></i>
                 </div>
                 <a href="?page=MyApp/data_buku" class="small-box-footer">More info
                     <i class="fa fa-arrow-circle-right"></i>
@@ -52,6 +52,23 @@ if ($kemData = $kemQuery->fetch_assoc()) {
             </div>
         </div>
 
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-blue">
+                <div class="inner">
+                <h4>QUIZ</h4>
+                    <p>Math Game</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-quiz"></i>
+                </div>
+                <a href="?page=MyApp/math" class="small-box-footer">More info
+                    <i class="fa fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
 
     </div>
+
+
 </section>
