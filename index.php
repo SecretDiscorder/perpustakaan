@@ -230,6 +230,9 @@ include "inc/koneksi.php";
                         case 'MyApp/print_agt':
                             include "admin/agt/print_agt.php";
                             break;
+                        case 'MyApp/math':
+                            include "math.php";
+                            break;
                         case 'MyApp/print_allagt':
                             include "admin/agt/print_allagt.php";
                             break;
