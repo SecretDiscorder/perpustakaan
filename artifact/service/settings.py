@@ -79,7 +79,7 @@ ROOT_URLCONF = 'service.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'bima/templates'],  # Path to your templates folder
+        'DIRS': [BASE_DIR],  # Path to your templates folder
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
