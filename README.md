@@ -2,6 +2,8 @@
 Aplikasi Perpustakaan Berbasis Website
 
 frontend: HTML, BOOTSTRAP, JAVASCRIPT
+
+
 backend: Mysql, Django
 
 
