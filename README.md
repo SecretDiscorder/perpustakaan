@@ -1,4 +1,4 @@
-# E-Library
+# PHP E-Library
 Aplikasi Perpustakaan Berbasis Website
 
 frontend: HTML, BOOTSTRAP, JAVASCRIPT
