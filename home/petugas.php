@@ -67,7 +67,7 @@
 			<div class="small-box bg-yellow">
 				<div class="inner">
 					<h4>
-						<?= $buku; ?>
+						<?= $agt; ?>
 					</h4>
 
 					<p>Anggota</p>
@@ -80,41 +80,6 @@
 				</a>
 			</div>
 		</div>
-
-		<div class="col-lg-3 col-xs-6">
-			<!-- small box -->
-			<div class="small-box bg-green">
-				<div class="inner">
-					<h4>
-						<?= $pin; ?>
-					</h4>
-
-					<p>Peminjaman</p>
-				</div>
-				<div class="icon">
-					<i class="ion ion-stats-bars"></i>
-				</div>
-				<a href="?page=data_sirkul" class="small-box-footer">More info
-					<i class="fa fa-arrow-circle-right"></i>
-				</a>
-			</div>
-		</div>
-
-		<div class="col-lg-3 col-xs-6">
-			<!-- small box -->
-			<div class="small-box bg-red">
-				<div class="inner">
-					<h4>
-						<?= $kem; ?>
-					</h4>
-
-					<p>Pengembalian</p>
-				</div>
-				<div class="icon">
-					<i class="ion ion-stats-bars"></i>
-				</div>
-				<a href="?page=log_kembali" class="small-box-footer">More info
-					<i class="fa fa-arrow-circle-right"></i>
-				</a>
-			</div>
-		</div>
+	</div>
+	
+</section>

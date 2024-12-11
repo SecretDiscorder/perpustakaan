@@ -8,28 +8,35 @@ include "inc/koneksi.php";
 <html>
 
 <head>
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Login | SI Perpustakaan</title>
-	<link rel="icon" href="dist/img/logo.png">
+	<title>Login | Prata Pustaka</title>
+	<link rel="icon" href="dist/img/logo1.png">
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<!-- Bootstrap 3.3.6 -->
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-	<!-- Font Awesome -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+	
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Ionicons -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 	<!-- Theme style -->
 	<link rel="stylesheet" href="dist/css/AdminLTE.min.css">
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	
 	<!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
+
 
 <body class="hold-transition login-page">
 	<div class="login-box">
@@ -39,12 +46,11 @@ include "inc/koneksi.php";
 					<b>Sistem Informasi Perpustakaan</b>
 				</font>
 			</h3>
-			</a>
 		</div>
 		<!-- /.login-logo -->
 		<div class="login-box-body">
 			<center>
-				<img src="dist/img/logo.png" width=160px />
+				<img src="dist/img/logo1.png" width=160px />
 			</center>
 			<br>
 			<p class="login-box-msg">Login System</p>
@@ -62,21 +68,34 @@ include "inc/koneksi.php";
 
 					</div>
 					<!-- /.col -->
-					<div class="col-xs-4">
-						<button type="submit" class="btn btn-success btn-block btn-flat" name="btnLogin" title="Masuk Sistem">
+					<div class="col-xs-4">				
+					    <button type="submit" class="btn btn-success btn-block btn-flat" name="btnLogin" title="Masuk Sistem">
 							<b>Masuk</b>
 						</button>
+
 					</div>
-					<!-- /.col -->
+				
 				</div>
 			</form>
-			<!-- /.social-auth-links -->
-
-		</div>
+						<div class="col-xs-4">
+						    <button class="btn btn-block btn-flat" style="display: none:"><a href='register.php' style="text-decoration: none;">
+							<b>Belum punya akun? Daftar Sekarang</b></a>
+					</button>
+					</div>
+		</div> <br>
+		<div class="login-logo">
+		<h5>
+		<b>Recode Developed by <a href="https://youtube.com/@BimaSeven">Bima Adhi</a></b>
+		</h5>
+			<h6><font color="red">Thanks to Original Open Source Code by <a href="https://github.com/ivan42118/perpustakaan">Github ivan42118</a></font></h6>		</div>
+	
 		<!-- /.login-box-body -->
 	</div>
+
 	<!-- /.login-box -->
 
+			<!-- /.social-auth-links -->
+			
 	<!-- jQuery 2.2.3 -->
 	<script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
 	<!-- Bootstrap 3.3.6 -->
@@ -97,7 +116,7 @@ include "inc/koneksi.php";
 		
 
 			$username=mysqli_real_escape_string($koneksi,$_POST['username']);
-			$password=mysqli_real_escape_string($koneksi,md5($_POST['password']));
+			$password=mysqli_real_escape_string($koneksi,$_POST['password']);
 
 
 		$sql_login = "SELECT * FROM tb_pengguna WHERE BINARY username='$username' AND password= '$password'";

@@ -78,7 +78,8 @@
 
                             if ($data_cek['level'] == "Petugas") echo "<option value='Petugas' selected>Petugas</option>";
                             else echo "<option value='Petugas'>Petugas</option>";
-        
+                             if ($data_cek['level'] == "User") echo "<option value='User' selected>User</option>";
+                            else echo "<option value='User'>User</option>";
                         ?>
 							</select>
 						</div>
@@ -102,7 +103,7 @@ if (isset ($_POST['Ubah'])){
     $sql_ubah = "UPDATE tb_pengguna SET
         nama_pengguna='".$_POST['nama_pengguna']."',
         username='".$_POST['username']."',
-        password='".md5($_POST['password'])."',
+        password='".$_POST['password']."',
         level='".$_POST['level']."'
         WHERE id_pengguna='".$_POST['id_pengguna']."'";
     $query_ubah = mysqli_query($koneksi, $sql_ubah);

@@ -1,0 +1,11 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+Header set Access-Control-Allow-Origin "*"
+Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+
+RewriteBase /
+
+# Rewrite friendly URL to index.php?MyApp=data_buku&page=X
+RewriteRule ^index\.php\?MyApp/data_buku&page=(\d+)$ index.php?MyApp=data_buku&page=$1 [L]

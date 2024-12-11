@@ -1,3 +1,3 @@
 <?php
-$koneksi = new mysqli ("localhost","root","","data_perpus");
+$koneksi = new mysqli("localhost","userdb","passdb","dbname");
 ?>
