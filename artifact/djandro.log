@@ -1,0 +1,189 @@
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/home/bima/artifact/service/urls.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /base/bg.jpeg
+Not Found: /base/favicon.ico
+Not Found: /default
+Not Found: /default
+Not Found: /dist/js/app.min.js
+Not Found: /plugins/datatables/jquery.dataTables.min.js
+Not Found: /plugins/jQuery/jquery-2.2.3.min.js
+Not Found: /plugins/datatables/dataTables.bootstrap.min.js
+Not Found: /bg.jpeg
+Not Found: /plugins/datatables/jquery.dataTables.min.js
+Not Found: /plugins/datatables/dataTables.bootstrap.min.js
+Not Found: /dist/js/app.min.js
+Not Found: /plugins/jQuery/jquery-2.2.3.min.js
+Not Found: /plugins/datatables/jquery.dataTables.min.js
+Not Found: /dist/js/app.min.js
+Not Found: /plugins/datatables/dataTables.bootstrap.min.js
+Not Found: /bg.jpeg
+Not Found: /plugins/datatables/jquery.dataTables.min.js
+Not Found: /plugins/datatables/dataTables.bootstrap.min.js
+Not Found: /dist/js/app.min.js
+Not Found: /favicon.ico
+Not Found: /plugins/datatables/dataTables.bootstrap.min.js
+Not Found: /plugins/jQuery/jquery-2.2.3.min.js
+Not Found: /dist/js/app.min.js
+Not Found: /plugins/datatables/jquery.dataTables.min.js
+Not Found: /bg.jpeg
+Not Found: /plugins/datatables/jquery.dataTables.min.js
+Not Found: /plugins/datatables/dataTables.bootstrap.min.js
+Not Found: /dist/js/app.min.js
+Not Found: /favicon.ico
+Not Found: /base/bg.jpeg
+Not Found: /base/favicon.ico
+Not Found: /
+Not Found: /artifact
+Not Found: /artifact
+Not Found: /artifact
+Not Found: /
+Not Found: /plugins/jQuery/jquery-2.2.3.min.js
+Not Found: /plugins/datatables/dataTables.bootstrap.min.js
+Not Found: /plugins/datatables/jquery.dataTables.min.js
+Not Found: /dist/js/app.min.js
+Not Found: /plugins/datatables/jquery.dataTables.min.js
+Not Found: /bg.jpeg
+Not Found: /plugins/datatables/dataTables.bootstrap.min.js
+Not Found: /dist/js/app.min.js
+Not Found: /favicon.ico
+Not Found: /bg.jpeg
+Not Found: /plugins/jQuery/jquery-2.2.3.min.js
+Not Found: /plugins/datatables/jquery.dataTables.min.js
+Not Found: /dist/js/app.min.js
+Not Found: /plugins/datatables/dataTables.bootstrap.min.js
+Not Found: /bg.jpeg
+Not Found: /plugins/datatables/jquery.dataTables.min.js
+Not Found: /plugins/datatables/dataTables.bootstrap.min.js
+Not Found: /dist/js/app.min.js
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /plugins/jQuery/jquery-2.2.3.min.js
+Not Found: /dist/js/app.min.js
+Not Found: /plugins/datatables/dataTables.bootstrap.min.js
+Not Found: /bg.jpeg
+Not Found: /
+Not Found: /plugins/datatables/jquery.dataTables.min.js
+Not Found: /plugins/datatables/dataTables.bootstrap.min.js
+Not Found: /plugins/datatables/jquery.dataTables.min.js
+Not Found: /plugins/jQuery/jquery-2.2.3.min.js
+Not Found: /bg.jpeg
+Not Found: /plugins/jQuery/jquery-2.2.3.min.js
+Not Found: /plugins/datatables/jquery.dataTables.min.js
+Not Found: /plugins/datatables/dataTables.bootstrap.min.js
+Not Found: /dist/js/app.min.js
+Not Found: /
+Not Found: /dist/js/app.min.js
+Not Found: /plugins/datatables/dataTables.bootstrap.min.js
+Not Found: /plugins/jQuery/jquery-2.2.3.min.js
+Not Found: /plugins/datatables/jquery.dataTables.min.js
+Not Found: /bg.jpeg
+Not Found: /plugins/datatables/jquery.dataTables.min.js
+Not Found: /plugins/datatables/dataTables.bootstrap.min.js
+Not Found: /dist/js/app.min.js
+Not Found: /artifact/bg.jpeg
+Not Found: /artifact/favicon.ico
+Not Found: /
+Not Found: /page
+Not Found: /artifact/bg.jpeg
+Not Found: /artifact/bg.jpeg
+Not Found: /favicon.ico
+Internal Server Error: /statistics/
+Traceback (most recent call last):
+  File "/home/bimapust/virtualenv/mtk.bima-pustaka.my.id/public_html/artifact/3.9/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/bimapust/virtualenv/mtk.bima-pustaka.my.id/public_html/artifact/3.9/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/bimapust/virtualenv/mtk.bima-pustaka.my.id/public_html/artifact/3.9/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/home/bimapust/mtk.bima-pustaka.my.id/public_html/artifact/bima/views.py", line 420, in statis
+    return render(request, 'statistics/home.php')
+  File "/home/bimapust/virtualenv/mtk.bima-pustaka.my.id/public_html/artifact/3.9/lib/python3.9/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/bimapust/virtualenv/mtk.bima-pustaka.my.id/public_html/artifact/3.9/lib/python3.9/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/bimapust/virtualenv/mtk.bima-pustaka.my.id/public_html/artifact/3.9/lib/python3.9/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: statistics/home.php
+Internal Server Error: /statistics/
+Traceback (most recent call last):
+  File "/home/bimapust/virtualenv/mtk.bima-pustaka.my.id/public_html/artifact/3.9/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/bimapust/virtualenv/mtk.bima-pustaka.my.id/public_html/artifact/3.9/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/bimapust/virtualenv/mtk.bima-pustaka.my.id/public_html/artifact/3.9/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/home/bimapust/mtk.bima-pustaka.my.id/public_html/artifact/bima/views.py", line 420, in statis
+    return render(request, 'statistics/home.php')
+  File "/home/bimapust/virtualenv/mtk.bima-pustaka.my.id/public_html/artifact/3.9/lib/python3.9/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/bimapust/virtualenv/mtk.bima-pustaka.my.id/public_html/artifact/3.9/lib/python3.9/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/bimapust/virtualenv/mtk.bima-pustaka.my.id/public_html/artifact/3.9/lib/python3.9/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: statistics/home.php
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /
+Not Found: /bg.jpeg
+Not Found: /404.shtml
+Not Found: /404.shtml
+Not Found: /404.shtml
+Not Found: /bg.jpeg
+Not Found: /favicon.ico
+Not Found: /404.shtml
+Not Found: /bg.jpeg
+Not Found: /404.shtml
+Not Found: /404.shtml
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /
+Internal Server Error: /youtube/
+Traceback (most recent call last):
+  File "/home/bimapust/virtualenv/mtk.bima-pustaka.my.id/public_html/artifact/3.9/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/bimapust/virtualenv/mtk.bima-pustaka.my.id/public_html/artifact/3.9/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/bimapust/mtk.bima-pustaka.my.id/public_html/artifact/bima/views.py", line 1738, in youtube
+    return render(request, 'youtube.html', context)
+  File "/home/bimapust/virtualenv/mtk.bima-pustaka.my.id/public_html/artifact/3.9/lib/python3.9/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/bimapust/virtualenv/mtk.bima-pustaka.my.id/public_html/artifact/3.9/lib/python3.9/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/bimapust/virtualenv/mtk.bima-pustaka.my.id/public_html/artifact/3.9/lib/python3.9/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: youtube.html
+Internal Server Error: /youtube/
+Traceback (most recent call last):
+  File "/home/bimapust/virtualenv/mtk.bima-pustaka.my.id/public_html/artifact/3.9/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/bimapust/virtualenv/mtk.bima-pustaka.my.id/public_html/artifact/3.9/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/bimapust/mtk.bima-pustaka.my.id/public_html/artifact/bima/views.py", line 1738, in youtube
+    return render(request, 'youtube.html', context)
+  File "/home/bimapust/virtualenv/mtk.bima-pustaka.my.id/public_html/artifact/3.9/lib/python3.9/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/bimapust/virtualenv/mtk.bima-pustaka.my.id/public_html/artifact/3.9/lib/python3.9/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/bimapust/virtualenv/mtk.bima-pustaka.my.id/public_html/artifact/3.9/lib/python3.9/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: youtube.html
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Internal Server Error: /download/
+Internal Server Error: /download/
+Internal Server Error: /download/
+Not Found: /
+Watching for file changes with StatReloader
+/home/bima/perpustakaan/artifact/bima/views.py changed, reloading.
+Watching for file changes with StatReloader
+/home/bima/perpustakaan/artifact/bima/urls.py changed, reloading.
+Watching for file changes with StatReloader

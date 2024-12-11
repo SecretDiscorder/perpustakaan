@@ -1,0 +1,9 @@
+yt-dlp
+
+django
+beautifulsoup4
+
+django-cors-headers
+python-dateutil
+pandas
+
