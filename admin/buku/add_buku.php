@@ -33,11 +33,12 @@ if (isset($_POST['upload_json'])) {
 // Handle Google Drive sync
 if (isset($_POST['sync_files']) && isset($_SESSION['file_path'])) {
     if (file_exists($_SESSION['file_path'])) {
-        $client = new Google_Client();
-        $client->setApplicationName('Google Drive API PHP');
-        $client->setScopes(Google_Service_Drive::DRIVE_READONLY);
-        $client->setAuthConfig($_SESSION['file_path']);
-        $client->setAccessType('offline');
+$client = new Google_Client();
+$client->setApplicationName('Google Drive API PHP');
+$client->setScopes(Google_Service_Drive::DRIVE);
+$client->setAuthConfig($_SESSION['file_path']);  // Ensure this file path is correct
+$client->setAccessType('offline');
+
 
         $service = new Google_Service_Drive($client);
         $folderId = $_POST['folder_id'];
@@ -158,6 +159,7 @@ if (isset($_POST['SimpanManual'])) {
 }
 ?>
 
+<?php if ($data_level == "Administrator" or $data_level == "Petugas") { ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -263,3 +265,4 @@ if (isset($_POST['SimpanManual'])) {
 </body>
 </html>
 
+<?php }?>

@@ -76,7 +76,7 @@ if (!isset($_SESSION["ses_username"])) {
       .container {
         width: 90%;
         max-width: 800px;
-        background-color: #e38b07;
+        background-color: red;
         border-radius: 20px;
         padding: 30px;
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
@@ -85,10 +85,9 @@ if (!isset($_SESSION["ses_username"])) {
       }
 
       /* Judul */
-      h1 {
-        font-size: 2.5rem;
+      h1, label {
         font-weight: bold;
-        color: var(--highlight-color);
+        color: white;
         margin-bottom: 10px;
       }
 
@@ -253,7 +252,7 @@ if (!isset($_SESSION["ses_username"])) {
       <div id="number-selection" class="fade-in" style="display: none;">
         <h2>Pilih Angka</h2>
         <div id="number-options"></div>
-        <button id="continue-btn" class="btn" style="display: none;">Lanjutkan</button>
+        <button id="continue-btn" class="btn" style="display: none;color: white;">Lanjutkan</button>
       </div>
       <!-- Bagian Pemilihan Jumlah Soal -->
       <div id="question-count-selection" style="display: none;">
@@ -277,7 +276,7 @@ if (!isset($_SESSION["ses_username"])) {
         <!-- Submit button -->
         <button id="submit-btn">Submit</button>
         <!-- Timer -->
-        <p>Waktu tersisa: <span id="time-left">60</span> detik </p>
+        <p>Waktu tersisa: <span id="time-left">15</span> detik </p>
       </div>
       <!-- Hasil -->
       <div id="result-container" style="display: none;">
@@ -411,7 +410,7 @@ function generateQuestions() {
 
 
       function startTimer() {
-        let timeLeft = 60; // Set waktu awal (60 detik)
+        let timeLeft = 15; // Set waktu awal (60 detik)
         document.getElementById('time-left').textContent = timeLeft;
         // Pastikan tidak ada timer aktif sebelum memulai yang baru
         if (timer) {

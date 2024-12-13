@@ -187,3 +187,10 @@ Watching for file changes with StatReloader
 Watching for file changes with StatReloader
 /home/bima/perpustakaan/artifact/bima/urls.py changed, reloading.
 Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /
+"GET / HTTP/1.1" 404 2780
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 2831
+"GET /api/youtube-download HTTP/1.1" 301 0
+"GET /api/youtube-download/ HTTP/1.1" 200 74

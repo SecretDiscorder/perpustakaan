@@ -1,3 +1,6 @@
+<?php 
+if ($data_level == "Administrator") {
+?>
 <section class="content-header" style="text-align: center;">
     <h1>
         Data Anggota
@@ -6,7 +9,7 @@
         <li>
             <a href="index.php">
                 <i class="fa fa-home"></i>
-                <b>Si Tabsis</b>
+                <b>Dashboard</b>
             </a>
         </li>
     </ol>
@@ -26,18 +29,7 @@
 
         <div class="card-body">
             <div class="d-flex justify-content-between mb-3">
-                <div>
-                    <label>Show 
-                        <select id="entriesPerPage" class="form-select form-select-sm d-inline-block w-auto ms-2">
-                            <option value="5">5</option>
-                            <option value="10" selected>10</option>
-                            <option value="20">20</option>
-                        </select> entries
-                    </label>
-                </div>
-                <div>
-                    <input type="text" id="searchInput" class="form-control form-control-sm w-auto" placeholder="Search...">
-                </div>
+
             </div>
 
             <div class="table-responsive">
@@ -102,6 +94,9 @@
         </div>
     </div>
 </section>
+<?php
+}
+?>
 
 <script>
     var currentPage = 1;

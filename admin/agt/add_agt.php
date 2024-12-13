@@ -22,7 +22,9 @@ if (strlen($tambah) == 1) {
     $format = "A" . $tambah;
 }
 ?>
-
+<?php 
+if ($data_level == "Administrator") {
+?>
 <section class="content-header">
     <h1>
         Master Data
@@ -124,4 +126,7 @@ if (strlen($tambah) == 1) {
       })</script>";
     }
   }
+?>
+<?php 
+}
 ?>

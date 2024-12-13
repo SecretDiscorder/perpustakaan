@@ -9,14 +9,11 @@ if (!isset($_SESSION["ses_username"])) {
     exit();
 }
 ?>
-<?php
-
-// Handle OPTIONS pre-flight request (required for CORS)
-if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+<?php // Handle OPTIONS pre-flight request (required for CORS)
+if ($_SERVER["REQUEST_METHOD"] == "OPTIONS") {
     http_response_code(200);
     exit();
-}
-?>
+} ?>
 <html lang="en">
 <head>
 <script>
@@ -78,20 +75,22 @@ if (data.streams.length > 0) {
     <style>
 
       /* Judul */
-      h1 {
-        font-size: 2.5rem;
+      h1, label, .download-options {
         font-weight: bold;
-        color: var(--highlight-color);
+        color: white;
         margin-bottom: 10px;
       }
 
       h2 {
         font-size: 1.8rem;
         font-weight: bold;
-        color: var(--text-color);
+        color: white;
         margin-bottom: 20px;
       }
-
+      a, ul, li{
+        text-decoration: none;
+        color: white;
+      }
       /* Animasi fade-in */
       @keyframes fadeIn {
         from {
@@ -206,6 +205,7 @@ if (data.streams.length > 0) {
       @media screen and (max-width: 768px) {
         h1 {
           font-size: 2rem;
+          color: white;
         }
 
         h2 {
@@ -222,9 +222,10 @@ if (data.streams.length > 0) {
       .container {
         width: 90%;
         max-width: 800px;
-        background-color: #e38b07;
+        background-color: green;
         border-radius: 20px;
         padding: 30px;
+        color: white;
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         text-align: center;
         animation: fadeIn 1.2s ease-in-out;

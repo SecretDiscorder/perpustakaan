@@ -1,16 +1,42 @@
-
-    <link rel="icon" href="dist/img/logo.png">
+    <head>	
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Login | Prata Pustaka</title>
+	<!-- Tell the browser to be responsive to screen width -->
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+		<!-- Bootstrap 3.3.6 -->
+	
+    <link rel="icon" href="dist/img/logo1.png">
     <!-- Bootstrap 3.3.6 -->
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+<style>
+body, .hold-transition {
+    background-image: url("https://mtk.bima-pustaka.my.id/pp.png");
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-position: right; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-attachment: fixed; /* Keeps the background fixed while scrolling */
+}
+.login-box-body {
+    background-color: rgba(255, 255, 255, 0.9); /* White background with 80% opacity */
+    padding: 20px; /* Add some padding for better spacing */
+    border-radius: 10px; /* Optional: Rounded corners */
+}
+</style>
+    </head>
+    <body>
     <div class="login-box">
-        <div class="login-logo">
-            <h3><b>Register | Prata Pustaka</b></h3>
-        </div>
+
         <div class="login-box-body">
+        <div class="login-logo">
+        <font color="blue">
+            <h3><b>Register | Prata Pustaka</b></h3>
+        </font>
+        </div>
             <p class="login-box-msg">Register New User</p>
             <form action="" method="post">
                 <div class="form-group has-feedback">
@@ -99,11 +125,14 @@
                     <div class="col-xs-4">
                         <button type="submit" class="btn btn-success btn-block btn-flat" name="btnRegister">Register</button>
                     </div>
+                    <br><br>
+						    <h6 class="text" style=""><a href='login.php' style="text-decoration: none;">
+							<b>Sudah punya akun? Login Sekarang</b></a></h6>
                 </div>
             </form>
         </div>
     </div>
-    
+    </body>
 
     <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>

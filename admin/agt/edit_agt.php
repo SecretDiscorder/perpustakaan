@@ -21,7 +21,9 @@
 		</li>
 	</ol>
 </section>
-
+<?php 
+if ($data_level == "Administrator") {
+?>
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
@@ -85,7 +87,9 @@
 			</div>
 			<!-- /.box -->
 </section>
-
+<?php
+}
+?>
 <?php
 
 if (isset ($_POST['Ubah'])){

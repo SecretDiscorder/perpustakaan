@@ -1,3 +1,6 @@
+<?php 
+if ($data_level == "Administrator") {
+?>
 <section class="content-header">
 	<h1>
 		Pengguna Sistem
@@ -67,7 +70,9 @@
 			</div>
 			<!-- /.box -->
 </section>
-
+<?php
+}
+?>
 <?php
 
     if (isset ($_POST['Simpan'])){

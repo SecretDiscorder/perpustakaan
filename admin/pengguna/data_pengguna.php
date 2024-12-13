@@ -1,3 +1,6 @@
+<?php 
+if ($data_level == "Administrator") {
+?>
 <section class="content-header">
     <h1>
         Pengguna Sistem
@@ -6,7 +9,7 @@
         <li>
             <a href="index.php">
                 <i class="fa fa-home"></i>
-                <b>Si Tabsis</b>
+                <b>Dashboard</b>
             </a>
         </li>
     </ol>
@@ -21,20 +24,7 @@
             </a>
         </div>
         <div class="card-body">
-            <div class="d-flex justify-content-between mb-3">
-                <div>
-                    <label>Show 
-                        <select id="entriesPerPage" class="form-select form-select-sm d-inline-block w-auto ms-2">
-                            <option value="5">5</option>
-                            <option value="10" selected>10</option>
-                            <option value="20">20</option>
-                        </select> entries
-                    </label>
-                </div>
-                <div>
-                    <input type="text" id="searchInput" class="form-control form-control-sm w-auto" placeholder="Search...">
-                </div>
-            </div>
+
 
             <div class="table-responsive">
                 <table id="example1" class="table table-bordered table-striped">
@@ -91,7 +81,9 @@
         </div>
     </div>
 </section>
-
+<?php 
+}
+?>
 <script>
     var currentPage = 1;
     var rowsPerPage = 10; // Default to show 10 rows per page

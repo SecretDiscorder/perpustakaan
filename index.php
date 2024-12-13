@@ -9,12 +9,12 @@ if (isset($_SESSION["ses_username"]) == "") {
     $data_user = $_SESSION["ses_username"];
     $data_level = $_SESSION["ses_level"];
 }
-ini_set('display_errors', false);
-ini_set('safe_mode', false);
-ini_set('allow_url_fopen', 1);
-ini_set('allow_url_include', 1);
+ini_set("display_errors", false);
+ini_set("safe_mode", false);
+ini_set("allow_url_fopen", 1);
+ini_set("allow_url_include", 1);
 
-ini_set('allow_url_include', 'on');
+ini_set("allow_url_include", "on");
 include "inc/koneksi.php";
 ?>
 
@@ -24,7 +24,7 @@ include "inc/koneksi.php";
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>SI PERPUSTAKAAN</title>
+    <title>Prata Pustaka</title>
     <link rel="icon" href="dist/img/logo1.png">
 <!-- Bootstrap JS -->
     <!-- Responsive Meta Tag -->
@@ -76,20 +76,13 @@ include "inc/koneksi.php";
     
 </head>
 
-
-
-
-
-
-
-
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
 <header class="main-header">
     <a href="index.php" class="logo" style=" text-decoration: none;"
 				<span class="logo-lg">
 					<img src="dist/img/logo1.png" width="37px">
-					<b>E-Library</b>
+					<b>Prata Pustaka</b>
 				</span>
     </a>
 
@@ -108,7 +101,7 @@ include "inc/koneksi.php";
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-                        <font color="white"><b>E-Literasi V1</b></font>
+                        <font color="white"><b>E-Library V1</b></font>
                     </a>
                 </li>
             </ul>
@@ -120,11 +113,12 @@ include "inc/koneksi.php";
 
 
 </header>
+
 		<aside class="main-sidebar">
 			<!-- sidebar: style can be found in sidebar.less -->
 			<section class="sidebar">
 				<!-- Sidebar user panel -->
-				</<b>
+				<br>
 				<div class="user-panel">
 					<div class="pull-left image">
 						<img src="dist/img/avatar.png" class="img-circle" alt="User Image">
@@ -191,19 +185,14 @@ include "inc/koneksi.php";
 
                 
                 <li class="nav-item">
-                    <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#kelolaDataMenuPetugas">
-                                <li class="nav-item">
-                <a class="nav-link" href="?page=petugas">
-                    <i class="fa fa-dashboard"></i> Dashboard
-                </a>
-            </li>
+                    <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#kelolaDataMenu">
                         <i class="fa fa-folder"></i> Kelola Data <i class="fa fa-angle-left pull-right"></i>
                     </a>
-                    <ul class="collapse" id="kelolaDataMenuPetugas">
+                    <ul class="collapse" id="kelolaDataMenu">
                         <li><a class="nav-link" href="?page=MyApp/data_buku"><i class="fa fa-book"></i> Data Buku</a></li>
-                        <li><a class="nav-link" href="?page=MyApp/data_agt"><i class="fa fa-users"></i> Data Anggota</a></li>
                     </ul>
                 </li>
+
             <?php } ?>
 
             <!-- Logout -->
@@ -218,72 +207,69 @@ include "inc/koneksi.php";
 
         <div class="content-wrapper">
             <section class="content">
-                <?php
-                if (isset($_GET['page'])) {
-                    $hal = $_GET['page'];
+                <?php if (isset($_GET["page"])) {
+                    $hal = $_GET["page"];
                     switch ($hal) {
-                        case 'admin':
+                        case "admin":
                             include "home/admin.php";
                             break;
-                        case 'petugas':
+                        case "petugas":
                             include "home/petugas.php";
                             break;
-                        case 'user':
+                        case "user":
                             include "home/user.php";
                             break;
-                        case 'MyApp/data_pengguna':
+                        case "MyApp/data_pengguna":
                             include "admin/pengguna/data_pengguna.php";
                             break;
-                        case 'MyApp/add_pengguna':
+                        case "MyApp/add_pengguna":
                             include "admin/pengguna/add_pengguna.php";
                             break;
-                        case 'MyApp/edit_pengguna':
+                        case "MyApp/edit_pengguna":
                             include "admin/pengguna/edit_pengguna.php";
                             break;
-                        case 'MyApp/del_pengguna':
+                        case "MyApp/del_pengguna":
                             include "admin/pengguna/del_pengguna.php";
                             break;
-                        case 'MyApp/data_agt':
+                        case "MyApp/data_agt":
                             include "admin/agt/data_agt.php";
                             break;
-                        case 'MyApp/add_agt':
+                        case "MyApp/add_agt":
                             include "admin/agt/add_agt.php";
                             break;
-                        case 'MyApp/edit_agt':
+                        case "MyApp/edit_agt":
                             include "admin/agt/edit_agt.php";
                             break;
-                        case 'MyApp/del_agt':
+                        case "MyApp/del_agt":
                             include "admin/agt/del_agt.php";
                             break;
-                        case 'MyApp/print_agt':
+                        case "MyApp/print_agt":
                             include "admin/agt/print_agt.php";
                             break;
-                        case 'MyApp/math':
+                        case "MyApp/math":
                             include "math.php";
                             break;
-                        case 'MyApp/print_allagt':
+                        case "MyApp/print_allagt":
                             include "admin/agt/print_allagt.php";
                             break;
-                        case 'MyApp/data_buku':
+                        case "MyApp/data_buku":
                             include "admin/buku/data_buku.php";
                             break;
 
-
-                        case 'MyApp/artifact';
-
+                        case "MyApp/artifact":
                             include "youtube.php";
 
                             break;
-                        case 'edit_profile':
+                        case "edit_profile":
                             include "home/profile_user.php";
                             break;
-                        case 'MyApp/add_buku':
+                        case "MyApp/add_buku":
                             include "admin/buku/add_buku.php";
                             break;
-                        case 'MyApp/edit_buku':
+                        case "MyApp/edit_buku":
                             include "admin/buku/edit_buku.php";
                             break;
-                        case 'MyApp/del_buku':
+                        case "MyApp/del_buku":
                             include "admin/buku/del_buku.php";
                             break;
                         default:
@@ -298,8 +284,7 @@ include "inc/koneksi.php";
                     } elseif ($data_level == "User") {
                         include "home/user.php";
                     }
-                }
-                ?>
+                } ?>
             </section>
         </div>
         

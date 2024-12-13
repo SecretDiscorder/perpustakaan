@@ -4,22 +4,26 @@ $buku = $agt = $pin = $kem = 0;
 
 $bukuQuery = $koneksi->query("SELECT count(id_buku) AS buku FROM tb_buku");
 if ($bukuData = $bukuQuery->fetch_assoc()) {
-    $buku = $bukuData['buku'];
+    $buku = $bukuData["buku"];
 }
 
 $agtQuery = $koneksi->query("SELECT count(id_anggota) AS agt FROM tb_anggota");
 if ($agtData = $agtQuery->fetch_assoc()) {
-    $agt = $agtData['agt'];
+    $agt = $agtData["agt"];
 }
 
-$pinQuery = $koneksi->query("SELECT count(id_sk) AS pin FROM tb_sirkulasi WHERE status = 'PIN'");
+$pinQuery = $koneksi->query(
+    "SELECT count(id_sk) AS pin FROM tb_sirkulasi WHERE status = 'PIN'"
+);
 if ($pinData = $pinQuery->fetch_assoc()) {
-    $pin = $pinData['pin'];
+    $pin = $pinData["pin"];
 }
 
-$kemQuery = $koneksi->query("SELECT count(id_sk) AS kem FROM tb_sirkulasi WHERE status = 'KEM'");
+$kemQuery = $koneksi->query(
+    "SELECT count(id_sk) AS kem FROM tb_sirkulasi WHERE status = 'KEM'"
+);
 if ($kemData = $kemQuery->fetch_assoc()) {
-    $kem = $kemData['kem'];
+    $kem = $kemData["kem"];
 }
 ?>
 <head>
@@ -43,7 +47,7 @@ if ($kemData = $kemQuery->fetch_assoc()) {
             <!-- small box -->
             <div class="small-box bg-blue">
                 <div class="inner">
-                    <h4><?= $buku; ?></h4>
+                    <h4><?= $buku ?></h4>
                     <p>Buku</p>
                 </div>
                 <div class="icon">

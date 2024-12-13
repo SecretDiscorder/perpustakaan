@@ -15,45 +15,52 @@ include "inc/koneksi.php";
 	<link rel="icon" href="dist/img/logo1.png">
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<!-- Bootstrap 3.3.6 -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+		<!-- Bootstrap 3.3.6 -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Latest compiled JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-	
-<!-- Latest compiled JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+		
+	<!-- Latest compiled JavaScript -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Ionicons -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 	<!-- Theme style -->
 	<link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+<style>
+body, .hold-transition {
+    background-image: url("https://mtk.bima-pustaka.my.id/pp.png");
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-position: right; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-attachment: fixed; /* Keeps the background fixed while scrolling */
+}
+.login-box-body {
+    background-color: rgba(255, 255, 255, 0.9); /* White background with 80% opacity */
+    padding: 20px; /* Add some padding for better spacing */
+    border-radius: 10px; /* Optional: Rounded corners */
+}
 
-	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	
-	<!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
+</style>
 </head>
 
 
 <body class="hold-transition login-page">
 	<div class="login-box">
+
+		<!-- /.login-logo -->
+		<div class="login-box-body">
 		<div class="login-logo">
 			<h3>
-				<font color="green">
-					<b>Sistem Informasi Perpustakaan</b>
+				<font color="blue">
+					<b>Login | Prata Pustaka</b>
 				</font>
 			</h3>
 		</div>
-		<!-- /.login-logo -->
-		<div class="login-box-body">
 			<center>
 				<img src="dist/img/logo1.png" width=160px />
 			</center>
-			<br>
-			<p class="login-box-msg">Login System</p>
 			<form action="#" method="post">
 				<div class="form-group has-feedback">
 					<input type="text" class="form-control" name="username" placeholder="Username" required>
@@ -69,26 +76,21 @@ include "inc/koneksi.php";
 					</div>
 					<!-- /.col -->
 					<div class="col-xs-4">				
-					    <button type="submit" class="btn btn-success btn-block btn-flat" name="btnLogin" title="Masuk Sistem">
+					    <button type="submit" class="btn btn-success btn-block btn-flat" name="btnLogin" style="background-color: blue;" title="Masuk Sistem">
 							<b>Masuk</b>
 						</button>
 
 					</div>
 				
 				</div>
-			</form>
-						<div class="col-xs-4">
-						    <button class="btn btn-block btn-flat" style="display: none:"><a href='register.php' style="text-decoration: none;">
-							<b>Belum punya akun? Daftar Sekarang</b></a>
-					</button>
-					</div>
-		</div> <br>
-		<div class="login-logo">
-		<h5>
-		<b>Recode Developed by <a href="https://youtube.com/@BimaSeven">Bima Adhi</a></b>
-		</h5>
-			<h6><font color="red">Thanks to Original Open Source Code by <a href="https://github.com/ivan42118/perpustakaan">Github ivan42118</a></font></h6>		</div>
+			</form><br><br>
+						    <h6 class="text" style=""><a href='register.php' style="text-decoration: none;">
+							<b>Belum punya akun? Daftar Sekarang</b></a></h6>
+				<br>		<div class="login-logo"><h6><b style="color: blue;">Recode Developed by <a href="https://youtube.com/@BimaSeven">Bima Adhi</a>. Thanks to GitHub<a href="https://github.com/ivan42118/perpustakaan"> ivan42118</a></b></h6>		</div>
 	
+		
+		</div> 
+
 		<!-- /.login-box-body -->
 	</div>
 
@@ -156,3 +158,4 @@ include "inc/koneksi.php";
                     })</script>";
                 }
 			  }
+?>
