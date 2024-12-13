@@ -1,158 +1,110 @@
--- phpMyAdmin SQL Dump
--- version 5.1.1deb5ubuntu1
--- https://www.phpmyadmin.net/
+-- MariaDB dump 10.19  Distrib 10.6.17-MariaDB, for Linux (x86_64)
 --
--- Host: localhost:3306
--- Generation Time: Dec 07, 2024 at 03:00 PM
--- Server version: 8.0.40-0ubuntu0.22.04.1
--- PHP Version: 8.1.2-1ubuntu2.19
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
+-- Host: localhost    Database: data_perpus
+-- ------------------------------------------------------
+-- Server version	10.6.17-MariaDB-cll-lve
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `bimapust_data_perpus`
---
-CREATE DATABASE IF NOT EXISTS `bimapust_data_perpus` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE `bimapust_data_perpus`;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `log_pinjam`
---
-
-CREATE TABLE `log_pinjam` (
-  `id_log` int NOT NULL,
-  `id_buku` varchar(10) NOT NULL,
-  `id_anggota` varchar(10) NOT NULL,
-  `tgl_pinjam` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
 -- Table structure for table `tb_anggota`
 --
 
+DROP TABLE IF EXISTS `tb_anggota`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tb_anggota` (
   `id_anggota` varchar(10) NOT NULL,
   `nama` varchar(225) NOT NULL,
   `jekel` enum('Laki-laki','Perempuan') NOT NULL,
   `kelas` varchar(50) NOT NULL,
-  `no_hp` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `no_hp` varchar(15) NOT NULL,
+  PRIMARY KEY (`id_anggota`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tb_anggota`
 --
 
-INSERT INTO `tb_anggota` (`id_anggota`, `nama`, `jekel`, `kelas`, `no_hp`) VALUES
-('11', 'Bima Adhi Pratama Kharis ', 'Laki-laki', 'XII.F5', '0895418197532'),
-('12', 'Aji Chandra Kusuma', 'Laki-laki', 'XII.F5', '089886777'),
-('19', 'AJI CHANDRA KUSUMA', 'Laki-laki', 'XII.F5', '08966666666'),
-('7', 'Mahasin Dharmawan', 'Laki-laki', 'XI.F5', '08888888888');
-
--- --------------------------------------------------------
+LOCK TABLES `tb_anggota` WRITE;
+/*!40000 ALTER TABLE `tb_anggota` DISABLE KEYS */;
+INSERT INTO `tb_anggota` VALUES ('11','Bima Adhi Pratama Kharis ','Laki-laki','XII.F5','0895418197532'),('20','Binta Salisa Najuda','Perempuan','X.E1','000000000'),('7','Mahasin Dharmawan','Laki-laki','XI.F5','08966783930');
+/*!40000 ALTER TABLE `tb_anggota` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tb_buku`
 --
 
+DROP TABLE IF EXISTS `tb_buku`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tb_buku` (
-  `id_buku` int NOT NULL,
-  `judul_buku` varchar(225) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `pengarang` varchar(225) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `penerbit` varchar(225) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `th_terbit` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `drive_url` text COLLATE utf8mb4_general_ci,
-  `category` enum('Sains','Sosial','Sejarah','Agama','Seni','Komik & Cerita') COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id_buku` int(11) NOT NULL AUTO_INCREMENT,
+  `judul_buku` varchar(225) DEFAULT NULL,
+  `pengarang` varchar(225) DEFAULT NULL,
+  `penerbit` varchar(225) DEFAULT NULL,
+  `th_terbit` varchar(10) DEFAULT NULL,
+  `drive_url` text DEFAULT NULL,
+  `category` enum('Sains','Sosial','Sejarah','Agama','Seni','Komik & Cerita','Bahasa') NOT NULL,
+  PRIMARY KEY (`id_buku`)
+) ENGINE=MyISAM AUTO_INCREMENT=1033 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tb_buku`
 --
 
-INSERT INTO `tb_buku` (`id_buku`, `judul_buku`, `pengarang`, `penerbit`, `th_terbit`, `drive_url`, `category`) VALUES
-(510, 'Kategori Cerita ', 'admin', 'admin', '2024', 'google.com', 'Komik & Cerita'),
-(509, 'Kategori Sosial', 'admin', 'admin', '2024', 'google.com', 'Sosial'),
-(508, 'pdf-div-class-2qs3tf-truncatedtext-module-wrapper-fg1km9p-classtruncatedtext-module-lineclamped-85ulhh-style-max-lines5buku-bahasa-indonesia-p-div_compress.pdf', NULL, NULL, '0', 'https://drive.google.com/file/d/1fhCsWL7bpwVlIcb1F-vpeinZJLXzZkXk/view?usp=sharing', 'Sains'),
-(507, 'MEGA BANK SBMPTN SAINTEK 20_ (Z-Library).pdf', NULL, NULL, '0', 'https://drive.google.com/file/d/1rSy8vW8IAxfhLx9bXkmq1LjrAJ5y3-Kq/view?usp=sharing', 'Sains'),
-(506, 'Ensiklopedia Kimia.pdf', NULL, NULL, '0', 'https://drive.google.com/file/d/1rZqQmtdiZwkmeooctBl6K6zgiM1nxaUA/view?usp=sharing', 'Sains'),
-(505, 'Kitab Sakti Kumpulan Rumus_ (Z-Library).pdf', NULL, NULL, '0', 'https://drive.google.com/file/d/1niQBdMYDmnAAdKQe0YqQCudBqL9-uTva/view?usp=sharing', 'Sains'),
-(504, 'Mega book 6 mata pelajaran.pdf', NULL, NULL, '0', 'https://drive.google.com/file/d/1skOFyGENhxHHPu43xP0hGjRPm0Nxx3QO/view?usp=sharing', 'Sains'),
-(503, 'pdfcoffee.com_buku-pintar-matematika-ma-sma-pdf-free.pdf', NULL, NULL, '0', 'https://drive.google.com/file/d/1cntGjvjbD_QEEd4uMXJhID0PcneF42pH/view?usp=sharing', 'Sains'),
-(502, 'Ruang Angkasa (Space) Ensik_ (Z-Library).pdf', NULL, NULL, '0', 'https://drive.google.com/file/d/1t9PEGMR6XgtgvvtBa2ool4XN5_iUmQWX/view?usp=sharing', 'Sains'),
-(501, 'Cara Pintar Gila Matematika_ (Z-Library).pdf', NULL, NULL, '0', 'https://drive.google.com/file/d/1zPYmpHP76XXFrUywx0aDFcsLgJBaDouD/view?usp=sharing', 'Sains'),
-(500, 'Cara Cepat Menyelesaikan Pe_ (Z-Library).pdf', NULL, NULL, '0', 'https://drive.google.com/file/d/1lR-tneuq9T3L-JIkUXwK91S7N-ytkrQ8/view?usp=sharing', 'Sains'),
-(499, 'pdfcoffee.com_pintar-matematika-tanpa-bimbel-sma-x-xi-xii-noti-lansaroni-ssipdf-2-pdf-free.pdf', NULL, NULL, '0', 'https://drive.google.com/file/d/1At5oiM_QGWCR-N9okPRNyFlRyhEdMl2v/view?usp=sharing', 'Sains'),
-(498, 'pdfcoffee.com_panduan-belajar-termux-pdf-free.pdf', NULL, NULL, '0', 'https://drive.google.com/file/d/1Ht0Fy9eLGUUaeQUiga5JLvf-gjOnY6pe/view?usp=sharing', 'Sains'),
-(497, 'Tips Singkat & Galeri Fotografi Ponsel - Tim Ka Noer (Tantri Ida Nursanti), Jonronny, Jonis Jo.pdf', NULL, NULL, '0', 'https://drive.google.com/file/d/1BOci7tDQR_wuyjk-D_MbPrGUdEbl_irq/view?usp=sharing', 'Sains'),
-(496, 'kumpulan-rumus-cepat-matematika-sma.pdf', NULL, NULL, '0', 'https://drive.google.com/file/d/17Rgvje9yyTC1wtNWSKE-lukJHT3_EBZe/view?usp=sharing', 'Sains'),
-(495, '40 Algorithms Every Programmer Should Know.pdf', NULL, NULL, '0', 'https://drive.google.com/file/d/1MSJbQtEMLOCzqfFF5oAWYz2Ik8k-Fx6N/view?usp=sharing', 'Sains'),
-(494, '101 Tip  Trik Kamera Digita_ (Z-Library).pdf', NULL, NULL, '0', 'https://drive.google.com/file/d/15f5PHT4bvozdub3FbW_iEoYJG2JhRltY/view?usp=sharing', 'Sains'),
-(493, 'Bumi  Antariksa Konsep  Pan_ (Z-Library).pdf', NULL, NULL, '0', 'https://drive.google.com/file/d/13kMKFE2Y6j7Amn3N3QcErvph3pQ_vz14/view?usp=sharing', 'Sains'),
-(492, 'Cara Cepat Menyelesaikan Perkalian - Harris Syamsi Yulianto.pdf', NULL, NULL, '0', 'https://drive.google.com/file/d/17IvUJtQcK_bhhlAkoFDTSytJFQw3_j6N/view?usp=sharing', 'Sains'),
-(491, '100 Pengetahuan Tentang Cuaca - Pakar Raya Pustaka.pdf', NULL, NULL, '0', 'https://drive.google.com/file/d/1p1pWH36g0G2wzMpkhV9gSCk386IlBt33/view?usp=sharing', 'Sains'),
-(490, 'Ensiklopedia_Dunia_Fauna_Jilid_2_Fakta_Unik_&_Menakjubkan_Seputar.pdf', NULL, NULL, '0', 'https://drive.google.com/file/d/1NT0OQpZtaPOZ-rGohf7j38VAYNhPhWBA/view?usp=sharing', 'Sains'),
-(489, 'Ensiklopedia_Dunia_Fauna_Jilid_3_Fakta_Unik_&_Menakjubkan_Seputar.pdf', NULL, NULL, '0', 'https://drive.google.com/file/d/17_2ys7YaRuw3vMW900PfRAao_S0TXBjv/view?usp=sharing', 'Sains'),
-(488, 'Ensiklopedia Penyakit (Prof_ (Z-Library).pdf', NULL, NULL, '0', 'https://drive.google.com/file/d/1XUHU5_GJOMJ6u6JoaioE7XoGY2Eg9UTj/view?usp=sharing', 'Sains'),
-(487, 'Ensiklopedia Jelajah Dunia Matematika - Janu Ismadi.pdf', NULL, NULL, '0', 'https://drive.google.com/file/d/1Ej8tW4LtDpGz74V3Qu0hHuiF-R-THllW/view?usp=sharing', 'Sains'),
-(486, 'Ensiklopedia Digital Planet_ (Z-Library).pdf', NULL, NULL, '0', 'https://drive.google.com/file/d/18bZl1NQ0mMjGAJcLbPhhl9nw7KBHTGIz/view?usp=sharing', 'Sains'),
-(485, 'Ensiklopedia Pengetahuan 2_ (Z-Library).pdf', NULL, NULL, '0', 'https://drive.google.com/file/d/1Wt52bnDZHrmp3X7tjNXFCIbHwr_v2tCi/view?usp=sharing', 'Sains'),
-(484, 'Ensiklopedia Dunia Fauna Jilid 1 - Buku Anak Indonesia.pdf', NULL, NULL, '0', 'https://drive.google.com/file/d/14h3dz8a_O_cb6Luy2YbWC8WSwDWvPYrk/view?usp=sharing', 'Sains'),
-(483, 'Ensiklopedia Jelajah Dunia_ (Z-Library).pdf', NULL, NULL, '0', 'https://drive.google.com/file/d/1J6NvzJCga_az5xOzld_ph9cx-TUMLc-a/view?usp=sharing', 'Sains'),
-(482, 'Ensiklopedia Dunia Fauna Jilid 3 - Buku Anak Indonesia.pdf', NULL, NULL, '0', 'https://drive.google.com/file/d/1FCcm6Pibc3v8JhXIxnFiT7HA4MyMWXiE/view?usp=sharing', 'Sains'),
-(481, 'Ensiklopedia Dunia Fauna Jilid 2 - Buku Anak Indonesia.pdf', NULL, NULL, '0', 'https://drive.google.com/file/d/16fKvzv9_I9ZDKSbyNYEm14m_p_zGOU-C/view?usp=sharing', 'Sains'),
-(480, 'Ensiklopedia_Jus_Buah_&_Sayur_Untuk_Penyembuhan_Dr_Abednego_Bangun.pdf', NULL, NULL, '0', 'https://drive.google.com/file/d/1pWB3tN6IOk0dcJ-u6WhG3qGOC_Ek7pVa/view?usp=sharing', 'Sains'),
-(479, 'Buku - Teknologi Masa Depan.pdf', NULL, NULL, '0', 'https://drive.google.com/file/d/1v60xo-LP4kiWeMOnvM8PV09o49jOMihb/view?usp=sharing', 'Sains'),
-(478, 'Ensiklopedia_Dunia_Fauna_Jilid_1_Fakta_Unik_&_Menakjubkan_Seputar.pdf', NULL, NULL, '0', 'https://drive.google.com/file/d/1lKcJcFnnXayj8awAQE8seCmlBxDX5nRW/view?usp=sharing', 'Sains'),
-(477, 'Kitab Masakan.pdf', NULL, NULL, '0', 'https://drive.google.com/file/d/1H37NkfsZcoDYPnuAnEJ7h_VwCT1H4BJz/view?usp=sharing', 'Sains'),
-(476, 'LANGKAH - Langkah Mail Merger.pdf', NULL, NULL, '0', 'https://drive.google.com/file/d/1XY2F6dvH9K5Bc0YJ9BoSz0R3LNfHXp1s/view?usp=sharing', 'Sains'),
-(475, 'Sains dan Dunia Modern.pdf', NULL, NULL, '0', 'https://drive.google.com/file/d/1OnbiInSAYKqKxTiKPA3zuLVXKhwHfVNh/view?usp=sharing', 'Sains'),
-(474, 'Pemrograman C++ Untuk SMK (_ (Z-Library)', NULL, NULL, '0', 'https://drive.google.com/file/d/1IqrCKrWQlVLqHZgnwc_98pS0E7UBwdOY/view?usp=sharing', 'Sains'),
-(473, 'Fakta Paling Top Alam Semes_ (Z-Library)', NULL, NULL, '0', 'https://drive.google.com/file/d/1IMZRyuNSNxxL5nwXaqOEKACzee15tCgH/view?usp=sharing', 'Sains'),
-(471, 'Judul Buku Baru', 'Nama Pengarang', 'Nama Penerbit', '2024', 'http://driveurl.com/file', 'Sains'),
-(472, '7 Jam Membuat Website Mulai_ (Z-Library)', NULL, NULL, '0', 'https://drive.google.com/file/d/1IwxTt4wlE8FtzIO1SzvGnslv5TK8vkRE/view?usp=sharing', 'Sains');
-
--- --------------------------------------------------------
+LOCK TABLES `tb_buku` WRITE;
+/*!40000 ALTER TABLE `tb_buku` DISABLE KEYS */;
+INSERT INTO `tb_buku` VALUES (510,'Ensiklopedia Bumi dan Energi','','','0','https://drive.google.com/file/d/19i3kCzKSHaGuw-MmALTyL_RSse120QlG/view?usp=drive_link','Sains'),(509,'Terampil Bermusik','','','0','https://drive.google.com/file/d/1f6yGUnvbhm9hHe2GYcPVKTkXYTG6meOf/view?usp=drive_link','Seni'),(508,'Modul Bahasa Indonesia','','','0','https://drive.google.com/file/d/1fhCsWL7bpwVlIcb1F-vpeinZJLXzZkXk/view?usp=sharing','Bahasa'),(507,'MEGA BANK SBMPTN SAINTEK .pdf','','','0','https://drive.google.com/file/d/1rSy8vW8IAxfhLx9bXkmq1LjrAJ5y3-Kq/view?usp=sharing','Sains'),(506,'Ensiklopedia Kimia.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1rZqQmtdiZwkmeooctBl6K6zgiM1nxaUA/view?usp=sharing','Sains'),(505,'Kitab Sakti Kumpulan Rumus.pdf','','','0','https://drive.google.com/file/d/1niQBdMYDmnAAdKQe0YqQCudBqL9-uTva/view?usp=sharing','Sains'),(504,'Mega book 6 mata pelajaran.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1skOFyGENhxHHPu43xP0hGjRPm0Nxx3QO/view?usp=sharing','Sains'),(503,'Pintar Matematika SMA MA.pdf','','','0','https://drive.google.com/file/d/1cntGjvjbD_QEEd4uMXJhID0PcneF42pH/view?usp=sharing','Sains'),(502,'Ensiklopedia Ruang Angkasa (Space).pdf','','','0','https://drive.google.com/file/d/1t9PEGMR6XgtgvvtBa2ool4XN5_iUmQWX/view?usp=sharing','Sains'),(501,'Cara Pintar Gila Matematika.pdf','','','0','https://drive.google.com/file/d/1zPYmpHP76XXFrUywx0aDFcsLgJBaDouD/view?usp=sharing','Sains'),(500,'Cara Cepat Menyelesaikan Perkalian.pdf','','','0','https://drive.google.com/file/d/1lR-tneuq9T3L-JIkUXwK91S7N-ytkrQ8/view?usp=sharing','Sains'),(499,'Pintar Matematika Tanpa Bimbel SMA Noti Lansaroni.pdf','','','0','https://drive.google.com/file/d/1At5oiM_QGWCR-N9okPRNyFlRyhEdMl2v/view?usp=sharing','Sains'),(498,'Panduan Belajar Termux.pdf','','','0','https://drive.google.com/file/d/1Ht0Fy9eLGUUaeQUiga5JLvf-gjOnY6pe/view?usp=sharing','Sains'),(497,'Tips Singkat & Galeri Fotografi Ponsel - Tim Ka Noer (Tantri Ida Nursanti), Jonronny, Jonis Jo.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1BOci7tDQR_wuyjk-D_MbPrGUdEbl_irq/view?usp=sharing','Sains'),(496,'Kumpulan Rumus Cepat Matematika SMA.pdf','','','0','https://drive.google.com/file/d/17Rgvje9yyTC1wtNWSKE-lukJHT3_EBZe/view?usp=sharing','Sains'),(495,'40 Algorithms Every Programmer Should Know.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1MSJbQtEMLOCzqfFF5oAWYz2Ik8k-Fx6N/view?usp=sharing','Sains'),(494,'101 Tip  Trik Kamera Digital.pdf','','','0','https://drive.google.com/file/d/15f5PHT4bvozdub3FbW_iEoYJG2JhRltY/view?usp=sharing','Sains'),(948,'Ragnarok Solo Levelling Part 24.pdf',NULL,NULL,'0','https://drive.google.com/file/d/17hUeQ2__Osw2wpb4q6ChVaXbbg94305P/view?usp=sharing','Komik & Cerita'),(492,'Cara Cepat Menyelesaikan Perkalian - Harris Syamsi Yulianto.pdf',NULL,NULL,'0','https://drive.google.com/file/d/17IvUJtQcK_bhhlAkoFDTSytJFQw3_j6N/view?usp=sharing','Sains'),(491,'100 Pengetahuan Tentang Cuaca - Pakar Raya Pustaka.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1p1pWH36g0G2wzMpkhV9gSCk386IlBt33/view?usp=sharing','Sains'),(490,'Ensiklopedia Dunia Fauna Jilid 2 Fakta Unik & Menakjubkan.pdf','','','0','https://drive.google.com/file/d/1NT0OQpZtaPOZ-rGohf7j38VAYNhPhWBA/view?usp=sharing','Sains'),(489,'Ensiklopedia Dunia Fauna Jilid 3 Fakta Unik & Menakjubkan.pdf','','','0','https://drive.google.com/file/d/17_2ys7YaRuw3vMW900PfRAao_S0TXBjv/view?usp=sharing','Sains'),(488,'Ensiklopedia Penyakit.pdf','','','0','https://drive.google.com/file/d/1XUHU5_GJOMJ6u6JoaioE7XoGY2Eg9UTj/view?usp=sharing','Sains'),(487,'Ensiklopedia Jelajah Dunia Matematika - Janu Ismadi.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1Ej8tW4LtDpGz74V3Qu0hHuiF-R-THllW/view?usp=sharing','Sains'),(486,'Ensiklopedia Digital Planet.pdf','','','0','https://drive.google.com/file/d/18bZl1NQ0mMjGAJcLbPhhl9nw7KBHTGIz/view?usp=sharing','Sains'),(485,'Ensiklopedia Pengetahuan.pdf','','','0','https://drive.google.com/file/d/1Wt52bnDZHrmp3X7tjNXFCIbHwr_v2tCi/view?usp=sharing','Sains'),(484,'Ensiklopedia Dunia Fauna Jilid 1 - Buku Anak Indonesia.pdf',NULL,NULL,'0','https://drive.google.com/file/d/14h3dz8a_O_cb6Luy2YbWC8WSwDWvPYrk/view?usp=sharing','Sains'),(483,'Ensiklopedia Jelajah Dunia.pdf','','','0','https://drive.google.com/file/d/1J6NvzJCga_az5xOzld_ph9cx-TUMLc-a/view?usp=sharing','Sains'),(482,'Ensiklopedia Dunia Fauna Jilid 3 - Buku Anak Indonesia.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1FCcm6Pibc3v8JhXIxnFiT7HA4MyMWXiE/view?usp=sharing','Sains'),(481,'Ensiklopedia Dunia Fauna Jilid 2 - Buku Anak Indonesia.pdf',NULL,NULL,'0','https://drive.google.com/file/d/16fKvzv9_I9ZDKSbyNYEm14m_p_zGOU-C/view?usp=sharing','Sains'),(480,'Ensiklopedia Jus Buah & Sayur Untuk Penyembuhan Dr Abednego Bangun.pdf','','','0','https://drive.google.com/file/d/1pWB3tN6IOk0dcJ-u6WhG3qGOC_Ek7pVa/view?usp=sharing','Sains'),(479,'Buku - Teknologi Masa Depan.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1v60xo-LP4kiWeMOnvM8PV09o49jOMihb/view?usp=sharing','Sains'),(478,'Ensiklopedia Dunia Fauna Jilid 1 Fakta Unik & Menakjubkan.pdf','','','0','https://drive.google.com/file/d/1lKcJcFnnXayj8awAQE8seCmlBxDX5nRW/view?usp=sharing','Sains'),(477,'Kitab Masakan.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1H37NkfsZcoDYPnuAnEJ7h_VwCT1H4BJz/view?usp=sharing','Sains'),(476,'Cosmos (Carl Sagan)','','','0','https://drive.google.com/file/d/1Qn8GVL7wVC2Pp0IQD3N3ZUN-DdqPgfU_/view?usp=drive_link','Komik & Cerita'),(475,'Sains dan Dunia Modern.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1OnbiInSAYKqKxTiKPA3zuLVXKhwHfVNh/view?usp=sharing','Sains'),(474,'Pemrograman C++ Untuk SMK','','','0','https://drive.google.com/file/d/1IqrCKrWQlVLqHZgnwc_98pS0E7UBwdOY/view?usp=sharing','Sains'),(473,'Fakta Paling Top Alam Semesta','','','0','https://drive.google.com/file/d/1IMZRyuNSNxxL5nwXaqOEKACzee15tCgH/view?usp=sharing','Sains'),(471,'Seni Tari','','','','https://drive.google.com/file/d/1JaxL875iQ5HS_CHxlpLRVAHnNcCn4RPw/view?usp=drive_link','Seni'),(472,'7 Jam Membuat Website Mulai Dari Nol','','','0','https://drive.google.com/file/d/1IwxTt4wlE8FtzIO1SzvGnslv5TK8vkRE/view?usp=sharing','Sains'),(511,'Aliran Seni Lukis','','','','https://drive.google.com/file/d/1IH10hYJVK9ztbnjshBoy9fNFo3uPlkcU/view?usp=sharing','Seni'),(512,'Animation of Mechanic Motion','','','','https://drive.google.com/file/d/1KEJcb2AdZePW7r0JSsFWZZkb-LC9yi3v/view?usp=drive_link','Seni'),(513,'Solo Levelling (Folder) (Full Ending) ','','','','https://drive.google.com/drive/folders/19BZq6KvBy51Fgsf1AOk9om7zgK4PlHkm?usp=drive_link','Komik & Cerita'),(514,'Max Havelaar','','','','https://drive.google.com/file/d/1OYHFIJ-Ah2XoXIzLIHLsLUdDNb-hrSAB/view?usp=sharing','Sejarah'),(515,'Kisah-Kisah Teladan Rasulullah','','','0','https://drive.google.com/file/d/1Iv_6nVQm5cN5OtLVRurH6QvrpSQfxf2t/view?usp=sharing','Agama'),(516,'Penciptaan Alam Raya','','','0','https://drive.google.com/file/d/1Io1NSiHuOlIaWb0bNZu9hRRnR-4HbJ5h/view?usp=sharing','Agama'),(517,'Studi Hadist','','','0','https://drive.google.com/file/d/1_TLiN08eyHgEzx0BcDlZGmjfGU8f3ZjH/view?usp=sharing','Agama'),(518,'Sumbangan Peradaban Islam Untuk Dunia - Roghib As Sirjani.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1-tI2h8pIsPI74x8nhT55hXebcBZt--SR/view?usp=sharing','Agama'),(519,'Tauhid Kalam 2014.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1WBVsJe7vY-inBdtgdLP2IXTqpyFOI4jZ/view?usp=sharing','Agama'),(520,'Tarekat Naqsabandiyah di Kepulauan Melayu - Kajian Atas Naskah Kaifiyah Al-Zikir ‘Ala Tharīqah An-Naqsabandiyah Al-Mujaddidiyah Al-Ahmadiyah -Dr. Muhammad Faisal, M.Ag-.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1QKt-qSG-NOw5TDik8c0x-aNhcSELCbY3/view?usp=sharing','Agama'),(521,'TANYA JAWAB NAHWU DAN SHARF.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1_j7MtwTgKtP-kUCkTqMjp0b0U-k504I_/view?usp=sharing','Agama'),(522,'Terjemah - Demi Masa Yusuf Qordlowi.pdf',NULL,NULL,'0','https://drive.google.com/file/d/12o3A93JjWO_PXkdlYLUP-rA2nX0T35Yv/view?usp=sharing','Agama'),(523,'Tuntunan Shalat Untuk Warga NU dan Dalil Dalilnya KH Muhammad Sholeh.pdf','','','0','https://drive.google.com/file/d/11eEP9FKyc3YE2NXmz7qzKPJWrGw4kuMH/view?usp=sharing','Agama'),(524,'Tuntunan Baca Tulis Pegon.pdf','','','0','https://drive.google.com/file/d/1NvLFprq_YENjF-tcq9jEs29fm7VGucbE/view?usp=sharing','Agama'),(525,'Tuntunan sholat lengkap.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1KZyoprFzfjkMn2-D17MhmtVAGZc-7fLt/view?usp=sharing','Agama'),(526,'Shahih Bukhari Muslim.pdf','','','0','https://drive.google.com/file/d/1pdkyhrNh-lejjSTrbAuRig5Aj-_ZoJrh/view?usp=sharing','Agama'),(527,'Yajuj Majuj.pdf','','','0','https://drive.google.com/file/d/1ZkNQWy4_6S226EcbdV3oKNFoctGLY3vm/view?usp=sharing','Agama'),(528,'ILMU HADITS.pdf','','','0','https://drive.google.com/file/d/1LcMP27kZiGc7RzT0L7dW27nwol80GxSI/view?usp=sharing','Agama'),(529,'Rahasia Puasa (Asraru Shaum) - Imam Al-Ghazali.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1OAGGg6ZgYP8sYdzp1XsoE-acUFffiRVB/view?usp=sharing','Agama'),(530,'Panduan Sholat.pdf','','','0','https://drive.google.com/file/d/1RKLQrB2AITVWPBPH24NMLw7NfOgfhSDe/view?usp=sharing','Agama'),(947,'Ragnarok Solo Levelling Part 25.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1mPDPleCh-RDVlWgLZAo6DyI7jOuWRHKK/view?usp=sharing','Komik & Cerita'),(532,'Istri & Putri Rasulullah SAW Mengenal dan Mencintai .pdf','','','0','https://drive.google.com/file/d/1VVpqfrsFOIl1tYshIheuhuonwlYjzGnb/view?usp=sharing','Agama'),(533,'PERBANDINGAN MAZIIAB .pdf',NULL,NULL,'0','https://drive.google.com/file/d/1dofKlALcVae_522TRtchbkv52D8VLyag/view?usp=sharing','Agama'),(534,'Ilmu Sharaf Untuk Pemula.pdf','','','0','https://drive.google.com/file/d/1cbv_nIpf9UyN4YtNNlqdOO4NMz6RkYS-/view?usp=sharing','Agama'),(535,'PENGANTAR ILMU HADIS FINAL.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1Rnu07nBRuALSKf3QgbK1gwwwBhQDft_U/view?usp=sharing','Agama'),(536,'Isteri & Puteri Rasulullah [Abdullah Haidir].pdf',NULL,NULL,'0','https://drive.google.com/file/d/1PnOeRtoecMOVhV8iNVGdzJ0flfmhAZVZ/view?usp=sharing','Agama'),(537,'Roh (Ibnu Qayyim Al-Jauziyah).pdf','','','0','https://drive.google.com/file/d/1YrvnT4Iyi9l7Vvp96gMNWAnbFMJH4-VJ/view?usp=sharing','Agama'),(538,'The Book of Tawheed.pdf','','','0','https://drive.google.com/file/d/1dwUiinOl5jguVsi0Ul0LGaya5gRBNsfm/view?usp=sharing','Agama'),(539,'Ilmu Hadist.pdf','','','0','https://drive.google.com/file/d/1b-t_az22zrZrQPd0Znw3s8a4-Wk5WxzG/view?usp=sharing','Agama'),(540,'Prahara Padang Mahsyar - Dr. Ahmad Musthafa Mutawalli.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1VVoRFBuCPBTpw51KUDd4kTYu-4L919Oj/view?usp=sharing','Agama'),(541,'Ilmu Tauhid Tingkat Dasar.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1YsEPR6JgaHxN-Etuyr6z1LbkGld4KPwh/view?usp=sharing','Agama'),(542,'Kisah-kisah Shahih dalam Al-Qur\'an.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1bO2twpWfkaMnFGHf_vmGZE6pt5Wr53Ux/view?usp=sharing','Agama'),(543,'Menuju Islam Rasional.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1JbgzVLZDQhnZ9KawMhdR3qqEVGM_qmtP/view?usp=sharing','Agama'),(544,'Mukjizat di Sekitar Kita - Seri Chicken Soup For The Soul.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1DuxCOjmHWiFLCfwOq-W36WFkYkh2yL8m/view?usp=sharing','Agama'),(545,'Kisah Mualaf Paling Seru -Pena Kreativa-.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1Bu0jsO4AP3Hh1CuHj-fTMEAAr7_GhudP/view?usp=sharing','Agama'),(546,'Juz \'Amma Al-Madinah.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1B8pZAM7LyfEHkjRiKBnhs2NZPh0wWlU3/view?usp=sharing','Agama'),(547,'Musawar-Belajar Mudah Ilmu Sharaf.pdf',NULL,NULL,'0','https://drive.google.com/file/d/19yrtRwWZuuDqCmJF-2L7C-pCV_TxDozs/view?usp=sharing','Agama'),(548,'Qoidah-qoidah ilmu nahwu dan Sharaf.pdf',NULL,NULL,'0','https://drive.google.com/file/d/10CGL0P5Z3d0NSXxe1nH17s3hmunN4-VS/view?usp=sharing','Agama'),(549,'Islam-BS-KLS-X.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1AS_np7cgQzKBegGKInwLX5zVZ49XJeWR/view?usp=sharing','Agama'),(1018,'[Ruidrive] Unnamed Memory - Volume 06.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1jTAthOk9e9ArTOxB8HNeXQjNoxg7qOVw/view?usp=sharing','Komik & Cerita'),(551,'Ringkasan nahwu sharaf.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1JOO8dz8cgG9s9wW9_IN9uTlkbV2O_7we/view?usp=sharing','Agama'),(552,'Memahami Tujuan Pokok Berpuasa Maqashid Ash Shiyam Syeikh Izzuddin.pdf','','','0','https://drive.google.com/file/d/1A_9yLzDwcDLVMn79xpZGp2TFhGyuPifP/view?usp=sharing','Agama'),(553,'Mengenal Masjidil Aqsha Pusat Barakah Bagi Seluruh Dunia Sahabat.pdf','','','0','https://drive.google.com/file/d/13N4PXjv0ecsTbNIy-0MuNbpnVZT174ae/view?usp=sharing','Agama'),(554,'Buku - Cara Cepat Belajar Tajwid Praktis.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1pWa9Yuw4FfN-lllX-m2WGTifrVmrG4SN/view?usp=sharing','Agama'),(555,'Ensiklopedi Aliran dan Madzhab di Dunia Islam.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1qWg_avKK3C6cyZo_KbZJHo8TvowPFR3h/view?usp=sharing','Agama'),(556,'Fikih Umrah Menurut Madzhab Imam Syafii Wahyudi Ibnu Yusuf.pdf','','','0','https://drive.google.com/file/d/1vw2snWmnEeJAMv70bBzZ87A5oBOorxPj/view?usp=sharing','Agama'),(557,'Fathul Baari Syarah Hadits Bukhari 2 .pdf','','','0','https://drive.google.com/file/d/1enP8kqvbdr87JF4Qj91jq4RvVdAkcQnw/view?usp=sharing','Agama'),(558,'Ensiklopedi Hadits-Hadits Adab (Imam Bukhari).pdf','','','0','https://drive.google.com/file/d/1Mjd5QeNYo6QMMzpBydypoSefPD8tCa9x/view?usp=sharing','Agama'),(559,'Fiqih Islam Lengkap Madzhab Syafi\'i.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1NlI_NYAhoJYVCvm482nnINRxkj0YMkWE/view?usp=sharing','Agama'),(560,'Fikih Ibadah.pdf','','','0','https://drive.google.com/file/d/1FnVB6Q7Yu7YGoXmXFW4ScHtuwgci6A5_/view?usp=sharing','Agama'),(561,'Buku Studi Akhlak.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1UF4b9_W34mTFAa8W0hHk6WWAyjY9CMRy/view?usp=sharing','Agama'),(1017,'[Ruidrive] Unnamed Memory - Volume 05.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1wbvyoBGVhno4DrjNmWrEhzM981Ry8kr4/view?usp=sharing','Komik & Cerita'),(563,'Fathul Baari Syarah Hadits Bukhari 2.pdf','','','0','https://drive.google.com/file/d/1VIvrj3fHdCnM2f-kL7UgNHELmkIPLV9Z/view?usp=sharing','Agama'),(564,'Ilmu Sharaf Untuk Pemula.pdf','','','0','https://drive.google.com/file/d/1EaRYOPzebu2EhyKc6LofHpLEy-j-qFLj/view?usp=sharing','Agama'),(565,'Fikih Akhlak (Musthafa al-Adawy).pdf','','','0','https://drive.google.com/file/d/1JTV-DqfHP10fJjKgebjNf7qWg3s2CHe5/view?usp=sharing','Agama'),(566,'umar kayam.pdf','','','0','https://drive.google.com/file/d/176puVd-1piYKMCWnOtbtmECVW2QhRR7j/view?usp=sharing','Sejarah'),(567,'7 Cara Identifikasi Riba (74 Halaman) - Ahmad Suryana.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1q7Rtp1ZJJ4D8ikYJ08YgKM8X_5qJOQvT/view?usp=sharing','Agama'),(568,'40 Hadis Tentang Dakwah dan Tarbiah.pdf','','','0','https://drive.google.com/file/d/1xMz2xA1Rbn2hLAismVVjqT4D4PjPUE2Y/view?usp=sharing','Agama'),(569,'Awas Fenomena Syirik di Sekitar Kita Abu Ubaidah Yusuf Bin Mukhtar.pdf','','','0','https://drive.google.com/file/d/1lM2Mhm_03ihaxiD2PKhhBeLvLVyVUQOx/view?usp=sharing','Agama'),(570,'67 Faedah Terkait Kurban - Syaikh Muhammad Salih Al-Munajjid.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1yGmo9-xkk7PkDI1x9mCPErFy-5qa2BFQ/view?usp=sharing','Agama'),(571,'Alam Jin (Imam As-Suyuthy).pdf','','','0','https://drive.google.com/file/d/1nqBKVeBNKPfu8E-9P_MMFztGtYcN0v7D/view?usp=sharing','Agama'),(572,'Bencana Bencana Besar Dalam Sejarah Islam Dr Fathi Zaghrut.pdf','','','0','https://drive.google.com/file/d/1lzeQopoMDJyWHO7duXvsYE-yZMu5Sb19/view?usp=sharing','Sejarah'),(573,'Kamus Ilmu Hadis.pdf','','','0','https://drive.google.com/file/d/1pRI-3GteD6P2gAS8EQJ3lyu9KiPOtpYU/view?usp=sharing','Agama'),(574,'Ali ibn Abi Thalib Khalifah Nabi Tercinta Khalid Muhammad Khalid.pdf','','','0','https://drive.google.com/file/d/1yos8U7ax498rSUOjKUNhb3d_KwLrolTa/view?usp=sharing','Agama'),(575,'Studi Ilmu Hadis.pdf','','','0','https://drive.google.com/file/d/1yIyu_52VAGeiM-ojAUlDt3CpgA-XDVfQ/view?usp=sharing','Agama'),(576,'Metode dan Pendekatan Dalam Syarah Hadis.pdf','','','0','https://drive.google.com/file/d/1xRjBYRaKXPR3khpF7d_x5XOLZnZCK6NO/view?usp=sharing','Agama'),(577,'6. Hasbi; Buku Ilmu Tauhid.pdf',NULL,NULL,'0','https://drive.google.com/file/d/16U19WLP8kZ0tNnQkvrcXgP9qKIH_qxQJ/view?usp=sharing','Agama'),(578,'Alquran_&_Terjemahannya_Edisi_Penyempurnaan_Kemenag_RI.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1DKwTrO7xSl8fK7Qk9nsVXKzsJlbg9FGz/view?usp=sharing','Agama'),(579,'855) 40 Hadis Palsu Populer.pdf',NULL,NULL,'0','https://drive.google.com/file/d/10ENftKjvng5Os9NFIHqWtaMNPj3PPmWZ/view?usp=sharing','Agama'),(580,'Revolusi Hidup Sehat ala Rasulullah.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1JGexQnJOhVKB-x6VtcSgiUujCKj9VrJ8/view?usp=sharing','Agama'),(581,'AlGhazali_Hai_Anak.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1AHsEUOk5DLkQo__JollOrx4-8yDUp2Ww/view?usp=sharing','Agama'),(1015,'Pengenalan Kodular','','','0000','https://drive.google.com/file/d/1jWF99gNsfVXX9JeB2Ghe0fYisdna8hq2/view?usp=drive_link','Sains'),(583,'27 Keutamaan Shalat Berjamaah di Masjid.pdf',NULL,NULL,'0','https://drive.google.com/file/d/110qmAfMo7eAVbpsNZo_DIdt0vbgNRSc7/view?usp=sharing','Agama'),(584,'854) Hadis-Hadis Bermasalah.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1FnPWoch9qq5EZTOxCY5UJaXnTLUmKHFZ/view?usp=sharing','Agama'),(585,'Agama dan Kepercayaan Nusantara by Sumanto Al-Qurtuby.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1HY4gNflK7AGarEBxx0mcPSk6QHLl4zfV/view?usp=sharing','Agama'),(586,'80 % kosakata al-qur\'an.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1CnfLMchoGysOE0fCZKQOkrZcodggmA4j/view?usp=sharing','Agama'),(587,'Alam Malaikat (Dr. Muhammad bin A.W. al-Aqil).pdf','','','0','https://drive.google.com/file/d/1DGzO4t8uHMP26m33PnHJ2XeP97anUaFI/view?usp=sharing','Agama'),(588,'200 Fiqih Praktis.pdf','','','0','https://drive.google.com/file/d/1CyMEmkW_mbvJetm9Sw3hWLpBFwsFTZ2g/view?usp=sharing','Agama'),(589,'Hadis-Hadis Keutamaan Al-Quran.pdf','','','0','https://drive.google.com/file/d/14VTjZq8DW4c0On4qbIU9c6h9aW8swD-t/view?usp=sharing','Agama'),(590,' Pengantar Ulumul Quran dan Ulumul Hadis.pdf','','','0','https://drive.google.com/file/d/1KtN6HRjtQJnsVF1ouHGa_WSyJoD1CIva/view?usp=sharing','Agama'),(591,'Bacalah Surat Al-Waaqiah Maka Engkau Akan Kaya! Muhammad Makhdlori.pdf','','','0','https://drive.google.com/file/d/1Fz1Cco-fMbrCmsTyRUrC9RqkRipC-kxW/view?usp=sharing','Agama'),(592,'AL-QURAN HADIS MA KELAS X KSKK 2020.pdf','','','0','https://drive.google.com/file/d/1LAfwnTCYNFEdCOshMKXRJEELpdogLTzR/view?usp=sharing','Agama'),(593,'Hasbi Buku Ilmu Tauhid.pdf','','','0','https://drive.google.com/file/d/1dcUxrEejh3gpUt_f86omTsqd2X3-eyV6/view?usp=sharing','Agama'),(594,'al-Kutub al-Sittah_Kasman.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1SJxt5SAlaPlxG4g-9PQd-MUpRwSrSaYg/view?usp=sharing','Agama'),(595,'Rekonstruksi Hadis Maudlu.pdf','','','0','https://drive.google.com/file/d/1cZXkd3atxkSxnQmRSIio41hBW8mu-x8k/view?usp=sharing','Agama'),(596,'Agama dan Kepercayaan Nusantara by Sumanto Al-Qurtuby-1.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1jdr9nrpGQ-RH9GvnJ3Xy27InKttVVC_L/view?usp=sharing','Agama'),(597,'[Cerry Book] Syahid Muhammad - Egosentris.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1Xh-bK8MV5juO6gB0npEOqn9g-4jICs-3/view?usp=sharing','Agama'),(1014,'Big Book IPA SD','','','0000','https://drive.google.com/file/d/1w_ubr0fzVVZlgUIZd1FdLJfTNpznFNK7/view?usp=drive_link','Sains'),(599,'Ilmu Sharaf Untuk Pemula Cetakan.pdf','','','0','https://drive.google.com/file/d/1z3dkrecqZSQI-QINRSe5YM07ww3uHDz5/view?usp=sharing','Agama'),(600,'Kamus Ilmu Nahwu dan Sharaf.pdf','','','0','https://drive.google.com/file/d/1mr0aRJ0XQV7uYkWcatei_lIlJp9vcdbv/view?usp=sharing','Agama'),(601,'Kitab Seks Islam Terjemah Qurrat Al Uyun Bi Syarh Nazham Ibnu Yamun.pdf','','','0','https://drive.google.com/file/d/1ntYhpAVmCDZTJ0X81AV-ZSG8JSm3h10Y/view?usp=sharing','Agama'),(602,'PR Pengantar Perbandingan Mazhab 90hlm.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1yT6Dd0tdOsKjEXHlgG4yRLYfLdC6l_Cq/view?usp=sharing','Agama'),(603,'KISAH KISAH GAIB DALAM HADITS SHAHIH Islam Quran Hadith Sunnah.pdf','','','0','https://drive.google.com/file/d/1fc2Anm0kG5vzvlr8UDGqDczT4cQPlA6W/view?usp=sharing','Agama'),(604,'Kupas Tuntas Dunia Malaikat dan Mengenal Malaikat Syeikh Shalih.pdf','','','0','https://drive.google.com/file/d/1ejxRNNCC5ROaYe87Cyc69BjvCgH7Rx-2/view?usp=sharing','Agama'),(605,'Isa & Al-Mahdi di Akhir Zaman -Dr. Muslih Abdul Karim, M.A.-.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1uh2rWVBDzuX6fMEcAF4XnYEpd4X87mZ6/view?usp=sharing','Agama'),(606,'Sutiono Mahdi, KAMUS BAHASA BESEMAH INDONESIA INGGRIS.pdf','','','0','https://drive.google.com/file/d/10Uf0QtnKYrcCL-fgwwyiOet7AZeGGVv7/view?usp=sharing','Bahasa'),(607,'The Book Of Complete English Grammar (Tata bahasa Inggris Lengkap).pdf',NULL,NULL,'0','https://drive.google.com/file/d/1-v0m6E6apOXFMqtt20S64D232Ivl6dJC/view?usp=sharing','Bahasa'),(608,'Ki Demang Sokowaten Bausastra Kawi Jawa.pdf','','','0','https://drive.google.com/file/d/1LtFy32lfReGQsXjQV-PTLDiuKj9tJyfz/view?usp=sharing','Bahasa'),(609,'KAMUS BESAR BAHASA INDONESIA Mutatis Mutandis.pdf','','','0','https://drive.google.com/file/d/1YpojarukMvHZAWEDb1BhmqIABKniYHmU/view?usp=sharing','Bahasa'),(610,'KBBI - Kamus Besar Bahasa Indonesia.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1cfa_3onLq4R-sKCibwaox3AxLDnRYxVU/view?usp=sharing','Bahasa'),(611,'Kamus Sinonim Bahasa Inggris.pdf','','','0','https://drive.google.com/file/d/1cjNcSzhJe-Ubbbk9_2bAuExXjv5CNlxu/view?usp=sharing','Bahasa'),(612,'Partikel bahasa jepang ternyata mudah.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1Y4gyWpB6ilMMw0Xe1OQDh57biQ7h6K38/view?usp=sharing','Bahasa'),(613,'Kamus Inggris Indonesia.pdf','','','0','https://drive.google.com/file/d/1W-yS8U24CKKjUwkTm8b3fHW5VKooxIUF/view?usp=sharing','Bahasa'),(614,'Kamus B Jawa.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1RmCqxH_tNnnqBeYH-JjtU0i7q6r_NiUB/view?usp=sharing','Bahasa'),(615,'Big bank soal bahasa inggris.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1F3TzTVSvAvOOvx46Q-RJBgNyd1ioPrlb/view?usp=sharing','Bahasa'),(616,'Kamus Mini Lengkap Bahasa Mandarin - Ririn Febrianti.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1BC7Nbyetz3J12vblppUwYtXmmf5521Tk/view?usp=sharing','Bahasa'),(617,'kamus bahasa jawa - bahasa indonesia I 469ha.pdf',NULL,NULL,'0','https://drive.google.com/file/d/15sTTOjNsjSubzLc8rjAP9FYWacuZBwNm/view?usp=sharing','Bahasa'),(618,'Kamus Tesaurus Bahasa Indonesia.pdf','','','0','https://drive.google.com/file/d/1DMtqBmWfNVTET8wmwdXOS8UismvcqXUu/view?usp=sharing','Bahasa'),(619,'BUKU AJAR BAHASA DAN SASTRA INDONESIA DI KELAS TINGGI.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1FNFu2PUFYORem7owsFNpXT6sEmDnkGZt/view?usp=sharing','Bahasa'),(620,'Buku Ajar Sastra Indonesia_Ebook.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1HKxWiJzZHykxxH1skTThagxa0GSbvsSr/view?usp=sharing','Bahasa'),(621,'Diksi & Gaya Bahasa - Gorys Keraf.pdf',NULL,NULL,'0','https://drive.google.com/file/d/18Dq3ZOmhRacGv0MtQZWfKlSNIZCM6G3O/view?usp=sharing','Bahasa'),(622,'Buku guru bahasa inggris kelas 9.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1VShubtl0Z3RceTColtok_7Z-M33CZ4Ds/view?usp=sharing','Bahasa'),(623,'E-Book Pengantar Bahasa Sastra Indonesia.pdf','','','0','https://drive.google.com/file/d/18AY3osioKOIPZxkbsGwNK41q1F2Wzxyc/view?usp=sharing','Bahasa'),(624,'500 Kata Percakapan dalam Bahasa Mandarin Overseas Chinese Affairs.pdf','','','0','https://drive.google.com/file/d/15xgk9BABqk6AVtYsq2b4jmMmx8TazkT3/view?usp=sharing','Bahasa'),(625,'Bahasa inggris kelas 10.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1HFVM9bvg9sce6i_fYiOD1zA27wixgqzW/view?usp=sharing','Bahasa'),(626,'2169. Otodidak Jago Kuasai Bahasa Inggris Dari Nol.pdf',NULL,NULL,'0','https://drive.google.com/file/d/14MYFuz91dQilN088MQToFzVdR5lLq-r7/view?usp=sharing','Bahasa'),(937,'Microsoft Excel','','','0000','https://drive.google.com/file/d/1phRQQj13E5V4shY9jYvea1Yzx_DfsLvF/view?usp=drive_link','Sains'),(938,'Microsoft Word','','','0000','https://drive.google.com/file/d/1WRoinqzfPMJ7kKn4T9ZOwzknvuUCOxT0/view?usp=drive_link','Sains'),(628,'PUEBI.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1U8gHfBCRoEa1at_MVZJF8d1M0gHc4DTq/view?usp=sharing','Bahasa'),(629,'Jenis Jenis Teks SMA.pdf','','','0','https://drive.google.com/file/d/1Z3kfqqGwIp7VvUqjkdCPNRDA_UpQdOuA/view?usp=sharing','Bahasa'),(630,'Big Bank soal + bahas Bahas.pdf','','','0','https://drive.google.com/file/d/1dq9GCiDz_qbgjnuI2LA5z7VdnnOfmXZW/view?usp=sharing','Bahasa'),(631,'KAMUS BASA JAWA INDONESIA.pdf','','','0','https://drive.google.com/file/d/1qxOieM-d7YmHlNfmnj_40AWx4qQsseCV/view?usp=sharing','Bahasa'),(632,'IPN-YOUR BASIC GRAMMAR-NEW 2021.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1ytTZsFghVIZTB3wwP7W_gP6LCI-RQDJd/view?usp=sharing','Bahasa'),(633,'Sastra jendra Hayuningrat.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1mp6ClDhc1cEqCAsM_yjPk_LjGLKqzr61/view?usp=sharing','Bahasa'),(634,'Matpel kuliah B.indonesia.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1tEMWlPEpmF_YbHqNE9EAEWjFZrbyLTlR/view?usp=sharing','Bahasa'),(635,'Kamus Mini Lengkap Bahasa Korea - Chaerina Ayu.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1p63HahVJ8O0WVrY217BVOVarIQTSgtl0/view?usp=sharing','Bahasa'),(636,'Tere liye - tentang kamu.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1Q7lA2hRIWO_0mSWXwUmjch1zxRT9mh6b/view?usp=sharing','Komik & Cerita'),(637,'Tere_Liye_-_Matahari.pdf.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1_sNZ0yy3N8fAyUqZbCrnRNdBQbLPSDRN/view?usp=sharing','Komik & Cerita'),(638,'The Last Samurai Epos yang Menginspirasi tentang Samurai Terakhir, Sang Pahlawan-Pemberontak by John Man.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1rzG1jQBgM-9Ne3G6iZi6_sT_i0YcQINF/view?usp=sharing','Komik & Cerita'),(639,'Tere liye - the falling leaf never hates the .pdf',NULL,NULL,'0','https://drive.google.com/file/d/1CZZ04SUgmSQ3pb3EFS9n1Eujeyng7Ob6/view?usp=sharing','Komik & Cerita'),(640,'Tere Liye - Bulan.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1kN4YetrDcg18CG40934KlirfaOi5pK8K/view?usp=sharing','Komik & Cerita'),(641,'Tere Liye - Bintang.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1k9RX0yZ6UQtXfxowvoECPdCoWNKP6jjD/view?usp=sharing','Komik & Cerita'),(642,'The Last Samurai Epos.pdf','','','0','https://drive.google.com/file/d/1el0IgcsLcmg0QOOkgjeaMek2IrqNhbkT/view?usp=sharing','Komik & Cerita'),(643,'Matahari (403 Halaman) - Tere Liye.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1NOQ5Brv0gJG6f0DvrOVI-4iey1sgJUIz/view?usp=sharing','Komik & Cerita'),(644,'Novel Hafalan Shalat Delisa - Tere Liye.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1MgDQ0t4oZCwI-iu29PEyeM5Lth9L4vun/view?usp=sharing','Komik & Cerita'),(645,'Novel Pramoedya - Bumi Manusia.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1Mw2MScEUpL1JyXaDbMyUAim5xfcrrw88/view?usp=sharing','Komik & Cerita'),(646,'Novel Lumpu (684 Halaman)- Tere Liye.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1MGQrhBtoc96rBuOmtNgCDxipZa8Eqotq/view?usp=sharing','Komik & Cerita'),(647,'Radikus Makankakus - Raditya Dika.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1bcX4buEX-m4u6xzagVx4XjzvegLgTki_/view?usp=sharing','Komik & Cerita'),(648,'MB Rahimsyah Kisah 1001 Malam Abunawas Sang Penggeli Hati.pdf','','','0','https://drive.google.com/file/d/1PdSFQN0ptPWnRDNh3yY4zphJeStQM-_N/view?usp=sharing','Komik & Cerita'),(649,'Novel Pulang (486 Halaman) - Tere Liye.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1OcCdVQER4a6Lp0GKCYFmhCKHPUIKfWGf/view?usp=sharing','Komik & Cerita'),(650,'Karen Armstrong - Masa Depan Tuhan (2014).pdf',NULL,NULL,'0','https://drive.google.com/file/d/1V7g20fmrI7DEMKsfWFJOjqd8XSC2Ob59/view?usp=sharing','Komik & Cerita'),(651,'Negeri 5 Menara (Novel Religi pembangun Jiwa) - Ahmad Fuadi.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1X_8I5vJHNbWjNhGv_csIM3ohbflj6eU-/view?usp=sharing','Komik & Cerita'),(652,'Pirates and Emperors by Noam Chomsky.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1bN6AzwFzUhg5QNAGMeN3U8Tvs77-lbh-/view?usp=sharing','Komik & Cerita'),(653,'Mahabharata.pdf','','','0','https://drive.google.com/file/d/1KFirDkeMq3v3YNWwGXP53t6Z3iLM92k1/view?usp=sharing','Komik & Cerita'),(654,'Novel Ayahku (Bukan) Pembohong (307 Halaman) - Tere Liye.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1DR_L56ZiCj7KlgLaOIB5k2KxUj9E1uXl/view?usp=sharing','Komik & Cerita'),(655,'Majalah Bobo - Misteri UFO.pdf',NULL,NULL,'0','https://drive.google.com/file/d/16jh6VLDwT6GnP3MVesGMvYmlnzV06ovT/view?usp=sharing','Komik & Cerita'),(656,'Jalan Para Pencari Allah Bagaimana Kita Mencapai Maqam Tertinggi Bertemu Allah (Al-Ghazali).pdf',NULL,NULL,'0','https://drive.google.com/file/d/1LJRHk8CCwNk9ZOSrD3GtASeah1rlRBJH/view?usp=sharing','Komik & Cerita'),(657,'Novel Ceroz & Batozar (380 Halaman) - Tere Liye.pdf',NULL,NULL,'0','https://drive.google.com/file/d/18zgJmS3HI-5oo8-lCuL_wxL6OuMGUIzN/view?usp=sharing','Komik & Cerita'),(658,'Novel Pergi (514 Halaman) - Tere Liye.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1JBwkWinyZLjQFOe9YWhQYi-uveucIGMA/view?usp=sharing','Komik & Cerita'),(659,'Malaikat Izrail Bilang Ini Ramadhan Terakhirku! Ahmad Rifai Rifan.pdf','','','0','https://drive.google.com/file/d/1IwgSEmMFq-r2Pifxyl8IPQ4HhgKBgD-S/view?usp=sharing','Komik & Cerita'),(660,'Kisah Heroik 65 Orang Shahabat Rasulullah SAW -Dr. Abdurrahman Ra’fat al-Basya-.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1K7ekcTpm1RWTBMdY38ahGE0x-s3nvyjc/view?usp=sharing','Komik & Cerita'),(661,'Novel Tentang Kamu (648 Halaman) - Tere Liye.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1HTsKNaO5D_8ZLUhrMOwWzwuM4k4_SKeL/view?usp=sharing','Komik & Cerita'),(662,'samkok Romance of The Three Kingdom Bahasa Indonesia.pdf','','','0','https://drive.google.com/file/d/17i3L9FntXR_r7ZlhFqCK0Wy8FkpE9nQX/view?usp=sharing','Komik & Cerita'),(663,'Negeri Sufi - Kisah-kisah Terbaik -Mojdeh Bayat & Muhammad Ali Jamnia-.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1GeJjjkeufiT5w0Mmzcg030NDYAgQOh69/view?usp=sharing','Komik & Cerita'),(664,'Marchella Fp - Nanti Kita Cerita Tentang Hari Ini.pdf','','','0','https://drive.google.com/file/d/1Dgzvczym7nIkWr7u12u5FFxrLyJZheVE/view?usp=sharing','Komik & Cerita'),(665,'Karsa - ElAlicia.pdf','','','0','https://drive.google.com/file/d/1FtAnAWisCt-Bct3KOWBiTb0I6AYiVW9y/view?usp=sharing','Komik & Cerita'),(666,'Novel Bulan (401 Halaman) - Tere Liye.pdf',NULL,NULL,'0','https://drive.google.com/file/d/183nKCVmrrmuH0Ju6wCN6FyFTjBqUzqQ1/view?usp=sharing','Komik & Cerita'),(667,'Laut Bercerita - Leila S. Chudori.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1F8fcqU5HLZpD3xWiaXlqmcEg83LZq2tf/view?usp=sharing','Komik & Cerita'),(668,'Janji Janji Kemenangan Dalam Alquran Dr Shalah Abdul Fattah Al Khalidi.pdf','','','0','https://drive.google.com/file/d/12CybNL_vaiFQNG30kwflFF42Th1yIwLH/view?usp=sharing','Agama'),(669,'Kisah Petualangan Seru Kancil & Teman Temannya Antologi Fabel Nusantara.pdf','','','0','https://drive.google.com/file/d/1FWtQecjYnYfCjg4XShXLjCQMgeagMEyq/view?usp=sharing','Komik & Cerita'),(670,'Bidadari-Bidadari Surga (136 Halaman) - Tere Liye.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1BSYkxMoRAde0GhDixMHU9rozuTrKWZZ2/view?usp=sharing','Komik & Cerita'),(671,'Erisca Februari - Dear Nathan.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1kRcQ36h7mpW3oqCUhOp0EdwIe3NYesfy/view?usp=sharing','Komik & Cerita'),(672,'E Dixon - Kisah - kisah Dari Negeri 1001 Malam.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1hpxj3ot5lP85afKrAvXSLgK7Oy007jzn/view?usp=sharing','Komik & Cerita'),(673,'Bumi - Tere Liye.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1iD8NMYTzg5F1LWlX5Ww2aVKIe53-qKPm/view?usp=sharing','Komik & Cerita'),(674,'Dongeng Sebelum Tidur Jilid 2 - Dini W. Tamam.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1lQZXk3jmQzpkINoRmFgrQaW7raJL6dP6/view?usp=sharing','Komik & Cerita'),(675,'Cerita Rakyat Jawa Tengah Kabupaten Kudus dan Jepara (2016).pdf',NULL,NULL,'0','https://drive.google.com/file/d/1clzqsU68JANw5qOwQUmA3mLL4-_ccUEb/view?usp=sharing','Komik & Cerita'),(676,'Dracula Pembantai Umat Islam Dalam Perang Salib.pdf',NULL,NULL,'0','https://drive.google.com/file/d/17X1oHcQCPB_j4cJXrYaORYXso2YNpblr/view?usp=sharing','Komik & Cerita'),(677,'Boy Candra - Pada Senja Yang Membawamu Pergi.pdf','','','0','https://drive.google.com/file/d/1RsgATc8JnbyjRnRCz1CZN2-kuoIEQ0Xj/view?usp=sharing','Komik & Cerita'),(678,'Cerita Rakyat Jawa Tengah.pdf','','','0','https://drive.google.com/file/d/1Atl6imm5XPIgsMNpS6tf3IWtS1T0s7Jh/view?usp=sharing','Komik & Cerita'),(679,'Dilan 2 (Pidi Baiq).pdf','','','0','https://drive.google.com/file/d/1Pwyc37HJJvAA8NsXfWtH3V7y-67xdgDk/view?usp=sharing','Komik & Cerita'),(680,'Dongeng Sebelum Tidur Jilid 1 - Dini W. Tamam.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1fB6kbNXdMDh9r1q3dzDysvnGw76m0VDz/view?usp=sharing','Komik & Cerita'),(681,'Camino Island (Pulau Camino).pdf',NULL,NULL,'0','https://drive.google.com/file/d/1Mi6WWH4onWg4f1AEtSy3VBp6-GnoomB6/view?usp=sharing','Komik & Cerita'),(682,'Doa-Doa Yang Terkabul - Seri Chicken Soup For The Soul.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1-vvgaAGpyUr1vsTz4xmV5IKGOEbcSfsR/view?usp=sharing','Komik & Cerita'),(683,'Chara Perdana - Skripsick - Derita Mahasiswa Abadi.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1LPIwur6LPdx_iILCBBW7ieRyNSZ4wxyX/view?usp=sharing','Komik & Cerita'),(684,'Gabriella Chandra - Memutar Ulang Waktu.pdf',NULL,NULL,'0','https://drive.google.com/file/d/18ne4oqcmk4et42tnOgWRCtJE__ljXgcS/view?usp=sharing','Komik & Cerita'),(685,'Erisca Februari -  Dear Nathan.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1cZT8Ng-RhCLcMTleGW18FiEsn5FBbLAL/view?usp=sharing','Komik & Cerita'),(686,'Dilan 1 (Pidi Baiq).pdf','','','0','https://drive.google.com/file/d/15gCzbqF69vERFboohjk1M4P_nh1P1Bfw/view?usp=sharing','Komik & Cerita'),(687,'Rumah Kaca.pdf',NULL,NULL,'0','https://drive.google.com/file/d/16fNGgDyyR1d_T7weg4Zc6VEHVibw2c6R/view?usp=sharing','Komik & Cerita'),(688,'Nyanyi sunyi seorang bisu.pdf',NULL,NULL,'0','https://drive.google.com/file/d/17ChTRr_TQ3AFejgazgkluARYGmdW7kj2/view?usp=sharing','Komik & Cerita'),(689,'Kisah-Kisah dari Negeri 1001.pdf','','','0','https://drive.google.com/file/d/17Qa4IHWPeQAhTsUWUui1tSuMNE0_CIfR/view?usp=sharing','Komik & Cerita'),(690,'Cerita dari Jakarta.pdf',NULL,NULL,'0','https://drive.google.com/file/d/16duhrxQ8HwRWhKTJAdbHAi6sxoZmRf0n/view?usp=sharing','Komik & Cerita'),(691,'Bumi Manusia.pdf',NULL,NULL,'0','https://drive.google.com/file/d/17M90y8esGmV4cg3vlOb33Q4mPktFPp0o/view?usp=sharing','Komik & Cerita'),(692,'Apa yang Dilakukan Einstein Saat Galau Bayu Prasetyo & Jubilee Enterprise.pdf','','','0','https://drive.google.com/file/d/1pl3ZPgZeztqC-4LYURByYHwzzd-C7q9R/view?usp=sharing','Komik & Cerita'),(693,'02. Eldest - Christopher Paolini.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1ue9Vmw604Wj6tOpJsm6f87VwmLLBz-lc/view?usp=sharing','Komik & Cerita'),(694,'Andrea Hirata - Ayah.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1tcDHMDObx0VZkCjmP9bU_v-o6-MJYU0_/view?usp=sharing','Komik & Cerita'),(695,'1. Pramoedya AT - Bumi Manusia.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1kzX9XDf8thPznLL98PkIp9rJvBov2_35/view?usp=sharing','Komik & Cerita'),(696,'Alex Michaelides - Pelukis Bisu (The Silent Patient).pdf',NULL,NULL,'0','https://drive.google.com/file/d/1Hz_E5LMq_uXYr3k7GctD7NCEBvcxLA5h/view?usp=sharing','Komik & Cerita'),(697,'100 Cerita Rakyat Nusantara by Dian Kristiani.pdf',NULL,NULL,'0','https://drive.google.com/file/d/16bYfzaA79ZGH7RMkcxOzAShFq_ki6_K9/view?usp=sharing','Komik & Cerita'),(698,'Gundala Putera Petir.pdf','','','0','https://drive.google.com/file/d/1SUrCGujQNZJe9JQweASsGRQSkQBtwl4b/view?usp=sharing','Komik & Cerita'),(699,'447. Angels Demons - Malaikat Iblis (Dan Brown).pdf',NULL,NULL,'0','https://drive.google.com/file/d/1hGyMidyFL3AqkZb5D0vaQwIQpBoZl913/view?usp=sharing','Komik & Cerita'),(700,'Bentangkan Sayap.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1jmDG2EMbauJrPWXkdvWV3lVm9wdE5H_Q/view?usp=sharing','Komik & Cerita'),(701,'Aku Ini Binatang Jalang - Kumpulan Puisi - Chairil Anwar.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1cKdNavCXQJch23zi1t008CReyD6AIPy5/view?usp=sharing','Komik & Cerita'),(702,'Pipit Chie - Revenge On You (nl).pdf',NULL,NULL,'0','https://drive.google.com/file/d/1nGTPuqvPxEngQ4Jywf8Be8kt5xYFII2s/view?usp=sharing','Komik & Cerita'),(703,'Pulang - Novel Peristiwa Sejarah - Leila S. Chudori.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1yPPRG-cpvGJHNZVPEgifIvQFRGAZqNTe/view?usp=sharing','Komik & Cerita'),(704,'Kambing Jantan - Raditya Dika.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1hCKBeVBpAFsa0QhoYpzAeiQ0lK8m0hcM/view?usp=sharing','Komik & Cerita'),(705,'Sayap-Sayap Patah - Kumpulan Tulisan Sastra - Kahlil Gibran.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1e-wLJjcjJc1nmvjIawPJtz1y6yJ-r599/view?usp=sharing','Komik & Cerita'),(706,'Novel Hujan (315 Halaman) - Tere Liye.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1sL1I5Y_IQBMlM0xxmaCRrJFY9IIOpDwj/view?usp=sharing','Komik & Cerita'),(707,'Novel Komet (386 Halaman) - Tere Liye.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1oTaCAHeAuym6_X1W_brimZ05qa64mtmH/view?usp=sharing','Komik & Cerita'),(708,'Negeri Para Bedebah (444 Halaman) - Tere Liye.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1zc4ilbDg0dCJpq-4govpChfmJS3Z2stU/view?usp=sharing','Komik & Cerita'),(709,'Kurasu no Daikirai na Joshi to Kekkon Suru Koto ni Natta.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1iAve8PeUAr1iMFgBIdcoRqkCCVSHN2Gd/view?usp=sharing','Komik & Cerita'),(710,'Kumpulan Cerpen Kompas 2006.pdf','','','0','https://drive.google.com/file/d/1jpr2h24AfOHaluzUipNIzVpaw5n8iVcH/view?usp=sharing','Komik & Cerita'),(711,'Laut Bercerita (Leila S. Chudori).pdf','','','0','https://drive.google.com/file/d/1fEhMonkns-jnq7LVgZwQiViBOZg7hUeL/view?usp=sharing','Komik & Cerita'),(712,'Kisah Tanah Jawa Pocong Gundul by @kisahtanahjawa.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1qEspm3HvmOFGpiRQ1NJV1psPpZJholFG/view?usp=sharing','Komik & Cerita'),(713,'Jared Diamond - Upheaval (2022).pdf',NULL,NULL,'0','https://drive.google.com/file/d/1w6Veu38Pnjqc1MzgyZTbPy7Ve8HJyDpR/view?usp=sharing','Komik & Cerita'),(714,'Romance of the Three Kingdoms by Halim Ivan.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1iGMh6E8Nfqf2-1ojGKWWeAV2p55agx4i/view?usp=sharing','Komik & Cerita'),(715,'Hujan - Tere liye.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1skSkWgGEhrjjGXIizZwi9n4kVEPqCVxk/view?usp=sharing','Komik & Cerita'),(716,'Pulang.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1mX8hZJ0W9fZuj53u0VUt3TrhRs316EfW/view?usp=sharing','Komik & Cerita'),(717,'Rindu Tere Liye.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1t5zlGjnBUdiO1QGbKSqZYsiunMapIkF-/view?usp=sharing','Komik & Cerita'),(718,'TypeScript Interfaces.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1cNXGMj0xoTRj_9c3DmSdmQMXGwrEoQnj/view?usp=sharing','Sains'),(719,'The alchemist.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1VnklQ0Fi-0d3OpJcgTivo_UWRWihu94F/view?usp=sharing','Sains'),(720,'HANJAR PROXY WAR.pdf','','','0','https://drive.google.com/file/d/1vl_t539Ceu3OZFxFdMKn-PpbIcCptHdF/view?usp=sharing','Sains'),(721,'TypeScript Control Flow Analysis.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1pmIIGEJoBELct9Qg8lySq41BKcrgWVCq/view?usp=sharing','Sains'),(722,'Teknologi Pengolahan Daging Prof Dr Harapin Hafid, M Si Dkk.pdf','','','0','https://drive.google.com/file/d/1sPOBG_Ko-43Iso2jrLME6R9op6CLxejA/view?usp=sharing','Sains'),(723,'TypeScript Types.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1G070qkK9eWensjmsCRTzb5U4mN6upabC/view?usp=sharing','Sains'),(724,'Resep Kue Kering untuk Usaha Boga - Chendawati.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1ZAeAPOkZJgtmi9m-srd8JIzqsx7nJ0o7/view?usp=sharing','Sains'),(725,'NodeJS Notes For Professionals.pdf','','','0','https://drive.google.com/file/d/1BRlqQ2v2gtnDdEaCru7SIt3JaxVcE8Jf/view?usp=sharing','Sains'),(726,'Buku Sakti Hacker Full Version ( 364 Halaman )-compressed.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1079n1vJty2SvaY2E0b8UUVzgsAGiNPEY/view?usp=sharing','Sains'),(727,'Fundamentos Basic os C++.pdf','','','0','https://drive.google.com/file/d/1QSo8b77jhvOB1EYMmv7qZnchqHldszTZ/view?usp=sharing','Sains'),(728,'Kosmologi - Studi Struktur.pdf','','','0','https://drive.google.com/file/d/179-y3y7OyJkDLRMpiSyYvwqx3a0TnO6n/view?usp=sharing','Sains'),(729,'7. Buku Digital - Keperawatan Onkologi.pdf',NULL,NULL,'0','https://drive.google.com/file/d/149xeNEmhnwHFc8MB4AOJ2SuKDWLFPh0r/view?usp=sharing','Sains'),(730,'Dasar-Dasar Astronomi .pdf','','','0','https://drive.google.com/file/d/1GNFHlqfRZfUPuofF6HLi_Th3l04kxA8j/view?usp=sharing','Sains'),(731,'Kamus Pintar Fisika.pdf','','','0','https://drive.google.com/file/d/1HkYlqOZ_JeXSTYI_JL_idqMuYfgAkIxN/view?usp=sharing','Sains'),(732,'Rian Damariswara, BUKU AJAR BAHASA JAWA.pdf','','','0','https://drive.google.com/file/d/1olWKgBmyMAoTBL3xC8KTpnS6oGishk9Y/view?usp=sharing','Sains'),(733,'Metodologi Penelitian Kesehatan Prof Dr Soekidjo Notoatmodjo.pdf','','','0','https://drive.google.com/file/d/1gUiqPgQ_KY7rdT4KAfXY5mtliPtID-r5/view?usp=sharing','Sains'),(734,'Kosmologi - Studi Struktur dan Asal Mula Alam Semesta by Fabian Chandra.pdf','','','0','https://drive.google.com/file/d/1vQbnS3CMbyefZYVbIc_6Ozxncg0dSURD/view?usp=sharing','Sains'),(735,'umarbinkhattab.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1jEALVP9dGqxUnGEXcdLoyqgpvErtky7a/view?usp=sharing','Sejarah'),(736,'Sejarah Tuhan.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1zMoGTuP9VgKxO3jdG-dHs-YWqUywFBUm/view?usp=sharing','Sejarah'),(737,'Sirah Nabawiyah - Syaikh Shafiyurrahman Al Mubarakfuri.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1Ftb_KDiNsSbdeqGIQyckih_Cn9x-0MU2/view?usp=sharing','Sejarah'),(738,'Yuval N Harari- Homo Sapiens (MLY).pdf',NULL,NULL,'0','https://drive.google.com/file/d/1LTzp2zrZyop2DO0mEwd4IOro1gli1fr6/view?usp=sharing','Sejarah'),(739,'Tak Ada Penyiksaan Terhadap 6 Jenderal _ Dr. Liaw Yan Siang.pdf','','','0','https://drive.google.com/file/d/1fQGWcKGbK1zW1hHnMwso6_ypindJJDoZ/view?usp=sharing','Sejarah'),(740,'Sejarah Politik dan Kekuasaan Islam, Nasionalisme dan Komunisme.pdf','','','0','https://drive.google.com/file/d/1R5N6G6vE4xeJPUSvYSGrSn2jmmPswTVC/view?usp=sharing','Sejarah'),(741,'Sejarah Prancis.pdf','','','0','https://drive.google.com/file/d/1iOzP7GcAhdVCV8VNaTCly5cuxHnT-vTH/view?usp=sharing','Sejarah'),(742,'Soekarno Indonesia Menggugat.pdf','','','0','https://drive.google.com/file/d/1MRIiy5WnpyQDGJ1BL9HCY7KT6w2SUNjE/view?usp=sharing','Sejarah'),(743,'WASIAT AKHIR NABI TERAKHIR Sunnah Hadits Hadith Hadis by Dr Said.pdf','','','0','https://drive.google.com/file/d/1hjiLYH-rZlzXJ3VdhWhpak3g5z0I9jSg/view?usp=sharing','Sejarah'),(744,'Sukarno (1965) - Subur Subur Suburlah PKI.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1_erjIxGR2ZSfuKmeVF1zwc67SyRevBfQ/view?usp=sharing','Sejarah'),(745,'Sejarah Peradaban Islam.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1n5X7W9rnWxXkG1YsBGniy3db986XV4sF/view?usp=sharing','Sejarah'),(746,'Tarikh Islam - Sejarah Cendikiawan Muslim.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1SM8fuJ00oHXXh03cAGSkw_vW251DOQgX/view?usp=sharing','Sejarah'),(747,'Sejarah Amerika Serikat.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1LddXQdL9_WI0Jgix51PyxrxEPGTukWjb/view?usp=sharing','Sejarah'),(748,'History of World War II 1939 1945.pdf','','','0','https://drive.google.com/file/d/1LMimCN37SWqgOQ5KfXPIg3Pxh3Jxj5cA/view?usp=sharing','Sejarah'),(749,'Kelas XI_Sejarah Indonesia_KD 3.5.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1bdhBByvmlGzq8Q1a0nLmyv0poofATUX7/view?usp=sharing','Sejarah'),(750,'Islam Liberal - Sejarah, Konsepsi, Penyimpangan dan Jawabannya -Adian Husaini, M.A. & Nuim Hidayat-.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1bs5P09IHFCfS3wWNLCRGXLp2Y4nhHfTB/view?usp=sharing','Sejarah'),(751,'Sejarah Nasional Indonesia 2.pdf','','','0','https://drive.google.com/file/d/1cvDHQKc8suNACRk2gPgzlJUPEZuhS8Vr/view?usp=sharing','Sejarah'),(752,'Sejarah Berita Proklamasi Kemerdekaan Indonesia by Tim Penulis.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1TIgK0T2YHM8xWFy-glW_qnHkCy4GkV4n/view?usp=sharing','Sejarah'),(753,'Sejarah Islam Asia Tenggara.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1RNMa5mkqyXY7relV24gvlmYA8ER1YUMp/view?usp=sharing','Sejarah'),(754,'Sejarah Nasional Indonesia 1.pdf','','','0','https://drive.google.com/file/d/1Y8yHObu0aJiKcH--iTWcby5RF3SOVR45/view?usp=sharing','Sejarah'),(755,'Malapetaka Runtuhnya Khilafah - Syaikh Abdul Qadim Zallum.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1TAmn76PHvUIQoG7Uzft0XYiw--mvs5LR/view?usp=sharing','Sejarah'),(756,'Sejarah Dunia Kuno.pdf','','','0','https://drive.google.com/file/d/1_aGm93Mhtk2p-3ixyUazoEIEbksmjc9k/view?usp=sharing','Sejarah'),(757,'Islam Melayu Mozaik Kebudayaan Islam di Singapura & Brunei.pdf','','','0','https://drive.google.com/file/d/1ZtNLdXCdkQgvthRduAd6vZtp6TvOzc6V/view?usp=sharing','Sejarah'),(758,'Qin Kaisar Terakota by Michael Wicaksono.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1_BiT0PgENu2Yq22WFYA_ROuP1VsSlvHT/view?usp=sharing','Sejarah'),(936,'Matematika Sekolah Dasar','','','0','https://drive.google.com/file/d/1R_2Q5MaWeP2_aHao3862kIxseCifn9DG/view?usp=drive_link','Sains'),(760,'Mata Uang Emas Kerajaan Kerajaan di Aceh.pdf','','','0','https://drive.google.com/file/d/1_wD5DfFhUZW3zQmR4zKqDM9b1T7Bqj-E/view?usp=sharing','Sejarah'),(761,'Malahayati Srikandi dari Aceh.pdf','','','0','https://drive.google.com/file/d/1YB82Vjivlk3peqpb3Y5XBMJ77pddu8s8/view?usp=sharing','Sejarah'),(762,'Mesjid Bersejarah I.pdf','','','0','https://drive.google.com/file/d/1OhJXQiBglry03QNLXaDVeiLhORVamm7u/view?usp=sharing','Sejarah'),(763,'Islam Lokal Sejarah, Budaya, dan Masyarakat Septi Wanda,dkk_.pdf','','','0','https://drive.google.com/file/d/1FqeuWsKC7PKBbg226PIVR6rzExBbm4WP/view?usp=sharing','Sejarah'),(764,'Biografi Shalahuddin al-Ayyubi -Stanley-Lane Poole-.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1EihbuXSF4hKBk1LbNL7CkeLDLJNedUTD/view?usp=sharing','Sejarah'),(765,'Ringkasan Sejarah Wali Songo.pdf',NULL,NULL,'0','https://drive.google.com/file/d/178oiwPQsKSXo-9elR_yQc3hOgqVflgjj/view?usp=sharing','Sejarah'),(766,'Melacak Jaringan Intelijen Militer dan Sipil.pdf','','','0','https://drive.google.com/file/d/1FmUUyhnlKZ1QstyMqU__9mlaDgsCxl_k/view?usp=sharing','Sejarah'),(767,'Homo Deus  [Yuval Noah Harari].pdf',NULL,NULL,'0','https://drive.google.com/file/d/15SmnCNMzJp00FVkOelgfhkJHC_462MX9/view?usp=sharing','Sejarah'),(768,'Sejarah Islam di Nusantara.pdf','','','0','https://drive.google.com/file/d/1EIL36baAbH4CERhj4NDP1FCAJq3ah7do/view?usp=sharing','Sejarah'),(769,'Sejarah Nasional Indonesia 3.pdf','','','0','https://drive.google.com/file/d/135HkPpfxI60hUqEu03MgtoKyqJTvTRr5/view?usp=sharing','Sejarah'),(770,'Pengantar Ilmu Sejarah by Kuntowijoyo.pdf',NULL,NULL,'0','https://drive.google.com/file/d/16nno8-IU3KT7AhzfFubviwKeC71CQs_P/view?usp=sharing','Sejarah'),(771,'PDF Islam Doktrin Dan Peradaban.pdf',NULL,NULL,'0','https://drive.google.com/file/d/16T3A986uDlKayxKfunaoJ4oCuzT_P-oC/view?usp=sharing','Sejarah'),(772,'P.K. Ojong - Perang Pasifik .pdf','','','0','https://drive.google.com/file/d/14xNNHNhzUJptRUeivl3gAllTxcR2pt8x/view?usp=sharing','Sejarah'),(773,'Kisah Menakjubkan -25 Nabi dan Rasul -Nurul Ihsan-.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1KAoD5ai9zJxReNHNmBaxVP8cFsb-fmar/view?usp=sharing','Sejarah'),(774,'Sejarah Islam yang Hilang by Alkhateeb, F.pdf','','','0','https://drive.google.com/file/d/10a0VCqRX5e5Vo_oMuMka8XoGx9WM1hKY/view?usp=sharing','Sejarah'),(775,'Kisah Para Nabi dan Rasul (Ibnu Katsir).pdf','','','0','https://drive.google.com/file/d/11g4sfXo_3US5-3WoauSxoUsW8DuhYjua/view?usp=sharing','Sejarah'),(776,'M C Ricklefs Sejarah Indonesia Modern 1200-2004.pdf','','','0','https://drive.google.com/file/d/1FYX7_F6l90tzJDEQg66n2eXeFoUeALnw/view?usp=sharing','Sejarah'),(777,'Ibnu Al-Haitham - Pencetus Teknologi Kamera -Yoli Hemdi-.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1KTARxjBU9k0x45__1tIc5wa5ZpZlyOaP/view?usp=sharing','Sejarah'),(778,'Best Stories of Abu Bakar As-Shiddiq -Salih SuruÇ-.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1-xzR57fFySU1eESTdlRGqOhzlQfWsPhG/view?usp=sharing','Sejarah'),(779,'Kitab Merah Kumpulan Kisah-Kisah Tokoh G30S PKI.pdf','','','0','https://drive.google.com/file/d/1EZCf3oItO_lFqXNOH_VjWmZ_9jnliAow/view?usp=sharing','Sejarah'),(780,'Jenghis Khan Legenda Sang Penakluk dari Mongolia by John Man_024035.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1E4TfAr2s_3AIs32UKSHB5N8GAL_yxGgq/view?usp=sharing','Sejarah'),(781,'Mukaddimah - Ibnu Khaldun.pdf','','','0','https://drive.google.com/file/d/1Gmb4NItcsMkWzRwWzwpEbmP7HlExVnC1/view?usp=drive_link','Sejarah'),(782,'Sejarah Indonesia Masa Kemerdekaan 1945-1998 by Dr. Aman, M.Pd._024137.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1BAxfIy65cWhEwPkoMstnU8hekq2S0p0k/view?usp=sharing','Sejarah'),(783,'Sejarah Indonesia Modern, 1.pdf','','','0','https://drive.google.com/file/d/13i0IvdjlfuDcj_zta7_WamaxftBqxRKI/view?usp=sharing','Sejarah'),(784,'Perang Sabil versus Perang Salib - Umat Islam Melawan Penjajah Kristen Portugis dan Belanda -Abdul Qodir Jaelani-.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1FA2r7V_uPXQP5b2ozr8aMRDVhjEZtPaH/view?usp=sharing','Sejarah'),(785,'Indonesia Melawan Amerika Konflik Perang Dingin 1953-1963 by Baskara T. Wardaya.pdf',NULL,NULL,'0','https://drive.google.com/file/d/10gjyKFTzkX0KesDlRTg9QS_Yl4NyOJEZ/view?usp=sharing','Sejarah'),(786,'Sejarah Intelektual - Juraid Abdul Latief.pdf',NULL,NULL,'0','https://drive.google.com/file/d/15q_Y0Qlb4jkwnBLySHwuIpPenLjguOL9/view?usp=sharing','Sejarah'),(787,'Peristiwa Sekitar Proklamasi.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1Cd4-iZxLqmsMAy7ErOUS-oFtEe4tN8kZ/view?usp=sharing','Sejarah'),(788,'Sejarah Islam di Nusantara.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1EDn_gF86oZD4hd5mHu560wz54CfGOae6/view?usp=sharing','Sejarah'),(789,'Ibnu Rusyd - Tokoh Filsafat Islam [Yoli Hemdi].pdf',NULL,NULL,'0','https://drive.google.com/file/d/1Is3WgEsGoP9tH-bV2DvwfIg5SGe0itNb/view?usp=sharing','Sejarah'),(790,'Dinasti Umawiyah [Dr. Yusuf Al’ Isy].pdf',NULL,NULL,'0','https://drive.google.com/file/d/1zou-s-S-OC1LzsIXaJUEMdt1KY3Ctv5X/view?usp=sharing','Sejarah'),(791,'Candi Borobudur & Peninggalan Nabi Sulaiman AS KH Fahmi Basya.pdf','','','0','https://drive.google.com/file/d/1jDiGlHGdz4W7GiJ9jz_0hPHptF8aHKj0/view?usp=sharing','Sejarah'),(792,'Buku - Sejarah Sosial Media (Dari Gutenberg Sampai Internet).pdf',NULL,NULL,'0','https://drive.google.com/file/d/1zkbj2J_lMatn6M_jHbbfR8_VjQeaN4f7/view?usp=sharing','Sejarah'),(793,'Ensiklopedi Kerajaan-Kerajaan Nusantara Hikayat dan Sejarah 1 by Ivan Taniputera.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1msO7UJ_UstyWAghGVDCKTmiPZMzdgv2E/view?usp=sharing','Sejarah'),(794,'Ensiklopedia Biografi Sahabat Nabi.pdf','','','0','https://drive.google.com/file/d/1s8fbbl5HaRnaslPeoaIlTBdSReCAYKqE/view?usp=sharing','Sejarah'),(795,'Gajah Mada 4 revisi.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1dR1ZNOOhn5DXDnNJZ5qFechmlNaKPHGg/view?usp=sharing','Sejarah'),(796,'Dinasti Abbasiyah [Dr. Yusuf Al-Isy].pdf',NULL,NULL,'0','https://drive.google.com/file/d/1AByxDd15GvZbFdcqut-wa8E52zrtBVFy/view?usp=sharing','Sejarah'),(797,'Gajah Mada 3 - Hamukti Palapa.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1Mhv5LkRRd0QSS5s_csHGwFJOwWKLERzW/view?usp=sharing','Sejarah'),(798,'Ceng Ho, Muslim Tionghoa - Misteri Perjalanan Muhibah di Nusantara -Prof. Kong Yuanzhi-.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1OJLGLXCBVSnxDXt1AiiDu53qXwrcaL0p/view?usp=sharing','Sejarah'),(799,'Buku - Sejarah Dunia yang Disembunyikan (Jonathan Black).pdf',NULL,NULL,'0','https://drive.google.com/file/d/1YtwfPwToQCerpkna-arHCc7NoG_cy3RI/view?usp=sharing','Sejarah'),(800,'Buku Ajar Sejarah Peradaban Islam (Pendekatan Tematik) -Ibnu Anshori-.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1_ZCylF989x8aLyp7JZQDVHSam1HA0voU/view?usp=sharing','Sejarah'),(801,'Buku Pintar Sejarah Islam.pdf',NULL,NULL,'0','https://drive.google.com/file/d/16v9hQcnRW3Ugp6Wtey778sUcRoKpqSvH/view?usp=sharing','Sejarah'),(802,'Distorsi Sejarah Islam [Dr. Yusuf Al-Qaradhawi].pdf',NULL,NULL,'0','https://drive.google.com/file/d/1BJF424o4c_mao8mrV7LR-s3VtXTJ5uG3/view?usp=sharing','Sejarah'),(803,'Buku - Republik Tiongkok (1912-1949).pdf',NULL,NULL,'0','https://drive.google.com/file/d/1DVN5NDckjtmt9vmMOrROyeRkC2BHkO27/view?usp=sharing','Sejarah'),(804,'Sejarah Gaib Pulau Jawa.pdf','','','0','https://drive.google.com/file/d/1QRJqG14nXqIo18ujHy_09Rt66nhzFD0A/view?usp=sharing','Sejarah'),(805,'TUANKU IMAM BONJOL.pdf',NULL,NULL,'0','https://drive.google.com/file/d/16h4FsuS9tQW8347FOkH7Cwe9l7_r_BjK/view?usp=sharing','Sejarah'),(806,'SUPRIYADI.pdf',NULL,NULL,'0','https://drive.google.com/file/d/16Ln66saf1g_XlBLhOkv4hBatsgQX3b8_/view?usp=sharing','Sejarah'),(807,'sultan iskandar muda.pdf',NULL,NULL,'0','https://drive.google.com/file/d/16atKPxr9lhd7sgozx_vIxv2Smx4-Km1m/view?usp=sharing','Sejarah'),(808,'riwayat perjuangan k h abdul halim.pdf',NULL,NULL,'0','https://drive.google.com/file/d/16IRkxtHiMcxROXW3E0BaJccJ8Mt8aS8o/view?usp=sharing','Sejarah'),(809,'Mereka Jang Dilumpuhkan I.pdf',NULL,NULL,'0','https://drive.google.com/file/d/16n1te7fR0f9zAOxEWc_cGCbB03EV5irG/view?usp=sharing','Sejarah'),(810,'Menuju Sejarah Sumatra.pdf','','','0','https://drive.google.com/file/d/17TimSseBN3wX1ulzBAyqmMouPThfk3HR/view?usp=sharing','Sejarah'),(811,'Kisah Menarik Einstein.pdf','','','0','https://drive.google.com/file/d/175tvAlzgEb-ujuk9nYXxSzYlwwGzLSlx/view?usp=sharing','Sejarah'),(812,'Ki Hajar Dewantara.pdf',NULL,NULL,'0','https://drive.google.com/file/d/16KHRNamaiIKiJVrManFzEMVQboicKko4/view?usp=sharing','Sejarah'),(813,'Kamus Sejarah Indonesia.pdf','','','0','https://drive.google.com/file/d/17UHLQjrNlWutmWcnKmKdB8YuapWiWErF/view?usp=sharing','Sejarah'),(814,'cut nyak din.pdf',NULL,NULL,'0','https://drive.google.com/file/d/16Im1CvuPdrtg0u6uPZIocCIgy_YUzwrV/view?usp=sharing','Sejarah'),(815,'Arok Dedes.pdf',NULL,NULL,'0','https://drive.google.com/file/d/16gI0rmXKhLQWDoeSa9xhaGwsWPMNQeWe/view?usp=sharing','Sejarah'),(816,'Babad Majapahit.pdf','','','0','https://drive.google.com/file/d/1_vsLFx9sxGGyBY4FPmBzTlM5jqEcwbeW/view?usp=sharing','Sejarah'),(817,'Atlas Sejarah Islam - Sejak Masa Permulaan Hingga Kejayaan Islam -Dar Al-\'Ilm-.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1pY35yx7Bt9hOIXD8mcmlyhYd1ute6dj3/view?usp=sharing','Sejarah'),(818,'Babad Tanah Jawi.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1pk1O8z8UlTvuImLaWGzTFMr6cmDAF5pN/view?usp=sharing','Sejarah'),(819,'Asal Bangsa dan Bahasa Nusantara - Prof. Dr. Slamet Muljana.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1rm3AZ9NQW3P0OnZqtmgUqOX8OGxiQ45d/view?usp=sharing','Sejarah'),(820,'Al-Idrisi - Penemu Peta Pola Bumi [Yoli Hemdi].pdf',NULL,NULL,'0','https://drive.google.com/file/d/1wHmQY1vJfMJCVfvjtP5DQkqNsOS8008T/view?usp=sharing','Sejarah'),(821,'Al-Biruni - Guru Segala Ilmu [Yoli Hemdi].pdf',NULL,NULL,'0','https://drive.google.com/file/d/1ndv9DdTAUtDc4cLoHxLtKhu9gZacUsPQ/view?usp=sharing','Sejarah'),(822,'100 Tokoh Paling Berpengaruh dalam Sejarah - Michael H. Hart.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1vbRA6pfevELjMVRKlM_AnzEf2f3F7QFY/view?usp=sharing','Sejarah'),(823,'Atlas Walisongo.pdf',NULL,NULL,'0','https://drive.google.com/file/d/12NctR2FgITetIrntfCoo_h0GAGwvCMuy/view?usp=sharing','Sejarah'),(824,'Bertrand Russell - A History of Western Philosophy.pdf',NULL,NULL,'0','https://drive.google.com/file/d/164HTsw6bUoDtTwQ7SuuPLMHwwzAmcyqE/view?usp=sharing','Sejarah'),(825,'A memori of solferino.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1EzXfimvD8eNJJza98MfUX_MEPND3Pcll/view?usp=sharing','Sejarah'),(826,'Biografi 60 Shahabat Nabi (Khalid Muhammad Khalid).pdf',NULL,NULL,'0','https://drive.google.com/file/d/18UkWFExDMvxlulywowpaHtN_SiUV6m8q/view?usp=sharing','Sejarah'),(827,'Aji Saka.pdf',NULL,NULL,'0','https://drive.google.com/file/d/14SnFa9STPTjdAlyodf4QWjUoNipZO_8j/view?usp=sharing','Sejarah'),(828,'Asal Usul Perang Jawa - Pemberontakan Sepoy & Lukisan Raden Saleh (2012).pdf',NULL,NULL,'0','https://drive.google.com/file/d/1Ke4Ojh74-fsfQuSQLbFkf1sHuTtqYJ67/view?usp=sharing','Sejarah'),(829,'Bangkit dan Runtuhnya Andalusia Prof Dr Raghib As Sirjani.pdf','','','0','https://drive.google.com/file/d/1IDgs68fyhxTzcfzVNmor-v0DMFzC93td/view?usp=sharing','Sejarah'),(830,'Kisah_Para_Nabi_Kisah_31_Nabi_dari_Adam_Hingga_Isa_Ibnu_Katsir_Z.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1J4JxnzHJk1-KHl-91LnK2V43J4E6ScyH/view?usp=sharing','Sejarah'),(831,'Indonesia Melawan Amerika 1953-1963 (2008).pdf',NULL,NULL,'0','https://drive.google.com/file/d/14QzmIqPtmgdkv-Ecf1XQv_Un94-OLKs4/view?usp=sharing','Sejarah'),(832,'Konflik Bersejarah Nazi.pdf','','','0','https://drive.google.com/file/d/1Jwb3lDXa-ydp86n6o5Dne-eTO_3bxkgo/view?usp=sharing','Sejarah'),(833,'Ensiklopedi_Kerajaan_Kerajaan_Nusantara_Hikayat_dan_Sejarah_1.pdf',NULL,NULL,'0','https://drive.google.com/file/d/15XjcpfQuqtmMdmtzt3Y9zftKqp6HKKvd/view?usp=sharing','Sejarah'),(834,'Seni budaya kelas 10.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1ZxHpHt3tbXDv5H_8f81jUBAqDoBkNieE/view?usp=sharing','Seni'),(835,'Kelas X_Seni Budaya(Seni Rupa)_KD 3.1.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1zFsRjh5okr8EV7cq6-dqy0hluY1mB9iZ/view?usp=sharing','Seni'),(836,'51 Perempuan Pencerah Dunia','','','0','https://drive.google.com/file/d/1IW5imNgO4vUmrwFFWcm_TwpT47CwjotF/view?usp=sharing','Sosial'),(837,'Antropologi Agama','','','0','https://drive.google.com/file/d/1IUgEF23HUINkHRvMl2Wih3xODmqmDICU/view?usp=sharing','Sosial'),(838,'Ideologi Islam dan Utopia','','','0','https://drive.google.com/file/d/1IzEqiAFatcI206JvdKZ-OkxdAHtDHxFn/view?usp=sharing','Sosial'),(839,'Ilmu Sosial  Budaya Dasar','','','0','https://drive.google.com/file/d/1Ida-QeBetlBpTYW2zJENwfwcgRgl_sn4/view?usp=sharing','Sosial'),(840,'Menjadi Pemimpin Sejati','','','0','https://drive.google.com/file/d/1IiL369H676uCtM7GSbq-q6lyQk3KJWcU/view?usp=sharing','Sosial'),(841,'Yang fana adalah waktu.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1rC3ycmZo-EpzNZ1_2KvBScJTs6Qb4fS2/view?usp=sharing','Sosial'),(842,'The_Islamophobia_Industry_How_the_Right_Manufactures_Hatred_of_Muslims.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1w3bJfP717ulq0vetBOBWAqE2FrSVFGrV/view?usp=sharing','Sosial'),(843,'THE MAGIC LIBRARY by Jostein Gaarder_240525_214501.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1qrJpLVWMIYpJrBF2tjOyI6e1IVYGBiCv/view?usp=sharing','Sosial'),(1019,'[Ruidrive] Unnamed Memory - Volume 02.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1WIRLA5r9-XPPejPTR7NtaQ0qBWWAn_HA/view?usp=sharing','Komik & Cerita'),(845,'Sukses Menjalin Relasi.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1t4BAUVw682hIKCVvfYpneIil400fpzFL/view?usp=sharing','Sosial'),(846,'Stalin.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1wMRblPpCUe_Uqj2MNqjm_ETI51o-2DFG/view?usp=sharing','Sosial'),(847,'Zenius Ebook Membongkar Masalah Belajar dan Solusinya.pdf','','','0','https://drive.google.com/file/d/1eJmt4Ia57cqncegF11KjXh_TOTBe63Ol/view?usp=sharing','Sosial'),(848,'Unknown Soldiers - Drishya Sanal.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1AIt6X7RMEgQQ3OZTVA26SQx83O_tMbSM/view?usp=sharing','Sosial'),(849,'sku-penggalang.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1jQ1oejCduuREsQln0QnK5H1sI1_oVxQf/view?usp=sharing','Sosial'),(850,'Ulama_&_Kekuasaan_Pergumulan_Elite_Muslim_dalam_Sejarah_Indonesia.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1W1SfYf26T5XSF5ZLra7nD8QnJIntA0UH/view?usp=sharing','Sosial'),(851,'Teach Like Finland - Mengajar Seperti Finlandia [Timothy Walker].pdf',NULL,NULL,'0','https://drive.google.com/file/d/1aJjG-KYB16o-uS_il5IYF6IrCSPMY8Nk/view?usp=sharing','Sosial'),(852,'soekarno-mentjapai-indonesia-merdeka.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1hRJWaDGClzGPINJr6YzaN6UxCKwwBa-g/view?usp=sharing','Sosial'),(853,'Setiap Pemimpin Harus Baca Buku Ini The New Art of the Leader (William A. Cohen, Ph.D.).pdf',NULL,NULL,'0','https://drive.google.com/file/d/1x-g7Ae-HGAoxfP3T55s3vQgrHpS5HLOD/view?usp=sharing','Sosial'),(854,'The Creative Thinking Handbook - Chris Griffiths.pdf',NULL,NULL,'0','https://drive.google.com/file/d/18T7GlcGZewEQBZ2KE_U_T4Ns4ytBH_0o/view?usp=sharing','Sosial'),(1016,'[Ruidrive] Unnamed Memory - Volume 04.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1SPJHBI_J_S7s3m-gcKgDZD4lhT7M0Isd/view?usp=sharing','Komik & Cerita'),(856,'The_8th_Habits_Melampaui_Efektivitas_Menggapai_Keagungan_Stephen.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1BAgorX0OUuGH3Luw27ehRgPVTNyAvmzm/view?usp=sharing','Sosial'),(857,'Titi Sanaria - Dongeng Tentang Waktu.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1muHDMxphSzsPucHd5O-CIbypxwqUiA21/view?usp=sharing','Sosial'),(858,'sku-pandega.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1llHOyWDGA0MFgyVsron8PXQ1yykjLmt0/view?usp=sharing','Sosial'),(859,'Tuhan Izinkan Aku Menjadi Pelacur .pdf','','','0','https://drive.google.com/file/d/1jmr4-mz_ydVNwvUA5yRbbsYAOTMXtapf/view?usp=sharing','Sosial'),(860,'Teolog Versus Filosof - Debat tentang Tuhan dan Alam [Mambaul Ngadhimah].pdf',NULL,NULL,'0','https://drive.google.com/file/d/1dBy6MK4TnZ5RULXpFM7yVvE555Y-jqUa/view?usp=sharing','Sosial'),(861,'Teruslah_Bergerak_Karena_Anda_Luar_Biasa!_Fransiska_Lintang.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1nWNxvNPwIOJcLhOL6A1rH9S3A2kBmhnP/view?usp=sharing','Sosial'),(862,'STRATEGI MANIPULASI PSIKOLOGI.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1Xl_kQD5vvGi2ytpJJsfu0m8I1p4IjhEf/view?usp=sharing','Sosial'),(863,'The Magic of  Reality.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1lOSRaPOmO4Y2-PLRABLjt9YfQbCAUBKf/view?usp=sharing','Sosial'),(864,'Ziggy Zezsyazeoviennazabrizkie - Jakarta Sebelum Pagi.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1vqHbIwqCklCKeUUvdGiZke63qoyiRPCs/view?usp=sharing','Sosial'),(865,'Stolen Heart.pdf',NULL,NULL,'0','https://drive.google.com/file/d/19uabGLR1XvpLJ1lmGt-Nu5_rx2xvIGTQ/view?usp=sharing','Sosial'),(866,'The Alpha Girl’s Guide.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1-WDqtu6e8WM0XZoHxuKmHTNt1U1wVsF3/view?usp=sharing','Sosial'),(867,'The 48 Laws Of Power.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1sRdqVFFWgk5figUjeh9Gj2kaZkDOtqxn/view?usp=sharing','Sosial'),(868,'Tuhan Pasti Ahli Matematika [Hadi Susanto].pdf',NULL,NULL,'0','https://drive.google.com/file/d/1YkTQF4vACdJzg8FYls8WPddh9AuYKEq2/view?usp=sharing','Sosial'),(869,'The Tipping Point - Malcolm Gladwell.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1WsDkd2Zfe87sJYZ6tzvKtBy554kUZNLG/view?usp=sharing','Sosial'),(870,'Stephen King Different season.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1UMPidgqKuZVGNwqQterIcDVdSNBV64qf/view?usp=sharing','Sosial'),(871,'Tanah Palestina dan Rakyatnya -Dr. Muhsin Muhammad Shaleh-.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1qZu5aP0lWz3nVu-2UUnM0VMt1yBoyd24/view?usp=sharing','Sosial'),(872,'Stephen King Carrie.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1mQmwfyhJgWwCDJ2evWzPGhKGv8dbK3A6/view?usp=sharing','Sosial'),(873,'Teladan_Hidup_Panglima_Besar_Jenderal_Soedirman_Eri_Sumarwan.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1i1U6bTqRAoLogK549Ti7VyYScIF5nERH/view?usp=sharing','Sosial'),(874,'Sekolah itu Candu OCRed.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1FhkBRlr9QWoKbnQ-TDN1QiUhOYmaGULx/view?usp=sharing','Sosial'),(875,'Spiritualitas Tanpa Tuhan (2007).pdf',NULL,NULL,'0','https://drive.google.com/file/d/1p0_DsTAja5vDpiIoPWa3WyaR87hxoN9z/view?usp=sharing','Sosial'),(876,'Wealth-Nations.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1W-muft5ypjFdF0u7Dn1DbyEHF2ZafVec/view?usp=sharing','Sosial'),(877,'THE-BOOK-OF-IKIGAI-Make-Life-Worth-Living-_Indonesian-Edition_-_Ken-Mogi.pdf','','','0','https://drive.google.com/file/d/1iV9G5-5AWaOtD59LucyBB6C8kF2VfOBa/view?usp=sharing','Sosial'),(878,'Surga  Neraka (Dr. Ahmad Musthafa Mutawalli).pdf','','','0','https://drive.google.com/file/d/1XXlG3AZR6qqBfFgIoMEt9pYobFZ4wkKn/view?usp=sharing','Sosial'),(879,'The Art of War (Sun Tzu).pdf',NULL,NULL,'0','https://drive.google.com/file/d/1veTLPiZNJpQg_IPE5TsxSkBfw1cqf5JG/view?usp=sharing','Sosial'),(880,'sku-siaga.pdf',NULL,NULL,'0','https://drive.google.com/file/d/18IazRwtwcQa9KQUcCy7uoN5aL303FhXI/view?usp=sharing','Sosial'),(881,'SIAGA BENCANA.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1MPY5sg9RsEeEw93RbDGj8LwxPJJQ342Z/view?usp=sharing','Sosial'),(882,'Stephen King the long walk.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1cBfV_p8dKOBQjGFtYAX-TFaC2T7yFN9-/view?usp=sharing','Sosial'),(883,'Tenggelamnya Kapal Van Der.pdf','','','0','https://drive.google.com/file/d/15qFms1y0iNJqZSpP1loT-Te23fI4L3sD/view?usp=sharing','Sosial'),(884,'Soekarno-INDONESIA-MENGGUGAT-Gmni.pdf',NULL,NULL,'0','https://drive.google.com/file/d/17XhZaQkstAo5qarbebA08HJZkGLKe9vN/view?usp=sharing','Sosial'),(885,'Tabloid_Saji_Edisi_487_Panduan_Memasak_&_Usaha_Bubur_Manis_&_Kolak.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1XQn6reS2NxWi5Qpk9CDJxBesnjnFHPvp/view?usp=sharing','Sosial'),(886,'The Secret of Santet - A. Masruri.pdf',NULL,NULL,'0','https://drive.google.com/file/d/18YrtU4MOM69G9eP3TtU-0j11Rlk14RJZ/view?usp=sharing','Sosial'),(887,'Selamatkan Bisnis Anda! - Tumpas 101 Penyakit Bisnis.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1ZiHenK-jREjGq1sUXtytw_0wX71v5yzO/view?usp=sharing','Sosial'),(888,'The Art of Strategy A Game Theorist’s Guide to Succe.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1oaeDuGuQCSzSgtv0PMVnnbRWYxnIsKvz/view?usp=sharing','Sosial'),(889,'Stephen King Negeri Petaka.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1DMrF2I_m3OQE_DkNDKWVwz7IitjMVfNv/view?usp=sharing','Sosial'),(890,'Semua_Guru_Semua_Murid_Memetik_Hikmah_dari_Sosok_dan_Peristiwa_Muhammad.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1uSrpxYSTztyMgTZJJx7cv5sNbfqvjzfv/view?usp=sharing','Sosial'),(891,'Tokoh dan Pemikiran Filsafat Islam versus Barat.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1xNq4zywmcgoJ0S53LFOuvk_J9TR_RDgk/view?usp=sharing','Sosial'),(892,'sku-penegak.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1FD_4UrZq6fxzkL8WtlfVc9Bp8HGi2s10/view?usp=sharing','Sosial'),(893,'tan-malaka-gerpolek.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1aQxwjpqwGsMQjZ9TrrxlFlYTsW2cFECf/view?usp=sharing','Sosial'),(894,'Stephen King Mr.Mercedez.pdf',NULL,NULL,'0','https://drive.google.com/file/d/124LApwvzaOpqqBx5bQdzBH5KzyzgjjE4/view?usp=sharing','Sosial'),(895,'Teori bipolar dunia - HUANG FENGLIN.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1OURAcQ29i9dWiuU-R_bqiLmti3DQLnE-/view?usp=sharing','Sosial'),(896,'tan-malaka-madilog.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1vmkiSVe4dJHoi3ojTH6pwalxmKuLx1gO/view?usp=sharing','Sosial'),(897,'Teacher Resource Guide Ancient Egypt.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1en0taVZaXs4UCimLrMwmfmErIcu1d5Hq/view?usp=sharing','Sosial'),(898,'PSIKOLOGI KRIMINAL.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1Mt-xvvdP8UUs3o079pLR_bb0bYX1xDi6/view?usp=sharing','Sosial'),(899,'Membaca_Pikiran_Seseorang_Lewat_Bahasa_T_023509.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1M9C7z-xmdEnxzmj2x5xvNFqDZRxlVjW9/view?usp=sharing','Sosial'),(900,'Kathryn Littlewood - Sihir Setiap Menit-Seri Bliss Bakery 6.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1O0p_MnSH_kc7Zq84mkDWSJGTqoRDkQNd/view?usp=sharing','Sosial'),(901,'How to make people like you_.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1LM7o3W6sft15HGi4Zh1Wo9uiEFj_v30l/view?usp=sharing','Sosial'),(902,'Bilveer Singh - Succession Politics in Indonesia_ The 1998 Presidential Elections and the Fall of Suharto (2000, Palgrave Macmillan).pdf',NULL,NULL,'0','https://drive.google.com/file/d/1LjS3u6ZLF5hKfr_lZcmliuque838Re5u/view?usp=sharing','Sosial'),(903,'Jatuh Sekali Bangkit Berkali-Kali - Syahrul.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1N9V-lPa6YK_kvUz2DJIKKBBaEH8DwCRR/view?usp=sharing','Sosial'),(904,'Mustikarasa.pdf','','','0','https://drive.google.com/file/d/1cgzvsGIJ19JW1ltQCKqq6Cb2dPxVTn2Y/view?usp=drivesdk','Sosial'),(905,'KEPEMIMPINAN.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1O9AdS_zA78UJ0OfpBqVvWXBzv2Du2aDg/view?usp=sharing','Sosial'),(906,'Menggagas_Pendidikan_Islami_Ustadz_Muhammad_Ismail_Yusanto,_dkk_.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1Mua9Oa6P1Gy6Usg8sVAe_RaGP9kXURmi/view?usp=sharing','Sosial'),(907,'Inspirasi Tanpa Menggurui Buku Hitam yang Mencerahkan (Cahyo Satria Wijaya).pdf','','','0','https://drive.google.com/file/d/1M80dK4fdtLiU7tTk9iwwChp0pMTXYamz/view?usp=sharing','Sosial'),(908,'Sedang TUHAN pun Cemburu.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1LjVz2BY9Tn1QtbHyYmz4wGWtWsxp1zrr/view?usp=sharing','Sosial'),(909,'Intelligent Investor.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1MyR4p_qAGLwTBZBjBJrCE_vNoqNnromp/view?usp=sharing','Sosial'),(910,'PPKn-BS-KLS_X [www.defantri.com].pdf',NULL,NULL,'0','https://drive.google.com/file/d/1Nr913HdKmTZ6A5kZe90MsW3gDmL1kHfB/view?usp=sharing','Sosial'),(911,'BICARA ITU ADA SENINYA Rahasia Komunikasi Yang Efektif by Oh Su Hyang.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1PXGzkJI_bx4ObowPPray7kk0nUVgqu15/view?usp=sharing','Sosial'),(912,'Big Book SBMPTN SOSHUM 2016.pdf','','','0','https://drive.google.com/file/d/1X0TBUlTykoScz6qgaV9wCAQYZ_MK0eZ7/view?usp=sharing','Sosial'),(913,'Karen Armstrong - Field of Blood (2014).pdf',NULL,NULL,'0','https://drive.google.com/file/d/1aHfrqkVccPm-i7xlBxg8aRmsqpPt1BWg/view?usp=sharing','Sosial'),(914,'Psikologi Klinis.pdf','','','0','https://drive.google.com/file/d/1XGi2w3iwilsXZaSwCiG8fZuKeDuPTDq4/view?usp=sharing','Sosial'),(915,'Kitab Anti-Bodoh Terampil Berpikir Benar Terhindar dari Cacat Logika & Sesat Pikir.pdf','','','0','https://drive.google.com/file/d/1W_tt-bY1wqm8XpVaKvbtUQMEWUoXAVPz/view?usp=sharing','Sosial'),(916,'Perempuan di Titik Nol by Nawal El-Saadawi.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1URIckhioRgl4gAX-gC2LRm9VfXtF0yL8/view?usp=sharing','Sosial'),(917,'Sebuah Seni untuk Bersikap Bodo Amat by Mark Manson.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1cqd1hSyEOr9ccc9U3ZUXRUKKGhVV8uzm/view?usp=sharing','Sosial'),(918,'[ID] The Demon-Haunted World by Carl Sagan.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1bqPkdlD9A0O9Bef4x_pnD7z_BuWb8T_A/view?usp=sharing','Sosial'),(919,'Negotiating 101 From Planning Your Strategy to Findi.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1cKt-4HJ_f2fnNzkqhZ9SZm5-u0LqZ0mG/view?usp=sharing','Sosial'),(920,'Passion Itu Dipraktekkin - Tim Wesfix.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1WTljmikN0VwHVEqc0j3eabdZE4-FyuJC/view?usp=sharing','Sosial'),(921,'Pengantar Filsafat Untuk Psikologi.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1dejsl8pGAde_WyIdHQHR41-17hKLPXi9/view?usp=sharing','Sosial'),(922,'Kumpulan_Mutiara_Faedah_Ramadhan_Abu_Ubaidah_Yusuf_Bin_Mukhtar_As.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1VVj3vp64dvHdeDh1UtAqDBdIYui4Gk_5/view?usp=sharing','Sosial'),(923,'Law Attraction.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1UaJmdILcWUHnI80ugi6lM-YiKxMwr0-w/view?usp=sharing','Sosial'),(924,'Richard Dawkins  The God Delusion.pdf','','','0','https://drive.google.com/file/d/1Pjl8AM5NpW0PTz2w63vLAHEcQQWY-wKZ/view?usp=sharing','Sosial'),(925,'Referensi Pintar Atlas Geografi.pdf','','','0','https://drive.google.com/file/d/1VXHwta3-2YNO51hdZIE0JRcheGI6d7a2/view?usp=sharing','Sosial'),(926,'Kau Aku dan Sepucuk Angpau Merah (516 Halaman) - Tere Liye.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1ax02QBd718TuRxrLCpARTZQ1DeK7Zh52/view?usp=sharing','Sosial'),(927,'Mau Sehat Jauhi Rumah Sakit - Dr. Shin Woo Seob.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1Y7H2xlhD1nM2dbNCy5Y9V8oJq_oN3m5Q/view?usp=sharing','Sosial'),(928,'resep vegan.pdf','','','0','https://drive.google.com/file/d/1Wi_eRw2xrEs08LVYvsFtB9ESWgOka7PO/view?usp=sharing','Sosial'),(929,'Jangan Membuat Masalah Kecil Jadi Masalah Besar [Richard Carlson].pdf',NULL,NULL,'0','https://drive.google.com/file/d/1RFqU3BgrkXCKusBnAWGKIcy0dy_dekEp/view?usp=sharing','Sosial'),(930,'Kekuatan Memaafkan - Seri Chicken Soup For The Soul.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1csA-rdfwqHFXs4Q7vyZ_KRwJOUp_i8US/view?usp=sharing','Sosial'),(931,'Pengantar Ilmu Antropologi.pdf','','','0','https://drive.google.com/file/d/1VsWHqOHKvl_aQwxIdm6mD_pkHn9Xo7N6/view?usp=sharing','Sosial'),(932,'Kekuatan Bersyukur - Seri Chicken Soup For The Soul.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1TJ5soFGrWJvlQw5RGL6CNRVHA3J8NPvz/view?usp=sharing','Sosial'),(933,'Rahasia-Menghancurkan-Mental-Block.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1aErbTvOqbGQhjZhDZeGq8g4oBybxabqr/view?usp=sharing','Sosial'),(934,'Mantra (Seni Komunikasi & Psikologi) - Deddy Corbuizer.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1VZ96yFZy8B3kvFeQiF_uPqGnoVl3RVX5/view?usp=sharing','Sosial'),(935,'Karen Armstrong - Sejarah Tuhan (2011).pdf',NULL,NULL,'0','https://drive.google.com/file/d/1TRxca45oe2qk7ZwFMj5o9yPcaaCmYOuI/view?usp=sharing','Sosial'),(939,'Fisika Dasar','','','0','https://drive.google.com/file/d/1YvuJdZb8GoUt4UXU8_8REEe3sBfmXwtW/view?usp=drive_link','Sains'),(940,'Sejarah 34 Provinsi Indonesia','','','0','https://drive.google.com/file/d/18Hvtj1XER_q5tPrLZ2gGbr1RDDmLrJPt/view?usp=drive_link','Sejarah'),(941,'Strategi Kebut Semalam Biologi','','','0','https://drive.google.com/file/d/1ys45w_eVoLwIDsU35wDmuVHrbmuHO7Dd/view?usp=drive_link','Sains'),(942,'Strategi Kebut Semalam Kimia','','','0','https://drive.google.com/file/d/1H6d319i55b388Bq0sOSHrbgqn9QoquHP/view?usp=drive_link','Sains'),(943,'Teknik Rancang Bangun Robot','','','0','https://drive.google.com/file/d/1z-xMmOfEPt34N6L91436wBAVSQGt3OK_/view?usp=drive_link','Sains'),(949,'Ragnarok Solo Levelling Part 23.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1LIMAsx55gk5HPdec8V_JXarlji6x_Wnf/view?usp=sharing','Komik & Cerita'),(945,'Strategi Kebut Semalam Fisika','','','0','https://drive.google.com/file/d/1dnW9ZelO-vIq7DXrtWCjm3FwvdvXQxnD/view?usp=drive_link','Sains'),(946,'Microsoft PowerPoint','','','0','https://drive.google.com/file/d/1yW48BZVGUizUwaxDRYVFN-DXCOBQAYL5/view?usp=drive_link','Sains'),(950,'Ragnarok Solo Levelling Part 22.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1X5vaxruI3LidGEVSpSkSzL1urSoaaMko/view?usp=sharing','Komik & Cerita'),(951,'Ragnarok Solo Levelling Part 21.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1BEE6su_zHTLP6zXh2o6XwLUQyPE_vfYW/view?usp=sharing','Komik & Cerita'),(952,'Ragnarok Solo Levelling Part 20.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1Y9eKzvrFE2F6467A2dGY4_AV4-BBFAjV/view?usp=sharing','Komik & Cerita'),(953,'Ragnarok Solo Levelling Part 19.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1ZMRyqz5xZKhaA5li1yjoGJHhgB9EWeA6/view?usp=sharing','Komik & Cerita'),(954,'Ragnarok Solo Levelling Part 18.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1aMycTYcM8GmtjtY9dUfYQQIki3NFjGaC/view?usp=sharing','Komik & Cerita'),(955,'Ragnarok Solo Levelling Part 17.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1HLp6z9knDHmnEVCgm6JzDWa_rIgDWNi9/view?usp=sharing','Komik & Cerita'),(956,'Ragnarok Solo Levelling Part 16.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1FPaTESsYfhxUPnvUgBq17a8bYUTyw6Fr/view?usp=sharing','Komik & Cerita'),(957,'Ragnarok Solo Levelling Part 15.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1y9P_I0_mLTT22Cfjg6IF9BWteqO2z9Iy/view?usp=sharing','Komik & Cerita'),(958,'Ragnarok Solo Levelling Part 14.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1DlnDCU7pHBdjHMJxHJmW3cKVpK2OPBht/view?usp=sharing','Komik & Cerita'),(959,'Ragnarok Solo Levelling Part 13.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1U_eBM5vBzZaUjny2AUZEvQU8Ov3VOEae/view?usp=sharing','Komik & Cerita'),(960,'Ragnarok Solo Levelling Part 12.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1n3ojexevXA8PBkquN32knh_8v2tppNHs/view?usp=sharing','Komik & Cerita'),(961,'Ragnarok Solo Levelling Part 11.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1Xu_gAQ7-euwT1aaFnAkAfG9K5vRS6Rzc/view?usp=sharing','Komik & Cerita'),(962,'Ragnarok Solo Levelling Part 10.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1MG0gt1Gz81Myzv6PBUTs177HdNbjLaS_/view?usp=sharing','Komik & Cerita'),(963,'Ragnarok Solo Levelling Part 9.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1o_T9Ahp9SlQchsfLON31yKBQjsddPKN6/view?usp=sharing','Komik & Cerita'),(964,'Ragnarok Solo Levelling Part 8.pdf',NULL,NULL,'0','https://drive.google.com/file/d/184VnnvBfdbqbMUA7_w661FmbXw0oQ4ou/view?usp=sharing','Komik & Cerita'),(965,'Ragnarok Solo Levelling Part 7.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1vr-gEsgNjPQ9Kxt5uhuf2buG96Q_eeoD/view?usp=sharing','Komik & Cerita'),(966,'Ragnarok Solo Levelling Part 6.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1wdotJ6IYY9ZcU40xLpZ7VTEe364fj3Oc/view?usp=sharing','Komik & Cerita'),(967,'Ragnarok Solo Levelling Part 5.pdf',NULL,NULL,'0','https://drive.google.com/file/d/170i8NDuqdF5Uj-7XYqdRRs4ASqr7Bs-c/view?usp=sharing','Komik & Cerita'),(968,'Ragnarok Solo Levelling Part 4.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1czwDinXPLHbQthAuQlBY1Jregww1sjWj/view?usp=sharing','Komik & Cerita'),(969,'Ragnarok Solo Levelling Part 3.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1DoNlJw0pJqtr791uoYbFNneapCA1HltI/view?usp=sharing','Komik & Cerita'),(970,'Ragnarok Solo Levelling Part 2.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1l3s0XddQ2omRKBXRWTU6nYOfu31xbNW9/view?usp=sharing','Komik & Cerita'),(971,'Ragnarok Solo Levelling Part 1.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1HDyesbgfZvrcfACHjfZtmHDjGqHtlQzs/view?usp=sharing','Komik & Cerita'),(972,'2.[Meganebuk] SoloLvling 11-20.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1QHR1bWzqg8C6T127ww5ob71_JhgZDXyV/view?usp=sharing','Komik & Cerita'),(973,'6.[Meganebuk] SoloLvling 51-55.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1X2SdZuFV0ZOwDthuOnrvX0rIQ1dXC4bI/view?usp=sharing','Komik & Cerita'),(974,'27.Solo Leveling Chapter 166-170.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1O5MiK8nrN5hFTvPvimedub_pcbEPJhev/view?usp=sharing','Komik & Cerita'),(975,'18.[Bakadame.com] Solo Leveling 111-115.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1uwJ8LTyyT2dU3KV7AADC0k8BT1p-yX7m/view?usp=sharing','Komik & Cerita'),(976,'5.[Meganebuk] SoloLvling 41-50.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1z9Iy8ghJ6RX1PmSlq2ibIarJE50klFwm/view?usp=sharing','Komik & Cerita'),(977,'4.[Meganebuk] SoloLvling 31-40.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1GA1hQ0hp0SQ0SZ87ZIPe-CyC3qcGJIaM/view?usp=sharing','Komik & Cerita'),(978,'21.Solo Leveling Chapter 131-135 (1).pdf',NULL,NULL,'0','https://drive.google.com/file/d/1TlYPyRFkRT6ofzXUzgiJigzye-_Gy3AD/view?usp=sharing','Komik & Cerita'),(979,'23.Solo Leveling Chapter 146-150.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1oWRcVUTVMlizn9MiRQe8n3AhcX4mjTeL/view?usp=sharing','Komik & Cerita'),(980,'24.Solo Leveling Chapter 151-155.pdf',NULL,NULL,'0','https://drive.google.com/file/d/14i-2SOdzzenQCRlaVS0P0kZr8x_cxM-f/view?usp=sharing','Komik & Cerita'),(981,'26.Solo Leveling Chapter 161-165.pdf',NULL,NULL,'0','https://drive.google.com/file/d/11blmMgHPQQntJOSrcf2dJGPFnsG6PK2v/view?usp=sharing','Komik & Cerita'),(982,'1.[Meganebuk] SoloLvling 0-10.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1yn796_0v-wgyi0vLENAY4_6bw57o_Rgh/view?usp=sharing','Komik & Cerita'),(983,'20.Solo Leveling Chapter 121-130.pdf',NULL,NULL,'0','https://drive.google.com/file/d/157LSUMLFH_BRqa3-ZoAlJMqF0BEEPqiw/view?usp=sharing','Komik & Cerita'),(984,'16.[Meganebuk] SoloLvling 101-105.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1PjcxAqWOyalUztryS2vJtsppL2XBEMWQ/view?usp=sharing','Komik & Cerita'),(985,'3.[Meganebuk] SoloLvling 21-30.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1P6VrfhA1LSrNLfcVDJ5_Y0oo0QEtSpnP/view?usp=sharing','Komik & Cerita'),(986,'28.Solo Leveling Chapter 171-175.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1s-yoS1lXGN8g6YRjWlxqwhPFNkxA-CCR/view?usp=sharing','Komik & Cerita'),(987,'17.[Meganebuk] SoloLvling 106-110 (S1-End).pdf',NULL,NULL,'0','https://drive.google.com/file/d/12jZHmwhFoOiM6rAbk9tIfPVtPnBBIahW/view?usp=sharing','Komik & Cerita'),(988,'8[Meganebuk] SoloLvling 61-65 -Fix.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1vWOrO0Oz_NUNKkgCNkevtI9nCTyo_5MK/view?usp=sharing','Komik & Cerita'),(989,'12.[Meganebuk] SoloLvling 81-85.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1xLgcFR6aJMJwkB3IP_CyfOwf0VDQevIo/view?usp=sharing','Komik & Cerita'),(990,'13.[Meganebuk] SoloLvling 86-90.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1ind41frtzaDT-ovK6sD56vUaVMm6ywK_/view?usp=sharing','Komik & Cerita'),(991,'22.Solo Leveling Chapter 136-145.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1WmoyddfxqmsuNhGpfiwvP5SU4oTLHsVX/view?usp=sharing','Komik & Cerita'),(992,'30.[Bakadame.com] Leveling Sendiri Di Dunia Lain, Cerita Sampingan CH.1-10.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1tlDGG3MDAz5feVGUgKdBWzV3vceZjfH7/view?usp=sharing','Komik & Cerita'),(993,'11.[Meganebuk] SoloLvling 76-80.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1Mk7X_v0porXfmLfVyu2mdgWgrzrTKr4R/view?usp=sharing','Komik & Cerita'),(994,'7.[Meganebuk] SoloLvling 56-60 -Fix.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1V2Cm1kwHiFYsrJq2_IPu8j987m2JO8ox/view?usp=sharing','Komik & Cerita'),(995,'15.[Meganebuk] SoloLvling 96-100.pdf',NULL,NULL,'0','https://drive.google.com/file/d/174gRA8wVvBlIYJ7qNF-syTThVoEzE-37/view?usp=sharing','Komik & Cerita'),(996,'29.Solo Leveling Chapter 176-179 ( End S2 ).pdf',NULL,NULL,'0','https://drive.google.com/file/d/1J0wWHYyhWYYoxn7RMnLg59eC8jbG4yrm/view?usp=sharing','Komik & Cerita'),(997,'19.[Bakadame.com] Solo Leveling 116-120.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1gNXOqAAJCgx1YnMlT22HlUco8FUsjdV1/view?usp=sharing','Komik & Cerita'),(998,'9.[Meganebuk] SoloLvling 66-70.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1rTNID_F19dWewhO7UsEJdNYS5DGOGB6V/view?usp=sharing','Komik & Cerita'),(999,'31.[Bakadame.com] Leveling Sendiri Di Dunia Lain, Cerita Sampingan CH.11-21 (END).pdf',NULL,NULL,'0','https://drive.google.com/file/d/1ZSU3UD_DOQ5vcqlwbajDf-9PBr1jiO7p/view?usp=sharing','Komik & Cerita'),(1000,'14[Meganebuk] SoloLvling 91-95.pdf',NULL,NULL,'0','https://drive.google.com/file/d/12Jvz_JNh2LCVxXyLDaphxnX7l2W4D9dS/view?usp=sharing','Komik & Cerita'),(1001,'25.Solo Leveling Chapter 156-160.pdf',NULL,NULL,'0','https://drive.google.com/file/d/15GR5ZEI2YooJt1cKr5xAufAy2XBID_2q/view?usp=sharing','Komik & Cerita'),(1002,'10.[Meganebuk] SoloLvling 71-75.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1RN_Kzci_OQ9_QOBlz1cSeBKEN7IJe-qV/view?usp=sharing','Komik & Cerita'),(1003,'Abu Abdullah - Kisah 1001 Malam Jilid 3 (2).pdf',NULL,NULL,'0','https://drive.google.com/file/d/1A9nO5ZlDU9TugLzQl-lhaAq9O3O9UTP_/view?usp=sharing','Komik & Cerita'),(1004,'Abu Abdullah - Kisah 1001 Malam Jilid 8 (2).pdf',NULL,NULL,'0','https://drive.google.com/file/d/1HdttAku4hNFjA-W26CnufH4OeJvyjzvo/view?usp=sharing','Komik & Cerita'),(1005,'Abu Abdullah - Kisah 1001 Malam Jilid 5 (2).pdf',NULL,NULL,'0','https://drive.google.com/file/d/1vIYbfUO7C-aDCywjhGC1wvntNCo0YrZ_/view?usp=sharing','Komik & Cerita'),(1006,'Abu Abdullah - Kisah 1001 Malam Jilid 1 (2).pdf',NULL,NULL,'0','https://drive.google.com/file/d/15Wl43EcTC2whuReh88B8k0FarzOLwYzv/view?usp=sharing','Komik & Cerita'),(1007,'Abu Abdullah - Kisah 1001 Malam Jilid 2.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1alrcLS8J7-Zij8VfndLtvBzj3j-BQz1D/view?usp=sharing','Komik & Cerita'),(1008,'Abu Abdullah - Kisah 1001 Malam Jilid 7 (2).pdf',NULL,NULL,'0','https://drive.google.com/file/d/1JrDjq0ig05POJWmblKdRusU9ANQaVes3/view?usp=sharing','Komik & Cerita'),(1009,'Abu Abdullah - Kisah 1001 Malam Jilid 3 (2) (1).pdf',NULL,NULL,'0','https://drive.google.com/file/d/18nZZhM4EVIffx1QWLxCw2riWHjjrzvtH/view?usp=sharing','Komik & Cerita'),(1010,'Abu Abdullah - Kisah 1001 Malam Jilid 1 (3).pdf',NULL,NULL,'0','https://drive.google.com/file/d/1UfxypLoPp_dAxRT1P9gfhhR62iVwfVNN/view?usp=sharing','Komik & Cerita'),(1011,'Abu Abdullah - Kisah 1001 Malam Jilid 4 (2).pdf',NULL,NULL,'0','https://drive.google.com/file/d/1SBFPU0Gb3Cl9m-CMwSaD10zf69LT4teq/view?usp=sharing','Komik & Cerita'),(1012,'Abu Abdullah - Kisah 1001 Malam Jilid 1.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1YQZmVIPM1Q6hU1GtaQm1duaVOXdDEcJl/view?usp=sharing','Komik & Cerita'),(1013,'Abu Abdullah - Kisah 1001 Malam Jilid 6 (2).pdf',NULL,NULL,'0','https://drive.google.com/file/d/1gqjjDbryRoPqUadzGHbQnGIqlvOu1zsR/view?usp=sharing','Komik & Cerita'),(1020,'[Ruidrive] Unnamed Memory - Volume 03.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1dT1Q_kvCvF7WeNBI3rsMZQ2lYHxdrJk1/view?usp=sharing','Komik & Cerita'),(1021,'[Ruidrive] Unnamed Memory - Volume 01.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1Roy6rlUdVrgZpDjBJEs4mGFGltxirolN/view?usp=sharing','Komik & Cerita'),(1022,'Agama, Budaya, dan Bencana.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1cnkE9Koaqj3VySJd8NCZhiQO4jTC20es/view?usp=sharing','Sosial'),(1023,'Algoritma  Pemrograman.pdf','','','0','https://drive.google.com/file/d/1cu2H_6bSjh3oznHA_eks-3pnMPSkNG90/view?usp=sharing','Sains'),(1024,'Jejak Para Pemimpin.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1dEGZxn5wYtnR8PQqcsm5sH4WCffS2gAe/view?usp=sharing','Sosial'),(1025,'Praktek Pemrograman C++ dan Python.pdf','','','0','https://drive.google.com/file/d/1dVVLW2V6WbxjHqQm8AG9dY3YUwT7NLzH/view?usp=sharing','Sains'),(1026,'Eksistensi Kehidupan.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1d9KPxhzYgkjAtMGA9iim5yK2Jg-UJ6Dn/view?usp=sharing','Sosial'),(1027,'Filsafat Ilmu Pengetahuan.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1dA1lY3e57hzIsTyM-zBcPt5kWKzfot9X/view?usp=sharing','Sosial'),(1028,'Neoliberalisme mencengkeram.pdf',NULL,NULL,'0','https://drive.google.com/file/d/1dRtNPB8AUSnmMYcGg0Ty9XdFRQ0ZUVjs/view?usp=sharing','Sosial'),(1029,'Buah-Buah Keberanian Kisah.pdf','','','0','https://drive.google.com/file/d/1cwfFxz1y1F0pa9tIHBFvDdCQImMCdUWQ/view?usp=sharing','Sejarah'),(1030,'Sejarah Indonesia Modern.pdf','','','0','https://drive.google.com/file/d/1dW6eyS-BbXSbHLeW1-qDxnTGao7gAX0g/view?usp=sharing','Sejarah'),(1031,'Seri Studi Kebudayaan .pdf',NULL,NULL,'0','https://drive.google.com/file/d/1dYWeotxgVPhKK-YsC4APWIMUXBDKaMnF/view?usp=sharing','Sosial'),(1032,'Seni Itu Apa?','','','0000','https://drive.google.com/file/d/1VX5saL6DvCIuiErnamA4A8oekLVFDU1a/view?usp=drive_link','Seni');
+/*!40000 ALTER TABLE `tb_buku` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tb_pengguna`
 --
 
+DROP TABLE IF EXISTS `tb_pengguna`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tb_pengguna` (
-  `id_pengguna` int NOT NULL,
+  `id_pengguna` int(11) NOT NULL AUTO_INCREMENT,
   `nama_pengguna` varchar(225) NOT NULL,
   `username` varchar(20) NOT NULL,
   `password` varchar(35) NOT NULL,
-  `level` enum('Administrator','Petugas','User','') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `level` enum('Administrator','Petugas','User','') NOT NULL,
+  PRIMARY KEY (`id_pengguna`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tb_pengguna`
 --
 
-INSERT INTO `tb_pengguna` (`id_pengguna`, `nama_pengguna`, `username`, `password`, `level`) VALUES
-(1, 'Bima Adhi Pratama Kharis', 'khadmin123', 'khbimakha23*', 'Administrator'),
-(7, 'Mahasin Dharmawan', 'mahasin', '123', 'User'),
-(11, 'Bima Adhi Pratama Kharis ', 'bimastar', 'star123', 'User'),
-(12, 'Mahasin Dharmawan', 'mahasin111', '1122334455', 'Petugas'),
-(19, 'AJI CHANDRA KUSUMA', 'ajicha', '123', 'User');
-
--- --------------------------------------------------------
+LOCK TABLES `tb_pengguna` WRITE;
+/*!40000 ALTER TABLE `tb_pengguna` DISABLE KEYS */;
+INSERT INTO `tb_pengguna` VALUES (1,'Bima Adhi Pratama Kharis','khbima321','khbimakha23**32','Administrator'),(7,'Mahasin Dharmawan','mahasin','123','User'),(12,'Mahasin Dharmawan','mahasin111','1122334455','Petugas'),(20,'Binta Salisa Najuda','joda','joda123','User');
+/*!40000 ALTER TABLE `tb_pengguna` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tb_sirkulasi`
 --
 
+DROP TABLE IF EXISTS `tb_sirkulasi`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tb_sirkulasi` (
   `id_sk` varchar(20) NOT NULL,
   `id_buku` varchar(10) NOT NULL,
@@ -162,519 +114,33 @@ CREATE TABLE `tb_sirkulasi` (
   `status` enum('PIN','KEM') NOT NULL,
   `tgl_dikembalikan` date DEFAULT NULL,
   `telat_pengembalian` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Indexes for dumped tables
+-- Dumping data for table `tb_sirkulasi`
 --
 
---
--- Indexes for table `log_pinjam`
---
-ALTER TABLE `log_pinjam`
-  ADD PRIMARY KEY (`id_log`),
-  ADD KEY `id_anggota` (`id_anggota`),
-  ADD KEY `id_buku` (`id_buku`);
-
---
--- Indexes for table `tb_anggota`
---
-ALTER TABLE `tb_anggota`
-  ADD PRIMARY KEY (`id_anggota`);
-
---
--- Indexes for table `tb_buku`
---
-ALTER TABLE `tb_buku`
-  ADD PRIMARY KEY (`id_buku`);
-
---
--- Indexes for table `tb_pengguna`
---
-ALTER TABLE `tb_pengguna`
-  ADD PRIMARY KEY (`id_pengguna`);
-
---
--- Indexes for table `tb_sirkulasi`
---
-ALTER TABLE `tb_sirkulasi`
-  ADD PRIMARY KEY (`id_sk`),
-  ADD KEY `id_buku` (`id_buku`),
-  ADD KEY `id_anggota` (`id_anggota`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `log_pinjam`
---
-ALTER TABLE `log_pinjam`
-  MODIFY `id_log` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `tb_buku`
---
-ALTER TABLE `tb_buku`
-  MODIFY `id_buku` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=511;
-
---
--- AUTO_INCREMENT for table `tb_pengguna`
---
-ALTER TABLE `tb_pengguna`
-  MODIFY `id_pengguna` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
---
--- Constraints for dumped tables
---
-
-
---
--- Database: `phpmyadmin`
---
-CREATE DATABASE IF NOT EXISTS `bimapust_data_perpus` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE `bimapust_data_perpus`;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__bookmark`
---
-
-CREATE TABLE `pma__bookmark` (
-  `id` int UNSIGNED NOT NULL,
-  `dbase` varchar(255) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
-  `user` varchar(255) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
-  `label` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '',
-  `query` text COLLATE utf8mb3_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='Bookmarks';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__central_columns`
---
-
-CREATE TABLE `pma__central_columns` (
-  `db_name` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `col_name` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `col_type` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `col_length` text COLLATE utf8mb3_bin,
-  `col_collation` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `col_isNull` tinyint(1) NOT NULL,
-  `col_extra` varchar(255) COLLATE utf8mb3_bin DEFAULT '',
-  `col_default` text COLLATE utf8mb3_bin
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='Central list of columns';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__column_info`
---
-
-CREATE TABLE `pma__column_info` (
-  `id` int UNSIGNED NOT NULL,
-  `db_name` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
-  `table_name` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
-  `column_name` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
-  `comment` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '',
-  `mimetype` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '',
-  `transformation` varchar(255) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
-  `transformation_options` varchar(255) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
-  `input_transformation` varchar(255) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
-  `input_transformation_options` varchar(255) COLLATE utf8mb3_bin NOT NULL DEFAULT ''
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='Column information for phpMyAdmin';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__designer_settings`
---
-
-CREATE TABLE `pma__designer_settings` (
-  `username` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `settings_data` text COLLATE utf8mb3_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='Settings related to Designer';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__export_templates`
---
-
-CREATE TABLE `pma__export_templates` (
-  `id` int UNSIGNED NOT NULL,
-  `username` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `export_type` varchar(10) COLLATE utf8mb3_bin NOT NULL,
-  `template_name` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `template_data` text COLLATE utf8mb3_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='Saved export templates';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__favorite`
---
-
-CREATE TABLE `pma__favorite` (
-  `username` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `tables` text COLLATE utf8mb3_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='Favorite tables';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__history`
---
-
-CREATE TABLE `pma__history` (
-  `id` bigint UNSIGNED NOT NULL,
-  `username` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
-  `db` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
-  `table` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
-  `timevalue` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `sqlquery` text COLLATE utf8mb3_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='SQL history for phpMyAdmin';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__navigationhiding`
---
-
-CREATE TABLE `pma__navigationhiding` (
-  `username` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `item_name` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `item_type` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `db_name` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `table_name` varchar(64) COLLATE utf8mb3_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='Hidden items of navigation tree';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__pdf_pages`
---
-
-CREATE TABLE `pma__pdf_pages` (
-  `db_name` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
-  `page_nr` int UNSIGNED NOT NULL,
-  `page_descr` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT ''
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='PDF relation pages for phpMyAdmin';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__recent`
---
-
-CREATE TABLE `pma__recent` (
-  `username` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `tables` text COLLATE utf8mb3_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='Recently accessed tables';
-
---
--- Dumping data for table `pma__recent`
---
-
-INSERT INTO `pma__recent` (`username`, `tables`) VALUES
-('phpmyadmin', '[{\"db\":\"data_perpus\",\"table\":\"tb_buku\"},{\"db\":\"data_perpus\",\"table\":\"tb_pengguna\"}]');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__relation`
---
-
-CREATE TABLE `pma__relation` (
-  `master_db` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
-  `master_table` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
-  `master_field` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
-  `foreign_db` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
-  `foreign_table` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
-  `foreign_field` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT ''
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='Relation table';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__savedsearches`
---
-
-CREATE TABLE `pma__savedsearches` (
-  `id` int UNSIGNED NOT NULL,
-  `username` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
-  `db_name` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
-  `search_name` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
-  `search_data` text COLLATE utf8mb3_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='Saved searches';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__table_coords`
---
-
-CREATE TABLE `pma__table_coords` (
-  `db_name` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
-  `table_name` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
-  `pdf_page_number` int NOT NULL DEFAULT '0',
-  `x` float UNSIGNED NOT NULL DEFAULT '0',
-  `y` float UNSIGNED NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='Table coordinates for phpMyAdmin PDF output';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__table_info`
---
-
-CREATE TABLE `pma__table_info` (
-  `db_name` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
-  `table_name` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
-  `display_field` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT ''
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='Table information for phpMyAdmin';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__table_uiprefs`
---
-
-CREATE TABLE `pma__table_uiprefs` (
-  `username` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `db_name` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `table_name` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `prefs` text COLLATE utf8mb3_bin NOT NULL,
-  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='Tables'' UI preferences';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__tracking`
---
-
-CREATE TABLE `pma__tracking` (
-  `db_name` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `table_name` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `version` int UNSIGNED NOT NULL,
-  `date_created` datetime NOT NULL,
-  `date_updated` datetime NOT NULL,
-  `schema_snapshot` text COLLATE utf8mb3_bin NOT NULL,
-  `schema_sql` text COLLATE utf8mb3_bin,
-  `data_sql` longtext COLLATE utf8mb3_bin,
-  `tracking` set('UPDATE','REPLACE','INSERT','DELETE','TRUNCATE','CREATE DATABASE','ALTER DATABASE','DROP DATABASE','CREATE TABLE','ALTER TABLE','RENAME TABLE','DROP TABLE','CREATE INDEX','DROP INDEX','CREATE VIEW','ALTER VIEW','DROP VIEW') COLLATE utf8mb3_bin DEFAULT NULL,
-  `tracking_active` int UNSIGNED NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='Database changes tracking for phpMyAdmin';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__userconfig`
---
-
-CREATE TABLE `pma__userconfig` (
-  `username` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `timevalue` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `config_data` text COLLATE utf8mb3_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='User preferences storage for phpMyAdmin';
-
---
--- Dumping data for table `pma__userconfig`
---
-
-INSERT INTO `pma__userconfig` (`username`, `timevalue`, `config_data`) VALUES
-('phpmyadmin', '2024-12-07 08:00:05', '{\"Console\\/Mode\":\"show\",\"NavigationWidth\":0}');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__usergroups`
---
-
-CREATE TABLE `pma__usergroups` (
-  `usergroup` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `tab` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `allowed` enum('Y','N') COLLATE utf8mb3_bin NOT NULL DEFAULT 'N'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='User groups with configured menu items';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__users`
---
-
-CREATE TABLE `pma__users` (
-  `username` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `usergroup` varchar(64) COLLATE utf8mb3_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='Users and their assignments to user groups';
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `pma__bookmark`
---
-ALTER TABLE `pma__bookmark`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `pma__central_columns`
---
-ALTER TABLE `pma__central_columns`
-  ADD PRIMARY KEY (`db_name`,`col_name`);
-
---
--- Indexes for table `pma__column_info`
---
-ALTER TABLE `pma__column_info`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `db_name` (`db_name`,`table_name`,`column_name`);
-
---
--- Indexes for table `pma__designer_settings`
---
-ALTER TABLE `pma__designer_settings`
-  ADD PRIMARY KEY (`username`);
-
---
--- Indexes for table `pma__export_templates`
---
-ALTER TABLE `pma__export_templates`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `u_user_type_template` (`username`,`export_type`,`template_name`);
-
---
--- Indexes for table `pma__favorite`
---
-ALTER TABLE `pma__favorite`
-  ADD PRIMARY KEY (`username`);
-
---
--- Indexes for table `pma__history`
---
-ALTER TABLE `pma__history`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `username` (`username`,`db`,`table`,`timevalue`);
-
---
--- Indexes for table `pma__navigationhiding`
---
-ALTER TABLE `pma__navigationhiding`
-  ADD PRIMARY KEY (`username`,`item_name`,`item_type`,`db_name`,`table_name`);
-
---
--- Indexes for table `pma__pdf_pages`
---
-ALTER TABLE `pma__pdf_pages`
-  ADD PRIMARY KEY (`page_nr`),
-  ADD KEY `db_name` (`db_name`);
-
---
--- Indexes for table `pma__recent`
---
-ALTER TABLE `pma__recent`
-  ADD PRIMARY KEY (`username`);
-
---
--- Indexes for table `pma__relation`
---
-ALTER TABLE `pma__relation`
-  ADD PRIMARY KEY (`master_db`,`master_table`,`master_field`),
-  ADD KEY `foreign_field` (`foreign_db`,`foreign_table`);
-
---
--- Indexes for table `pma__savedsearches`
---
-ALTER TABLE `pma__savedsearches`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `u_savedsearches_username_dbname` (`username`,`db_name`,`search_name`);
-
---
--- Indexes for table `pma__table_coords`
---
-ALTER TABLE `pma__table_coords`
-  ADD PRIMARY KEY (`db_name`,`table_name`,`pdf_page_number`);
-
---
--- Indexes for table `pma__table_info`
---
-ALTER TABLE `pma__table_info`
-  ADD PRIMARY KEY (`db_name`,`table_name`);
-
---
--- Indexes for table `pma__table_uiprefs`
---
-ALTER TABLE `pma__table_uiprefs`
-  ADD PRIMARY KEY (`username`,`db_name`,`table_name`);
-
---
--- Indexes for table `pma__tracking`
---
-ALTER TABLE `pma__tracking`
-  ADD PRIMARY KEY (`db_name`,`table_name`,`version`);
-
---
--- Indexes for table `pma__userconfig`
---
-ALTER TABLE `pma__userconfig`
-  ADD PRIMARY KEY (`username`);
-
---
--- Indexes for table `pma__usergroups`
---
-ALTER TABLE `pma__usergroups`
-  ADD PRIMARY KEY (`usergroup`,`tab`,`allowed`);
-
---
--- Indexes for table `pma__users`
---
-ALTER TABLE `pma__users`
-  ADD PRIMARY KEY (`username`,`usergroup`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `pma__bookmark`
---
-ALTER TABLE `pma__bookmark`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `pma__column_info`
---
-ALTER TABLE `pma__column_info`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `pma__export_templates`
---
-ALTER TABLE `pma__export_templates`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `pma__history`
---
-ALTER TABLE `pma__history`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+LOCK TABLES `tb_sirkulasi` WRITE;
+/*!40000 ALTER TABLE `tb_sirkulasi` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tb_sirkulasi` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- AUTO_INCREMENT for table `pma__pdf_pages`
+-- Dumping events for database 'data_perpus'
 --
-ALTER TABLE `pma__pdf_pages`
-  MODIFY `page_nr` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `pma__savedsearches`
+-- Dumping routines for database 'data_perpus'
 --
-ALTER TABLE `pma__savedsearches`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
-COMMIT;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-12-13 16:14:37
