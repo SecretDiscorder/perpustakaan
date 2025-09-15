@@ -1,0 +1,7 @@
+# ignore secrets
+.env
+config.php
+
+# ignore big files
+*.zip
+
