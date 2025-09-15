@@ -1,24 +1,90 @@
 <?php
-if(isset($_GET['kode'])){
-            $sql_hapus = "DELETE FROM tb_pengguna WHERE id_pengguna='".$_GET['kode']."'";
-            $query_hapus = mysqli_query($koneksi, $sql_hapus);
+// Cek apakah level user adalah Administrator
+if ($data_level == "Administrator") {
+    // Cek apakah parameter 'kode' ada di URL
+    if (isset($_GET['kode']) && !empty($_GET['kode'])) {
+        $user_id = mysqli_real_escape_string($koneksi, $_GET['kode']);
 
-            if ($query_hapus) {
+        // Periksa apakah data pengguna ada di database
+        $checkPengguna = "SELECT * FROM tce_users WHERE user_id = '$user_id'";
+        $result = $koneksi->query($checkPengguna);
+
+        if ($result->num_rows > 0) {
+            $data_pengguna = $result->fetch_assoc();
+
+            // Cek jika level pengguna adalah Administrator
+            if ($data_pengguna['level'] == "Administrator") {
                 echo "<script>
-                Swal.fire({title: 'Hapus Data Berhasil',text: '',icon: 'success',confirmButtonText: 'OK'
+                Swal.fire({
+                    title: 'Aksi Ditolak',
+                    text: 'Pengguna dengan level Administrator tidak dapat dihapus!',
+                    icon: 'warning',
+                    confirmButtonText: 'OK'
                 }).then((result) => {
-                    if (result.value) {
-                        window.location = 'index.php?page=MyApp/data_pengguna';
+                    if (result.isConfirmed) {
+                        window.location = '?page=MyApp/data_pengguna';
                     }
-                })</script>";
-                }else{
-                echo "<script>
-                Swal.fire({title: 'Hapus Data Gagal',text: '',icon: 'error',confirmButtonText: 'OK'
-                }).then((result) => {
-                    if (result.value) {
-                        window.location = 'index.php?page=MyApp/data_pengguna';
-                    }
-                })</script>";
+                });
+                </script>";
+                exit; // Hentikan eksekusi lebih lanjut
             }
-        }
 
+            // Hapus data dari tabel tb_agt terlebih dahulu
+            $deleteAgt = "DELETE FROM tb_anggota WHERE user_id = '$user_id'";
+            $koneksi->query($deleteAgt);
+
+            // Hapus data dari tabel tb_pengguna
+            $deletePengguna = "DELETE FROM tce_users WHERE user_id = '$user_id'";
+            if ($koneksi->query($deletePengguna) === TRUE) {
+                echo "<script>
+                Swal.fire({
+                    title: 'Data Berhasil Dihapus',
+                    text: 'Data pengguna dan anggota berhasil dihapus.',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location = '?page=MyApp/data_pengguna';
+                    }
+                });
+                </script>";
+            } else {
+                echo "<script>
+                Swal.fire({
+                    title: 'Kesalahan',
+                    text: 'Gagal menghapus data pengguna: " . $koneksi->error . "',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+                </script>";
+            }
+        } else {
+            echo "<script>
+            Swal.fire({
+                title: 'Data Tidak Ditemukan',
+                text: 'ID pengguna yang dimasukkan tidak valid.',
+                icon: 'warning',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location = '?page=MyApp/data_pengguna';
+                }
+            });
+            </script>";
+        }
+    } else {
+        echo "<script>
+        Swal.fire({
+            title: 'ID Pengguna Tidak Ditemukan',
+            text: 'Parameter ID pengguna tidak valid.',
+            icon: 'warning',
+            confirmButtonText: 'OK'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location = '?page=MyApp/data_pengguna';
+            }
+        });
+        </script>";
+    }
+}
+?>

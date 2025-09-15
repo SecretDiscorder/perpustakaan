@@ -7,36 +7,19 @@
 ?>
 
 <?php
-	$sql = $koneksi->query("SELECT count(id_anggota) as agt from tb_anggota");
+	$sql = $koneksi->query("SELECT count(user_id) as agt from tb_anggota");
 	while ($data= $sql->fetch_assoc()) {
 	
 		$agt=$data['agt'];
 	}
 ?>
-
 <?php
-	$sql = $koneksi->query("SELECT count(id_sk) as pin from tb_sirkulasi where status='PIN'");
-	while ($data= $sql->fetch_assoc()) {
-	
-		$pin=$data['pin'];
-	}
+$komikQuery = $koneksi->query("SELECT COUNT(id) AS total_komik FROM komik");
+if ($komikData = $komikQuery->fetch_assoc()) {
+    $komik = $komikData["total_komik"];
+}
 ?>
 
-<?php
-	$sql = $koneksi->query("SELECT count(id_sk) as kem from tb_sirkulasi where status='KEM'");
-	while ($data= $sql->fetch_assoc()) {
-	
-		$kem=$data['kem'];
-	}
-?>
-
-<?php
-	$sql = $koneksi->query("SELECT count(id_sk) as kem from tb_sirkulasi where status='KEM'");
-	while ($data= $sql->fetch_assoc()) {
-	
-		$kem=$data['kem'];
-	}
-?>
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -50,9 +33,9 @@
 	<!-- Small boxes (Stat box) -->
 	<div class="row">
 
-		<div class="col-lg-3 col-xs-6">
-			<!-- small box -->
-			<div class="small-box bg-blue">
+		
+        <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+             <div class="small-box bg-blue small-box-mini">
 				<div class="inner">
 					<h4>
 						<?= $buku; ?>
@@ -61,20 +44,35 @@
 					<p>Buku</p>
 				</div>
 				<div class="icon">
-					<i class="ion ion-stats-bars"></i>
+					<i class="fa fa-book"></i>
 				</div>
 				<a href="?page=MyApp/data_buku" class="small-box-footer">More info
 					<i class="fa fa-arrow-circle-right"></i>
 				</a>
 			</div>
 		</div>
+        
+        <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+             <div class="small-box bg-green small-box-mini">
+                <div class="inner">
+                    <h4><?= $komik; ?></h4>
+                    <p>Komik</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-magic"></i>
 
-		<div class="col-lg-3 col-xs-6">
-			<!-- small box -->
-			<div class="small-box bg-yellow">
+                </div>
+                <a href="?page=MyApp/data_komik" class="small-box-footer">More info
+                    <i class="fa fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+		
+        <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+             <div class="small-box bg-yellow small-box-mini">
 				<div class="inner">
 					<h4>
-						<?= $buku; ?>
+						<?= $agt; ?>
 					</h4>
 
 					<p>Anggota</p>
@@ -87,41 +85,18 @@
 				</a>
 			</div>
 		</div>
+	</div>
+</section>
+        <?php
+        if (isset($_SESSION["ses_username"]) == "") {
+    //header("location: login.php");
+    $data_level = "";
+    $data_nama = "Guest";
+    
+} else {
+    $data_id = $_SESSION["ses_id"];
+    $data_user = $_SESSION["ses_username"];
+    $data_level = $_SESSION["ses_level"];
+}
 
-		<div class="col-lg-3 col-xs-6">
-			<!-- small box -->
-			<div class="small-box bg-green">
-				<div class="inner">
-					<h4>
-						<?= $pin; ?>
-					</h4>
-
-					<p>Sirkulasi yang sedang berjalan</p>
-				</div>
-				<div class="icon">
-					<i class="ion ion-stats-bars"></i>
-				</div>
-				<a href="?page=data_sirkul" class="small-box-footer">More info
-					<i class="fa fa-arrow-circle-right"></i>
-				</a>
-			</div>
-		</div>
-
-		<div class="col-lg-3 col-xs-6">
-			<!-- small box -->
-			<div class="small-box bg-red">
-				<div class="inner">
-					<h4>
-						<?= $kem; ?>
-					</h4>
-
-					<p>Laporan Sirkulasi</p>
-				</div>
-				<div class="icon">
-					<i class="ion ion-stats-bars"></i>
-				</div>
-				<a href="?page=log_kembali" class="small-box-footer">More info
-					<i class="fa fa-arrow-circle-right"></i>
-				</a>
-			</div>
-		</div>
+?>

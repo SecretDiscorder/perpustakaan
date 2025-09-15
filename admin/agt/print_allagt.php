@@ -1,8 +1,7 @@
 <?php
-    include "inc/koneksi.php";
+include "inc/koneksi.php"; ?>
 
-?>
-
+<?php if ($data_level == "Administrator") { ?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -19,10 +18,10 @@
     <?php
     // Load file koneksi.php
     include "inc/koneksi.php";
- 
 
-        $query = "SELECT * from tb_anggota"; // Tampilkan semua data anggota 
-    
+    $query = "SELECT * from tb_anggota";
+
+    // Tampilkan semua data anggota
     ?>
     <table class="table table-striped table-bordered">
     <thead>
@@ -34,28 +33,29 @@
       <th  style="text-align: center;">Kelas</th>
       <th  style="text-align: center;">No Telepon</th>
     </tr>
-    <?php
-    $no=1;
-    ?>
+    <?php $no = 1; ?>
         <?php
         $sql = mysqli_query($koneksi, $query); // Eksekusi/Jalankan query dari variabel $query
         $row = mysqli_num_rows($sql); // Ambil jumlah data dari hasil eksekusi $sql
 
-        if ($row > 0) { // Jika jumlah data lebih dari 0 (Berarti jika data ada)
-            while ($data = mysqli_fetch_array($sql)) { // Ambil semua data dari hasil eksekusi $sql
-                $tgl = date('d-m-Y', strtotime($data['id_anggota']));
+        if ($row > 0) {
+            // Jika jumlah data lebih dari 0 (Berarti jika data ada)
+            while ($data = mysqli_fetch_array($sql)) {
+                // Ambil semua data dari hasil eksekusi $sql
+                $tgl = date("d-m-Y", strtotime($data["user_id"]));
 
                 echo "<tr>";
                 echo "<td>" . $no++ . "</td>";
-                echo "<td>" . $data['id_anggota'] . "</td>";
-                echo "<td>" . $data['nama'] . "</td>";
-                echo "<td>" . $data['jekel']. "</td>";
-                echo "<td>" . $data['kelas'] . "</td>";
-                echo "<td>" . $data['no_hp'] . "</td>";
+                echo "<td>" . $data["user_id"] . "</td>";
+                echo "<td>" . $data["nama"] . "</td>";
+                echo "<td>" . $data["jekel"] . "</td>";
+                echo "<td>" . $data["kelas"] . "</td>";
+                echo "<td>" . $data["no_hp"] . "</td>";
 
                 echo "</tr>";
             }
-        } else { // Jika data tidak ada
+        } else {
+            // Jika data tidak ada
             echo "<tr><td colspan='5'>Data tidak ada</td></tr>";
         }
         ?>
@@ -74,3 +74,4 @@
   
 </html>
 
+<?php } ?>

@@ -1,7 +1,7 @@
 <?php
 
     if(isset($_GET['kode'])){
-        $sql_cek = "SELECT * FROM tb_anggota WHERE id_anggota='".$_GET['kode']."'";
+        $sql_cek = "SELECT * FROM tb_anggota WHERE user_id='".$_GET['kode']."'";
         $query_cek = mysqli_query($koneksi, $sql_cek);
         $data_cek = mysqli_fetch_array($query_cek,MYSQLI_BOTH);
     }
@@ -21,7 +21,9 @@
 		</li>
 	</ol>
 </section>
-
+<?php 
+if ($data_level == "Administrator") {
+?>
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
@@ -37,7 +39,7 @@
 
 						<div class="form-group">
 							<label>Id anggota</label>
-							<input type='text' class="form-control" name="id_anggota" value="<?php echo $data_cek['id_anggota']; ?>"
+							<input type='text' class="form-control" name="user_id" value="<?php echo $data_cek['user_id']; ?>"
 							 readonly/>
 						</div>
 
@@ -85,7 +87,9 @@
 			</div>
 			<!-- /.box -->
 </section>
-
+<?php
+}
+?>
 <?php
 
 if (isset ($_POST['Ubah'])){
@@ -95,7 +99,7 @@ if (isset ($_POST['Ubah'])){
 		jekel='".$_POST['jekel']."',
 		kelas='".$_POST['kelas']."',
         no_hp='".$_POST['no_hp']."'
-        WHERE id_anggota='".$_POST['id_anggota']."'";
+        WHERE id_anggota='".$_POST['user_id']."'";
     $query_ubah = mysqli_query($koneksi, $sql_ubah);
 
     if ($query_ubah) {
@@ -116,4 +120,3 @@ if (isset ($_POST['Ubah'])){
         })</script>";
     }
 }
-

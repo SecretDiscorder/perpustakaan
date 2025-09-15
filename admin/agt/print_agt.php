@@ -1,29 +1,35 @@
 <?php
-									include "inc/koneksi.php";
-								
-								?>
+include "inc/koneksi.php"; ?>
 								<?php
-error_reporting(0);
-    if(!empty($_GET['download'] == 'doc')){
-        header("Content-Type: application/vnd.ms-word");
-        header("Expires: 0");
-        header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-        header("content-disposition: attachment;filename=".date('d-m-Y')."_laporan_rekam_medis.doc");
-    }
-    if(!empty($_GET['download'] == 'xls')){
-        header("Content-Type: application/force-download");
-        header("Cache-Control: no-cache, must-revalidate");
-        header("Expires: 0");
-        header("content-disposition: attachment;filename=".date('d-m-Y')."_laporan_rekam_medis.xls");
-    }
-?>
-
+        error_reporting(0);
+        if (!empty($_GET["download"] == "doc")) {
+            header("Content-Type: application/vnd.ms-word");
+            header("Expires: 0");
+            header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+            header(
+                "content-disposition: attachment;filename=" .
+                    date("d-m-Y") .
+                    "_laporan_rekam_medis.doc"
+            );
+        }
+        if (!empty($_GET["download"] == "xls")) {
+            header("Content-Type: application/force-download");
+            header("Cache-Control: no-cache, must-revalidate");
+            header("Expires: 0");
+            header(
+                "content-disposition: attachment;filename=" .
+                    date("d-m-Y") .
+                    "_laporan_rekam_medis.xls"
+            );
+        }
+        ?>
+<?php if ($data_level == "Administrator") { ?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<link rel="stylesheet" href="assets_style/assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
 		<link rel="stylesheet" href="assets_style/assets/bower_components/font-awesome/css/font-awesome.min.css">
-		<title><?= $title_web;?></title>
+		<title><?= $title_web ?></title>
 		<style>
 			body {
 				background: rgba(0,0,0,0.2);
@@ -72,49 +78,47 @@ error_reporting(0);
 							<div class="col-sm-8">
 								<table class="table table-stripped">
 								<?php
-								
-								$sql = $koneksi->query("SELECT * FROM tb_anggota WHERE id_anggota='".$_GET['kode']."'");
-                 				 while ($data= $sql->fetch_assoc()) {
-								
-								?>
+        $sql = $koneksi->query(
+            "SELECT * FROM tb_anggota WHERE user_id='" . $_GET["kode"] . "'"
+        );
+        while ($data = $sql->fetch_assoc()) { ?>
 									<tr>
 										<td>ID Anggota</td>
 										<td>:</td>
 										<td>
-											<?php echo $data['id_anggota']; ?>
+											<?php echo $data["user_id"]; ?>
 										</td>
 									</tr>
 									<tr>
 										<td>Nama</td>
 											<td>:</td>
 										<td>
-										<?php echo $data['nama']; ?>
+										<?php echo $data["nama"]; ?>
 										</td>
 									</tr>
 									<tr>
 										<td>Jenis Kelamin</td>
 										<td>:</td>
 										<td>
-										<?php echo $data['jekel']; ?>
+										<?php echo $data["jekel"]; ?>
 										</td>
 									</tr>
 									<tr>
 										<td>Kelas</td>
 										<td>:</td>
 										<td>
-										<?php echo $data['kelas']; ?>
+										<?php echo $data["kelas"]; ?>
 										</td>
 									</tr>
 									<tr>
 										<td>No HP</td>
 										<td>:</td>
 										<td>
-										<?php echo $data['no_hp']; ?>
+										<?php echo $data["no_hp"]; ?>
 										</td>
 									</tr>
-								<?php
-								}
-								?>
+								<?php }
+        ?>
 								</table>
 							</div>
 							<div class="col-sm-4 text-center">
@@ -146,3 +150,4 @@ error_reporting(0);
   </body>
   
 </html>
+<?php } ?>

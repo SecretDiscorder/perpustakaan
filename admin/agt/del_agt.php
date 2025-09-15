@@ -1,6 +1,8 @@
 <?php
+
+if ($data_level == "Administrator") {
 if(isset($_GET['kode'])){
-            $sql_hapus = "DELETE FROM tb_anggota WHERE id_anggota='".$_GET['kode']."'";
+            $sql_hapus = "DELETE FROM tb_anggota WHERE user_id='".$_GET['kode']."'";
             $query_hapus = mysqli_query($koneksi, $sql_hapus);
 
             if ($query_hapus) {
@@ -22,3 +24,4 @@ if(isset($_GET['kode'])){
             }
         }
 
+}

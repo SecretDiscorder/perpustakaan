@@ -1,0 +1,47 @@
+# Enable mod_rewrite
+RewriteEngine On
+
+# Ensure that non-existent files or directories are redirected to index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^index\.php\?MyApp/data_buku&page=(\d+)$ index.php?MyApp=data_buku&page=$1 [L]
+
+# Base URL for rewrites
+# Aktifkan mod_rewrite
+RewriteEngine On
+
+# Atur CORS dan MIME Type
+Header set Access-Control-Allow-Origin "*"
+Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+Header set Access-Control-Allow-Headers "Content-Type, Authorization, Range"
+Header set Access-Control-Expose-Headers "Accept-Ranges, Content-Encoding, Content-Length, Content-Range"
+
+Header always set Access-Control-Allow-Credentials "true"
+
+
+Header always set X-Content-Type-Options "nosniff"
+# Pastikan file CSS dan font dikenali dengan benar
+AddType text/css .css
+
+RewriteBase /
+
+
+# Atur izin akses untuk file tertentu
+<Files "./ujidns/domains.txt">
+    Require all granted
+</Files>
+
+# Pastikan MIME Type font terdeteksi dengan benar
+<IfModule mod_mime.c>
+    AddType font/ttf .ttf
+    AddType font/woff .woff
+    AddType font/woff2 .woff2
+    AddType font/eot .eot
+    AddType font/otf .otf
+</IfModule>
+
+# Izinkan akses ke file font
+<FilesMatch "\.(ttf|otf|eot|woff|woff2)$">
+    Header set Access-Control-Allow-Origin "*"
+    Header set X-Content-Type-Options "nosniff"
+</FilesMatch>
